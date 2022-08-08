@@ -1,0 +1,23 @@
+@import './assets/css/const.less';
+
+/***********/
+.App {
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  top: @MioHeadHeight;
+  bottom: @MioFooterHeight;
+  left: 0;
+  right: 0;
+  position: fixed;
+  .content-left {
+    width: @ContentLeftWidth;
+  }
+  .content-right {
+    flex: 1;
+  }
+}
