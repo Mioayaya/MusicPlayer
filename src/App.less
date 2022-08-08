@@ -4,14 +4,15 @@
 .App {
   display: flex;
   flex-direction: column;
+  padding: @AppPaddingHeight @AppPaddingWidth;
 }
 
 .content {
   display: flex;
   flex-direction: row;
-  top: @MioHeadHeight;
-  bottom: @MioFooterHeight;
-  left: 0;
+  top: calc(~"@{MioHeadHeight} + @{AppPaddingHeight}");
+  bottom: calc(~"@{MioFooterHeight} + @{AppPaddingHeight}");
+  left: @AppPaddingWidth;
   right: 0;
   position: fixed;
   .content-left {

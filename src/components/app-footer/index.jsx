@@ -5,7 +5,7 @@ import { MioFooterCss } from '../../common/css-var';
 
 const MioFooterDiv = styled.div`
   height: ${MioFooterCss.height};
-  bottom: 0;
+  bottom: ${MioFooterCss.bottom};
   position: fixed;
 `
 
