@@ -20,3 +20,7 @@
 # 问题
 - Q1: 使用 react-router-config 配置路由报错 `You should not use <Switch> outside a <Router>`  
   A: 可能是 react-router-dom 的版本过高问题，回退到 5.2.0 解决(与 react-router版本一致)
+- Q2: flex布局 子组件超出父容器会撑破父容器
+  A: 父容器本身也是flexitem，设置父容器 height100% 或者flex1，子容器内设置高度0即可
+- Q3: 如何设置 滚动条 以及调节样式, 移入出现 滚动条等
+  A: 设置 overflow-y: scroll 样式 详见 Content组件

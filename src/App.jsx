@@ -8,21 +8,17 @@ import './App.less'
 import MioAppHeader from '@/components/app-header';
 import MioAppFooter from '@/components/app-footer';
 import MiocontentLeft from '@/components/content-left';
+import MioContent from './components/content';
 
 function App() {
   return (
     <HashRouter>
       <div className="App">
-        <MioAppHeader /> 
-        <div className="content">
-          <div className="content-left">
-            <MiocontentLeft />
-          </div>
-          <div className="content-right">
-            {renderRoutes(routes)}
-          </div>
+        <div className="warrap">
+          <MioAppHeader /> 
+          <MioContent />
+          <MioAppFooter />
         </div>
-        <MioAppFooter />
       </div>
     </HashRouter>
   )

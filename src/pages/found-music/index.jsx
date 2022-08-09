@@ -1,8 +1,13 @@
 import React, { memo } from 'react';
+import styled from '@emotion/styled';
+
+const MioFoundMusicDiv = styled.div`
+  height: 0;
+`
 
 const MioFoundMusic = memo(() => {
   return (
-    <div>MioFoundMusic</div>
+    <MioFoundMusicDiv>MioFoundMusic</MioFoundMusicDiv>
   )
 })
 
