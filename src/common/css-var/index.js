@@ -15,9 +15,16 @@ export const ThemeColor = {
     fontHeadColor2: '#adafb2',       // head字体更浅一点 (右边字体色)
     fontHeadColor3: 'gray',          // placeholder颜色
     
+    // content
     content: '#2b2b2b',           // 内容背景颜色
-    contentHover: '#333333',      // 左侧选中&hover颜色
-    contentDividing: '#454545',   // 左右分割色
+
+    // content-left
+    contentLeftHover: '#333333',     // 左侧选中&hover颜色
+    contentDividing: '#454545',      // 左右分割色
+    fontContentColor1: '#ffffff',    // 内容色 颜色由白到灰 -- hover
+    fontContentColor2: '#cccccc',    // focus 
+    fontContentColor3: '#d0d0d0',    // normal
+    fontContentColor4: '#7c7c7c',    // 灰色
     
     footer: '#222225',            // 播放栏颜色
     footerTop: '#3d3d40',         // 播放栏与content分割的颜色
@@ -25,10 +32,7 @@ export const ThemeColor = {
     /**  字体颜色 **/
 
 
-    fontContentColor1: '#ffffff',    // 内容色 颜色由白到灰 -- hover
-    fontContentColor2: '#d2d2d2',    // focus 
-    fontContentColor3: '#d0d0d0',    // normal
-    fontContentColor4: '#7c7c7c',   // 灰色
+
 
     fontFooterColor1: '#ffffff',     // hover
     fontFooterColor2: '#cececf',     // normal
@@ -54,11 +58,17 @@ export const MioHeadCss = {
   AyayaIcon: ayaya,
 }
 
+// footer
 export const MioFooterCss = {
   height: '70px',       // @MioFooterHeight: 70px;
   // bottom: '50px',       // @AppPaddingHeight: 50px;
   marginWidth: '150px', // @AppPaddingWidth: 150px;
   marginHeight: '50px'  // @AppPaddingHeight: 50px;
+}
+
+// content-left
+export const MioContentLeftCss = {
+  
 }
 
 // 小组件
