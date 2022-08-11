@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo,Suspense } from 'react'
 import { renderRoutes } from 'react-router-config';
 
 import routes from '../../router';
@@ -16,7 +16,9 @@ const MioContent = memo(() => {
         <MioContentLeft />
       </div>
       <div className="content-right scroll">
+      <Suspense fallback={<div>loading</div>}>
         {renderRoutes(routes)}
+      </Suspense>
       </div>
     </MioContentDiv>
   )

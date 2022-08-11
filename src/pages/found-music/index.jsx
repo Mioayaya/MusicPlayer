@@ -1,30 +1,55 @@
 import React, { memo } from 'react';
-import styled from '@emotion/styled';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { getBanner } from '../../store/slices/found-music/foundMusicSlice';
+import { NavLink } from 'react-router-dom';
+import { useState } from 'react';
+import { renderRoutes } from "react-router-config";
+
 import { getTopBanner } from '../../axios/server/foundMusic';
+import { getBanner } from '../../store/slices/found-music/foundMusicSlice';
+import { foundMusicNavList } from '../../axios/local-data';
+import { MioFoundMusicDiv } from './css';
 
-const MioFoundMusicDiv = styled.div`
-  height: 0;
-`
-const MioFoundMusic = memo(() => {
+const MioFoundMusic = memo((props) => {
   const dispatch = useDispatch();
-
   const foundMusicSlice = useSelector(state => state.foundMusicSlice.topBanners);
 
-  useEffect(() => {
-    // 获取轮播图
-    getTopBanner().then(res => {
-      // res.banners
-      // state.topBanners.push(res.banners);
-      dispatch(getBanner(res.banners));
-    })
-  }, [])
+  const { route } = props;
+  // navstate
+  const [ activeIndex,setActiveIndex] = useState(10);
+
+  // useEffect(() => {
+  //   // 获取轮播图
+  //   getTopBanner().then(res => {
+  //     // res.banners
+  //     // state.topBanners.push(res.banners);
+  //     dispatch(getBanner(res.banners));
+  //   })
+  // }, [])
   
   return (
     <MioFoundMusicDiv>
-      founMusic
+      {/* top 导航部分 */}
+      <div className="found-music-nav">
+        {
+          foundMusicNavList.map(item => {
+            return (
+              <NavLink key={item.key}
+                       to={item.link}
+                       className={activeIndex===item.key?'found-music-nav-item found-music-nav-item-active':'found-music-nav-item'}
+                       onClick= {e => {setActiveIndex(item.key)}}
+              >
+                {item.title}
+              </NavLink>
+            )
+          })
+        }
+      </div>
+      {/* 子路由page */}
+      <div className="div">
+      {renderRoutes(route.routes)}
+      </div>
+      
     </MioFoundMusicDiv>
   )
 })
