@@ -16,3 +16,13 @@ export function getPersonalized(limit) {
     }
   })
 }
+
+// 获取歌单详细信息，每首歌的信息等
+export function getSonglistDetail(id) {
+  return request({
+    url: "/playlist/detail",
+    params: {
+      id,
+    }
+  })
+}

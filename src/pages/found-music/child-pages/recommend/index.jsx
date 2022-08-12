@@ -2,10 +2,11 @@ import React, { memo } from 'react'
 import styled from '@emotion/styled';
 import { useDispatch } from 'react-redux';
 
-import MioFoundMusicBannar from '../../../../components/base-frame/bannar';
-import MioRecmdSongList from './c-components/recmd-song-list';
 import { clickNav } from '../../../../store/slices/found-music/foundMusicSlice';
 import { useEffect } from 'react';
+
+import MioFoundMusicBannar from '../../../../components/base-frame/bannar';
+import MioRecmdSongList from './c-components/recmd-song-list';
 // 个性推荐
 
 const MioFoundMusicRecommendDiv = styled.div`
@@ -30,6 +31,7 @@ const MioFoundMusicRecommend = memo(() => {
       
       {/* 推荐歌单组件 */}
       <MioRecmdSongList />
+      <div className="div">123</div>
     </MioFoundMusicRecommendDiv>
   )
 })
