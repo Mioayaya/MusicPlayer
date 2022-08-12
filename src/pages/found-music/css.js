@@ -7,6 +7,7 @@ export const MioFoundMusicDiv = styled.div`
   .found-music-nav {
     display: flex;
     flex-direction: row;
+    margin-bottom: 20px;
     .found-music-nav-item {
       display: block;
       text-decoration: none;
@@ -23,4 +24,5 @@ export const MioFoundMusicDiv = styled.div`
       margin-right: 25px;
     }
   }
+
 `

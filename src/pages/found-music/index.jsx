@@ -1,32 +1,24 @@
 import React, { memo } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { renderRoutes } from "react-router-config";
 
-import { getTopBanner } from '../../axios/server/foundMusic';
-import { getBanner } from '../../store/slices/found-music/foundMusicSlice';
 import { foundMusicNavList } from '../../axios/local-data';
 import { MioFoundMusicDiv } from './css';
+import { clickNav } from '../../store/slices/found-music/foundMusicSlice'
 
 const MioFoundMusic = memo((props) => {
-  const dispatch = useDispatch();
-  const foundMusicSlice = useSelector(state => state.foundMusicSlice.topBanners);
-
   const { route } = props;
-  // navstate
-  const [ activeIndex,setActiveIndex] = useState(10);
 
-  // useEffect(() => {
-  //   // 获取轮播图
-  //   getTopBanner().then(res => {
-  //     // res.banners
-  //     // state.topBanners.push(res.banners);
-  //     dispatch(getBanner(res.banners));
-  //   })
-  // }, [])
-  
+  const dispatch = useDispatch();
+  const activeKey = useSelector(state => state.foundMusicSlice.activeKey);
+
+
+  // 事件方法
+  const navClick = (key) => {
+    dispatch(clickNav(key));
+  }
+
   return (
     <MioFoundMusicDiv>
       {/* top 导航部分 */}
@@ -36,8 +28,8 @@ const MioFoundMusic = memo((props) => {
             return (
               <NavLink key={item.key}
                        to={item.link}
-                       className={activeIndex===item.key?'found-music-nav-item found-music-nav-item-active':'found-music-nav-item'}
-                       onClick= {e => {setActiveIndex(item.key)}}
+                       className={activeKey===item.key?'found-music-nav-item found-music-nav-item-active':'found-music-nav-item'}
+                       onClick= { e => {navClick(item.key)}}
               >
                 {item.title}
               </NavLink>
@@ -46,8 +38,8 @@ const MioFoundMusic = memo((props) => {
         }
       </div>
       {/* 子路由page */}
-      <div className="div">
-      {renderRoutes(route.routes)}
+      <div className="found-music-child-page">
+        {renderRoutes(route.routes)}
       </div>
       
     </MioFoundMusicDiv>

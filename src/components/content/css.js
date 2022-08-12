@@ -20,6 +20,7 @@ background-color: ${ props => ThemeColor[props.theme].content};
 .content-right {
   flex: 1;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 .scroll {
   /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/

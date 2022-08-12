@@ -4,7 +4,8 @@ export default function request(option) {
 	return new Promise((resolve, reject) => {
 		// 1.创建axios的实例
 		const instance = originAxios.create({
-			baseURL: 'http://123.207.32.32:9001/',
+			// baseURL: 'http://123.207.32.32:9001/',
+			baseURL: 'https://cloud-music-ten-iota.vercel.app/',
 			timeout: 10000
 		});
 

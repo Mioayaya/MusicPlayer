@@ -4,7 +4,9 @@ import { getTopBanner } from "../../../axios/server/foundMusic";
 export const foundMusicSlice = createSlice({
   name: 'foundMusic',
   initialState: {
-    topBanners: [],
+    topBanners: [],       // 轮播图 数据
+    recmdSongList: [],    // 推荐歌单 数据
+    activeKey: 10
   },
   reducers: {
     // 获取轮播图
@@ -12,8 +14,17 @@ export const foundMusicSlice = createSlice({
       // console.log(payload);
       state.topBanners = payload;
     },
+    getRecmdSongList: (state, {payload}) => {
+      state.recmdSongList = payload;
+    }
+    ,
+    // 点击 navlink
+    clickNav: (state,{payload}) => {
+      // console.log(payload);
+      state.activeKey = payload;
+    },
   }
 });
 
-export const {getBanner} = foundMusicSlice.actions;
+export const {getBanner,getRecmdSongList,clickNav} = foundMusicSlice.actions;
 export default foundMusicSlice.reducer;

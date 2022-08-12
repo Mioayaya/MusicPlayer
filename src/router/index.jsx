@@ -30,7 +30,7 @@ const routes = [
         path: '/foundmusic',
         exact: true,
         render: () => (
-          <Redirect to={"/foundmusic/custom"}/>
+          <Redirect to={"/foundmusic/recommend"}/>
         )
       },
       {

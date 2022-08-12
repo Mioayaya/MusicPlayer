@@ -71,6 +71,12 @@ export const MioContentLeftCss = {
   
 }
 
+// pages-found-music-recommend 
+export const MioRecommendCss = {
+  marginHeight: '20px',
+  marginWidth: '20px'
+}
+
 // 小组件
 // 搜索条
 const searchBar = {
