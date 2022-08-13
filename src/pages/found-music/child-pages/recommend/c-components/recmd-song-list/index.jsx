@@ -34,7 +34,7 @@ const MioRecmdSongList = memo(() => {
     // 获取歌单
     getPersonalized(8).then(res => {
       dispatch(setRecmdSongList(res.result));
-      dispatch(setsongListId({id:0,index:0}));
+      dispatch(setsongListId({id:0}));
     })
     // 空数组的原因 是每次重新进入页面时候，才刷新，减少网络请求
   },[])
@@ -42,17 +42,10 @@ const MioRecmdSongList = memo(() => {
   useEffect(() => {
     // 数据未显示的时候不请求 
     if(songListShowId !== 0) {
-      /**
-       * 1.如果 songListDetail.data[songListDetail.current] 有数据的话 则判断
-       * 2. 没有直接加载
-       */
-      if(songListDetail.data[songListDetail.current]) {
-        if(songListShowId !== songListDetail.data[songListDetail.current].id) {
-          ayaGetSonglistDetail(songListShowId);
-        }
-      }else {
-        ayaGetSonglistDetail(songListShowId);
-      }
+      getSonglistDetail(songListShowId).then(res => {
+        // console.log('请求了',showid );
+        dispatch(setsongListDetail(res.playlist));
+      })
 
       // 打印点击 current 和 当前 data数组长度
       // console.log(songListDetail.current,songListDetail.data.length);         
@@ -61,17 +54,10 @@ const MioRecmdSongList = memo(() => {
   
   // 业务逻辑代码
 
-  const ayaGetSonglistDetail = (showid) => {
-    getSonglistDetail(showid).then(res => {
-      // console.log('请求了',showid );
-      dispatch(setsongListDetail(res.playlist));
-    })
-  }
-
-  const showSonglistDetail = (id,index) => {
+  const showSonglistDetail = (id) => {
     // 传入一个 index 代表 当前 点击了哪个 歌单 
     // id 则是 歌单id
-    dispatch(setsongListId({id:id,index:index}));
+    dispatch(setsongListId({id:id}));
   }
 
   const gotoSonglistInformation = (id) => {
@@ -128,9 +114,9 @@ const MioRecmdSongList = memo(() => {
           // 首先判断是数组是否为空 其次还要判断是否需要加载
           // 判断 data数据是否 == null
           
-          songListDetail.data[songListDetail.current]
-          ? songListShowId == songListDetail.data[songListDetail.current].id 
-            ? <MiosonglistDetail songListDetail={songListDetail.data[songListDetail.current]} />
+          songListDetail
+          ? songListShowId == songListDetail.id 
+            ? <MiosonglistDetail songListDetail={songListDetail} />
             : <div className='recmd-song-list-bottom-loading'><MioLoadingLeft /></div>
           : <div className='recmd-song-list-bottom-loading'><MioLoadingLeft /></div>
         }

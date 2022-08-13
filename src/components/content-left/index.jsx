@@ -16,6 +16,7 @@ const MioContentLeft = memo(() => {
 
   useEffect(() => {
     let routerData = location.hash.split('#/')[1];
+    /foundmusic/.test(routerData)?routerData='foundmusic':routerData=routerData;
     let key = 0;
     switch(routerData) {
       case 'foundmusic': key = 0 ; break; 

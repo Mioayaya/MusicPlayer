@@ -6,7 +6,7 @@ import calculateTimeLength from '../../../../../../utils/calculateTimeLength';
 const MiosonglistDetail = memo((props) => {
   const history = useHistory();
 
-  const [active,setActive] = useState(0);
+  const [active,setActive] = useState(-1);
   
   // 模拟是否被喜欢
   const [liked,setLiked] = useState([false,false,false,false,false,false,false,false,false,false]);

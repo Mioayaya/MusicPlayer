@@ -5,10 +5,7 @@ export const foundMusicSlice = createSlice({
   initialState: {
     topBanners: [],       // 轮播图 数据
     recmdSongList: [],    // 推荐歌单 数据
-    songListDetail: {     // 保存 歌单详情数据
-      data: [],           // 保存的 8个歌单
-      current: 0,         // 当前展示数组
-    },
+    songListDetail: '',   // 保存歌单详情数据
     songListId: 0,        // 获取详情歌单信息的歌单id
     activeKey: 10,        // 控制导航栏~
   },
@@ -23,19 +20,17 @@ export const foundMusicSlice = createSlice({
     }
     ,
     setsongListId: (state, {payload}) => {
-      const {id,index} = payload
+      const {id} = payload
       // 首次加载的话
       if(id===0) {
-        state.songListDetail.current = index;
-        state.songListId = state.recmdSongList[index].id;  
+        state.songListId = state.recmdSongList[0].id;
       }else {
         // 否则 点击赋给id 和对应的 index
         state.songListId = id;
-        state.songListDetail.current = index;
       }
     },
     setsongListDetail: (state,{payload}) => {
-      state.songListDetail.data[state.songListDetail.current] = payload;
+      state.songListDetail = payload;
     },
     // 点击 navlink
     clickNav: (state,{payload}) => {
