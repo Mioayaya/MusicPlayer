@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { MioRecommendCss } from "../../../../../../common/css-var";
+import { MioRecommendCss,ThemeColor } from "../../../../../../common/css-var";
 
 export const MioRecmdSongListDiv = styled.div`
   margin-top: ${MioRecommendCss.marginHeight};
@@ -68,7 +68,101 @@ export const MioRecmdSongListDiv = styled.div`
   .recmd-song-list-bottom {
     display: block;
     position: relative;
-    /* padding-top: 23%; */
+
+    .recmd-song-list-bottom-detail {
+      .song-list-name {
+        font-size: large;
+        font-weight: 600;
+        color: #d0d0d0;
+        margin-bottom: 20px;
+        display: block;
+      }
+      .item {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        .item-left,.item-right {
+          flex: 1;
+          display: flex;
+          flex-direction: row;
+          background-color: #2f2f2f;
+          border-radius: 10px;
+          padding: 5px;
+          margin-bottom: 10px;
+          :hover {
+            background-color: #373737;
+          }
+        }
+        .item-left {
+          margin-right: 20px;
+        }
+        .item-active {
+          background-color: #414141;
+        }
+        .item-desc {
+          flex: 2;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          margin-left: 20px;
+        }
+        .item-icon {
+          flex: 1;
+          align-items: center;
+          display: flex;
+          flex-direction: row;
+          justify-content: end;
+          &>* {
+            padding-left: 10px;
+          }
+        }
+        img {
+          width: 50px;
+          height: 50px;
+          object-fit: cover;
+          border-radius: 20px;
+          background-color: #7c7c7c;
+        }
+        .name {
+          color: #fff;
+          overflow: hidden;
+          text-overflow: ellipsis;      /* 超出部分省略号 */
+          word-break: break-all;        /* break-all(允许在单词内换行。) */  
+          display: -webkit-box;         /* 对象作为伸缩盒子模型显示 */
+          -webkit-box-orient: vertical; /* 设置或检索伸缩盒对象的子元素的排列方式 */
+          -webkit-line-clamp: 1;        /* 显示的行数 */
+        }
+        .icon {
+          cursor: pointer;
+          user-select: none;
+        }
+        .author {
+          color: #7c7c7c;
+        }
+        .like {
+          transition: 1s;
+          transform: color;  
+          :hover{
+            color: red;
+          }
+        }
+        .play {
+          
+        }
+        .comment {
+          
+        }
+        .time-length {
+          white-space:nowrap;     // 强制文本不换行
+        }
+      }
+    }
+
+    .recmd-song-list-bottom-loading {
+      margin-left: 40px;
+      padding: 20px;
+    }
   }
 
   .swiper {

@@ -12,6 +12,8 @@ import { clickNav, setRecmdSongList, setsongListId,setsongListDetail } from '../
 import { useEffect } from 'react';
 import { getPersonalized, getSonglistDetail } from '../../../../../../axios/server/foundMusic';
 import calculatePlayNumber from '../../../../../../utils/calculatePlayNumber';
+import MioLoadingLeft from '../../../../../../components/loading/loading-left';
+import MiosonglistDetail from './songlistDetail';
 
 
 
@@ -26,6 +28,7 @@ const MioRecmdSongList = memo(() => {
   // 歌单详细信息
   const songListDetail = useSelector(state => state.foundMusicSlice.songListDetail);
 
+
   useEffect(() => {
     // 获取歌单
     getPersonalized(8).then(res => {
@@ -38,36 +41,31 @@ const MioRecmdSongList = memo(() => {
   useEffect(() => {
     // 数据未显示的时候不请求 
     if(songListShowId !== 0) {
-      // 如果请求过了的话就不请求
-      // 因为要保证 data[current] 一定要有数据,所以先判断 空数组的 情况
-      // 1. 首次加载 即 data.length = 0 一定会请求
-      // 2. current(点击index) < data.length 则可能会有缓存数据
-      //  2.1 如果 请求的 id 与 缓存的 id 相等 则不请求
-      //  2.2 反之 请求
-      // 3. 其它情况全部请求
-      if(songListDetail.data.length == 0) {
-        getSonglistDetail(songListShowId).then(res => {
-          console.log('请求了',songListShowId );
-          dispatch(setsongListDetail(res.playlist));
-        })
-      } else if(songListDetail.current < (songListDetail.data.length)) {
+      /**
+       * 1.如果 songListDetail.data[songListDetail.current] 有数据的话 则判断
+       * 2. 没有直接加载
+       */
+      if(songListDetail.data[songListDetail.current]) {
         if(songListShowId !== songListDetail.data[songListDetail.current].id) {
-          getSonglistDetail(songListShowId).then(res => {
-            console.log('请求了',songListShowId );
-            dispatch(setsongListDetail(res.playlist));
-          })
+          ayaGetSonglistDetail(songListShowId);
         }
       }else {
-        getSonglistDetail(songListShowId).then(res => {
-          console.log('请求了',songListShowId );
-          dispatch(setsongListDetail(res.playlist));
-        })
+        ayaGetSonglistDetail(songListShowId);
       }
-      console.log(songListDetail.current,songListDetail.data.length);          
+
+      // 打印点击 current 和 当前 data数组长度
+      // console.log(songListDetail.current,songListDetail.data.length);         
     }
   },[songListShowId])
   
   // 业务逻辑代码
+
+  const ayaGetSonglistDetail = (showid) => {
+    getSonglistDetail(showid).then(res => {
+      // console.log('请求了',showid );
+      dispatch(setsongListDetail(res.playlist));
+    })
+  }
 
   const showSonglistDetail = (id,index) => {
     // 传入一个 index 代表 当前 点击了哪个 歌单 
@@ -117,7 +115,18 @@ const MioRecmdSongList = memo(() => {
       </div>
       
       <div className="recmd-song-list-bottom">
-        歌单详情
+        
+        {
+          // 首先判断是数组是否为空 其次还要判断是否需要加载
+          // 判断 data数据是否 == null
+          
+          songListDetail.data[songListDetail.current]
+          ? songListShowId == songListDetail.data[songListDetail.current].id 
+            ? <MiosonglistDetail songListDetail={songListDetail.data[songListDetail.current]} />
+            : <div className='recmd-song-list-bottom-loading'><MioLoadingLeft /></div>
+          : <div className='recmd-song-list-bottom-loading'><MioLoadingLeft /></div>
+        }
+        
       </div>
     </MioRecmdSongListDiv>
   )

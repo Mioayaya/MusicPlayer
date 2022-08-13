@@ -7,8 +7,8 @@ export const foundMusicSlice = createSlice({
     topBanners: [],       // 轮播图 数据
     recmdSongList: [],    // 推荐歌单 数据
     songListDetail: {     // 保存 歌单详情数据
-      data: [],
-      current: 0,
+      data: [],           // 保存的 8个歌单
+      current: 0,         // 当前展示数组
     },
     songListId: 0,        // 获取详情歌单信息的歌单id
     activeKey: 10,        // 控制导航栏~
