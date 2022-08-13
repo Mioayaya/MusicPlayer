@@ -1,8 +1,10 @@
-import test from './slices/found-music/test'
 import foundMusicSlice from './slices/found-music/foundMusicSlice';
+import contentLeftSlice from './slices/content-left';
+import themeSlice from './slices/theme';
 
 const reducer = {
-  test,
+  themeSlice,
+  contentLeftSlice,
   foundMusicSlice
 }
 

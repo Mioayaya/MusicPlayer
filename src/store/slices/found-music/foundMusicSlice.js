@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getTopBanner } from "../../../axios/server/foundMusic";
 
 export const foundMusicSlice = createSlice({
   name: 'foundMusic',

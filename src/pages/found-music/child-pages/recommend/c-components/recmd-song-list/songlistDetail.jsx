@@ -1,8 +1,11 @@
 import React, { memo } from 'react'
 import { useState } from 'react';
+import { useHistory } from 'react-router';
 import calculateTimeLength from '../../../../../../utils/calculateTimeLength';
 
 const MiosonglistDetail = memo((props) => {
+  const history = useHistory();
+
   const [active,setActive] = useState(0);
   
   // 模拟是否被喜欢
@@ -18,17 +21,16 @@ const MiosonglistDetail = memo((props) => {
   // <div className="id">{tracks[0].id}</div>
 
   /* 业务逻辑代码 */
+
   // 点击爱心 传入 被点击歌曲 id , 歌曲序号
   const clickLike = (id,index) => {
-
     if(liked) {
       //  已经被点击过了
     }else {
       // 没有被点击过
     }
     liked[index] = !liked[index];
-    setLiked([...liked]);
-    
+    setLiked([...liked]);    
     // console.log(id,index);
   }
 

@@ -6,6 +6,7 @@ import { renderRoutes } from "react-router-config";
 import { foundMusicNavList } from '../../axios/local-data';
 import { MioFoundMusicDiv } from './css';
 import { clickNav } from '../../store/slices/found-music/foundMusicSlice'
+import { useEffect } from 'react';
 
 const MioFoundMusic = memo((props) => {
   const { route } = props;
@@ -13,6 +14,22 @@ const MioFoundMusic = memo((props) => {
   const dispatch = useDispatch();
   const activeKey = useSelector(state => state.foundMusicSlice.activeKey);
 
+
+  useEffect(() => {
+    let key = 10;
+    const routerData = location.hash.split('foundmusic/')[1];
+    switch (routerData) {
+      case 'recommend':   key = 10; break;
+      case 'custom':      key = 11; break;
+      case 'songlist':    key = 12; break;
+      case 'leaderboard': key = 13; break;
+      case 'singer':      key = 14; break;
+      case 'latestmusic': key = 15; break;
+    
+      default: key = 999998;break;
+    }
+    navClick(key);
+  },[])
 
   // 事件方法
   const navClick = (key) => {

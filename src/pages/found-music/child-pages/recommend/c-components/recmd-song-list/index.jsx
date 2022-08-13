@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 import { useDispatch,useSelector } from 'react-redux';
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -20,6 +20,7 @@ import MiosonglistDetail from './songlistDetail';
 
 const MioRecmdSongList = memo(() => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   // 获取推荐歌单信息
   const recmdSongList = useSelector(state => state.foundMusicSlice.recmdSongList);
@@ -73,6 +74,13 @@ const MioRecmdSongList = memo(() => {
     dispatch(setsongListId({id:id,index:index}));
   }
 
+  const gotoSonglistInformation = (id) => {
+    history.push({
+      pathname: '/songlistInfomation',
+       search: `?id=${id}`,
+       //search:`?${encodeURI(JSON.stringify(record))}` 如果传递的是对象，需要对对象进行url编码不然解码会报错
+    })
+  }
 
 
   return (
@@ -101,7 +109,7 @@ const MioRecmdSongList = memo(() => {
               return (
                 <SwiperSlide key={item.id}
                              onClick={e => {showSonglistDetail(item.id,index)}}
-                             onDoubleClick={e => {alert('hhh')}}
+                             onDoubleClick={e => {gotoSonglistInformation(item.id)}}
                 >
                   <img src={item.picUrl} alt={item.name}/>
                   <span className="number">▷ {calculatePlayNumber(item.playCount)}</span>

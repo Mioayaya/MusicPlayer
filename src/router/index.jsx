@@ -12,6 +12,8 @@ const MioFoundMusicLatestMusic = React.lazy(_ => import("../pages/found-music/ch
 
 const MioMine = React.lazy(_ => import("../pages/mine"));
 
+const MioSonglistInformation = React.lazy(_ => import("../pages/songlist-information"));
+
 const routes = [
   {
     path: '/',
@@ -68,6 +70,10 @@ const routes = [
   {
     path: '/mine',
     component: MioMine
+  },
+  {
+    path: '/songlistInfomation',
+    component: MioSonglistInformation
   }
 ];
 

@@ -4,9 +4,13 @@ export default function calculatePlayNumber(number) {
   // 如果 数字小于 10，000 直接返回
   if(number < 10000) {
     return number;
-  }else {
+  }else if(number < 100000000){
     number = number / 10000;
     number = number.toFixed(2);
     return `${number}万`
+  }else {
+    number = number / 100000000;
+    number = number.toFixed(2);
+    return `${number}亿`
   }
 }

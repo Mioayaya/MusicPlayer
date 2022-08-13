@@ -29,7 +29,8 @@ export const ThemeColor = {
     footer: '#222225',            // 播放栏颜色
     footerTop: '#3d3d40',         // 播放栏与content分割的颜色
 
-    /**  字体颜色 **/
+    /* 歌单页面 */
+    songlistPageFontColor: '#ffffff', // 歌单页面 字体颜色
 
 
 

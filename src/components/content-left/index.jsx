@@ -1,15 +1,29 @@
-import React, { memo, useState } from 'react'
+import React, { memo, useState, useEffect} from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom'
 
 import { MioContentLeftDiv } from './css';
 import { contentLeftList, contentMyMusicList } from '../../axios/local-data';
+import { setNavKey } from '../../store/slices/content-left';
 
 // 接受一个全局的 redux
 const theme = 'dark';
 
 const MioContentLeft = memo(() => {
-
+  const dispatch = useDispatch();
+  const activeKey = useSelector(state => state.contentLeftSlice.navKey);
   const [ activeIndex,setActiveIndex ] = useState(0);
+
+  useEffect(() => {
+    let routerData = location.hash.split('#/')[1];
+    let key = 0;
+    switch(routerData) {
+      case 'foundmusic': key = 0 ; break; 
+      case 'mine': key = 1 ; break; 
+      default: key = 99999;
+    }
+    dispatch(setNavKey(key));
+  },[])
 
   return (
     <MioContentLeftDiv theme={theme}>
@@ -19,9 +33,9 @@ const MioContentLeft = memo(() => {
           contentLeftList.map((item) => {
             return (
               // 这里navLink 点击时 会自动添加一个 active
-              <NavLink className={activeIndex===item.key?'content-left-top-item content-left-top-item-active':'content-left-top-item'}
+              <NavLink className={activeKey===item.key?'content-left-top-item content-left-top-item-active':'content-left-top-item'}
                    key={item.key}
-                   onClick= {e => {setActiveIndex(item.key)}}
+                   onClick= {e => {dispatch(setNavKey(item.key))}}
                    to={item.link}
               >
                 {item.title}
@@ -38,9 +52,9 @@ const MioContentLeft = memo(() => {
           contentMyMusicList.map(item => {
             return (
               // 这里navLink 点击时 会自动添加一个 active
-              <NavLink className={activeIndex===item.key?'content-left-middle-item content-left-middle-item-active':'content-left-middle-item'}
+              <NavLink className={activeKey===item.key?'content-left-middle-item content-left-middle-item-active':'content-left-middle-item'}
                    key={item.key}
-                   onClick= {e => {setActiveIndex(item.key)}}
+                   onClick= {e => {dispatch(setNavKey(item.key))}}
                    to={item.link}
               >
                 {item.title}
