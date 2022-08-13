@@ -1,4 +1,5 @@
 import React, { memo } from 'react'
+import { useRef } from 'react';
 import { useState } from 'react';
 import { useHistory } from 'react-router';
 import calculateTimeLength from '../../../../../../utils/calculateTimeLength';
@@ -7,7 +8,7 @@ const MiosonglistDetail = memo((props) => {
   const history = useHistory();
 
   const [active,setActive] = useState(-1);
-  
+  const listRef = useRef();
   // 模拟是否被喜欢
   const [liked,setLiked] = useState([false,false,false,false,false,false,false,false,false,false]);
   // 歌曲头像 名称 作者 时长
@@ -34,6 +35,15 @@ const MiosonglistDetail = memo((props) => {
     // console.log(id,index);
   }
 
+  // 点击歌曲，选中状态
+  const clickList = (e,index) => {
+    if(e.target.className == 'like icon') {
+      return ;
+    }else {
+      setActive(index)
+    }
+  }
+
   return (
     <div className='recmd-song-list-bottom-detail'>
       <span className='song-list-name'>{`[${name}]`}</span>
@@ -45,8 +55,9 @@ const MiosonglistDetail = memo((props) => {
             <div className="item" key={index}>
 
               <div className={ active===indexy?'item-left item-active':'item-left'}
-                   onClick={e => setActive(indexy)}
+                   onClick={e => {clickList(e,indexy)} }
                    onDoubleClick={e => alert('双击了')}
+                   ref={listRef}
               >
                 <img src={tracks[indexy].al.picUrl} alt="" />
                 <div className="item-desc">
@@ -71,7 +82,7 @@ const MiosonglistDetail = memo((props) => {
               </div>
               
               <div className={ active===indexz?'item-right item-active':'item-right'}
-                   onClick={e => setActive(indexz)}
+                   onClick={e => clickList(e,indexz)}
                    onDoubleClick={e => alert('双击了')}
               >
                 <img src={tracks[indexz].al.picUrl} alt="" />
