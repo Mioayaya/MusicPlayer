@@ -35,6 +35,8 @@ const MioRecmdSongList = memo(() => {
     getPersonalized(8).then(res => {
       dispatch(setRecmdSongList(res.result));
       dispatch(setsongListId({id:0}));
+    }).catch(err => {
+      console.log(err);
     })
     // 空数组的原因 是每次重新进入页面时候，才刷新，减少网络请求
   },[])
@@ -117,8 +119,8 @@ const MioRecmdSongList = memo(() => {
           songListDetail
           ? songListShowId == songListDetail.id 
             ? <MiosonglistDetail songListDetail={songListDetail} />
-            : <div className='recmd-song-list-bottom-loading'><MioLoadingLeft /></div>
-          : <div className='recmd-song-list-bottom-loading'><MioLoadingLeft /></div>
+            : <div className='recmd-song-list-bottom-loading'><MioLoadingLeft height='350px' /></div>
+          : <div className='recmd-song-list-bottom-loading'><MioLoadingLeft height='350px' /></div>
         }
         
       </div>

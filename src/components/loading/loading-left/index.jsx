@@ -18,23 +18,28 @@ const MioLoadingLeftDiv = styled.div`
     100% {
         box-shadow: 14px 0 0 -2px, 38px 0 0 2px, -14px 0 0 -2px, -38px 0 0 -2px;
     }
-}
+  }
 
-  position: relative;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  color: #ec4141;
-  -webkit-animation: boxShadowOffset3 2s linear infinite;
-  animation: boxShadowOffset3 2s linear infinite;
+  height: ${ props => props.height? props.height: '12px'};
+  
+  .loading {
+    position: relative;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    color: #ec4141;
+    -webkit-animation: boxShadowOffset3 2s linear infinite;
+    animation: boxShadowOffset3 2s linear infinite;
+  }
 
 `
 
 
-const MioLoadingLeft = memo(() => {
+const MioLoadingLeft = memo((props) => {
+  const {height} = props
   return (
-    <MioLoadingLeftDiv>
-
+    <MioLoadingLeftDiv height={height}>
+      <div className="loading"></div>
     </MioLoadingLeftDiv>
   )
 })

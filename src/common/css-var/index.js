@@ -30,9 +30,14 @@ export const ThemeColor = {
     footerTop: '#3d3d40',         // 播放栏与content分割的颜色
 
     /* 歌单页面 */
+    songlistPageIconColor: '#ff0000', // 歌单iconyanse
+    songlistPageLinkColor: '#85b9e6',     // 链接颜色
+    songlistPageLinkHoverColor: '#b3cee5',  // hover后颜色
+    songlistPageBorder: '#4b4b4b',          // border颜色
+    songlistPageButtonHover: '#353535',     // 按钮hover
+    songlistPageFontColorTitle: '#d0d0d0', // 歌单标题颜色
     songlistPageFontColor: '#ffffff', // 歌单页面 字体颜色
-
-
+    songlistPageFontColor2: '#878787', // 歌单页面 字体颜色2
 
 
     fontFooterColor1: '#ffffff',     // hover

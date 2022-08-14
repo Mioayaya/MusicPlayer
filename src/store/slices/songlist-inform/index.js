@@ -8,6 +8,7 @@ export const songlistSlice = createSlice({
     songlist: [],            // 歌曲列表
     firstLoad: 0,            // 分段加载
     songTotalLength: 0,      // 所有歌曲数目
+    authorInform: '',           // 用户信息
   },
   reducers: {
     setSonglistInformation: (state,{payload}) => {
@@ -19,12 +20,26 @@ export const songlistSlice = createSlice({
       state.songTotalLength = payload.trackIds.length;
     },
     setSonglist: (state,{payload}) => {
-      state.songlist.push(...payload);
+      if(payload) state.songlist.push(...payload);
+    },
+    setAuthorInform: (state,{payload}) => {
+      if(payload) {
+        const {userId,avatarUrl,nickname} = payload;    
+        // console.log(payload);
+        state.authorInform = {userId,avatarUrl,nickname};
+      }      
+    },
+    clearAllData: (state) => {
+      state.songlistInformation = '';
+      state.songlist.length = 0;
+      state.firstLoad = 0;
+      state.songTotalLength = 0;
+      state.authorInform = '';
     }
   }
 
 });
 
-export const { setSonglistInformation,setSonglist }  = songlistSlice.actions;
+export const { setSonglistInformation,setSonglist,setAuthorInform,clearAllData }  = songlistSlice.actions;
 
 export default songlistSlice.reducer;

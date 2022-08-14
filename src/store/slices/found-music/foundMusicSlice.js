@@ -25,7 +25,7 @@ export const foundMusicSlice = createSlice({
       if(id===0) {
         state.songListId = state.recmdSongList[0].id;
       }else {
-        // 否则 点击赋给id 和对应的 index
+        // 否则 点击赋给idss
         state.songListId = id;
       }
     },
