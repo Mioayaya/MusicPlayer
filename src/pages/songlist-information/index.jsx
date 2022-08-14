@@ -11,9 +11,12 @@ import { setAuthorInform, setSonglist, setSonglistInformation,clearAllData } fro
 import { MioSonglistInformationDiv } from './css'
 
 import MioSonglistTop from './c-components/songlist-top';
+import { useState } from 'react';
+import calculatePlayNumber from '../../utils/calculatePlayNumber';
 
 const MioSonglistInformation = memo(() => {
   const dispatch = useDispatch();
+  /* redux数据 */
   const theme = useSelector(state => state.themeSlice.theme);
   // 歌单详情
   const songlistInformation = useSelector(state => state.songlistSlice.songlistInformation);
@@ -26,10 +29,13 @@ const MioSonglistInformation = memo(() => {
   // 歌单作者
   const authorInform = useSelector(state => state.songlistSlice.authorInform);
 
-  const routerData = location.hash.split('?id=')[1];  
-
-  const history = useHistory();
+  /* 路由 */
+  const routerData = location.hash.split('?id=')[1];
   
+  /* state数据 */
+  const [nav,setNav] = useState(0);
+
+
   useEffect(() => {
     // 修改左侧nav条
     dispatch(setNavKey(9999));
@@ -78,8 +84,21 @@ const MioSonglistInformation = memo(() => {
         : <div>loading</div>
       }
       
-      <div className="songlist-middle">中间工具栏</div>
-      <div className="songlist-bottom">下部分</div>
+      <div className="songlist-middle">
+        <span className={nav==0?'active':''} onClick={e => {setNav(0)}}>歌曲列表</span>
+        <span className={nav==1?'active':''} onClick={e => {setNav(1)}}>
+          {
+          `评论(${calculatePlayNumber(songlistInformation.commentCount,0)})`
+          }
+        </span>
+        <span className={nav==2?'active':''} onClick={e => {setNav(2)}}>收藏者</span>
+      </div>
+
+      <div className="songlist-bottom">
+        {nav==0 && <div className="part1">部分1</div>}
+        {nav==1 && <div className="part2">部分2</div>}
+        {nav==2 && <div className="part3">部分3</div>}
+      </div>
 
     </MioSonglistInformationDiv>
   )
