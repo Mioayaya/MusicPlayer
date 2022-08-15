@@ -20,7 +20,10 @@ export const songlistSlice = createSlice({
       state.songTotalLength = payload.trackIds.length;
     },
     setSonglist: (state,{payload}) => {
-      if(payload) state.songlist.push(...payload);
+      if(payload) {
+        state.songlist = payload;
+        state.firstLoad = state.songTotalLength;
+      }
     },
     setAuthorInform: (state,{payload}) => {
       if(payload) {

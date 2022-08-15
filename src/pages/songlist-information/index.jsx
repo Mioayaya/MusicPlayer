@@ -13,6 +13,7 @@ import { MioSonglistInformationDiv } from './css'
 import MioSonglistTop from './c-components/songlist-top';
 import { useState } from 'react';
 import calculatePlayNumber from '../../utils/calculatePlayNumber';
+import MioSonglistBottomSonglist from './c-components/songlist-bottom/songlist';
 
 const MioSonglistInformation = memo(() => {
   const dispatch = useDispatch();
@@ -56,7 +57,7 @@ const MioSonglistInformation = memo(() => {
   useEffect(() => {
     // 判断一下是否需要请求
     if((songTotalLength-firstLoad) > 0) {
-      getTotalSonglist(songlistInformation.id,(songTotalLength-firstLoad),firstLoad)
+      getTotalSonglist(songlistInformation.id,(songTotalLength),0)
         .then(res => {
           dispatch(setSonglist(res.songs));
       })
@@ -73,6 +74,7 @@ const MioSonglistInformation = memo(() => {
   return (
     <MioSonglistInformationDiv theme={theme}>
       {/* 上半部分 */}
+
       {
         songlistInformation 
           ? songlistInformation.id == routerData 
@@ -95,7 +97,16 @@ const MioSonglistInformation = memo(() => {
       </div>
 
       <div className="songlist-bottom">
-        {nav==0 && <div className="part1">部分1</div>}
+        {
+          nav==0 && 
+            <div className="part1">
+              {
+                songlist.length ? <MioSonglistBottomSonglist songlist={songlist}/> 
+                : <div>loading</div>
+              }
+              
+            </div>
+        }
         {nav==1 && <div className="part2">部分2</div>}
         {nav==2 && <div className="part3">部分3</div>}
       </div>

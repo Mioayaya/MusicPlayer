@@ -36,6 +36,5 @@ export const MioSonglistInformationDiv = styled.div`
 
   .songlist-bottom {
     margin-top: 20px;
-    margin-left: 20px;
   }
 `

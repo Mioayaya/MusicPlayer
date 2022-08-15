@@ -124,6 +124,7 @@ export const MioSonglistTopDiv = styled.div`
         }
       }
       .desc {
+        position: relative;
         margin-top: 10px;
         display: flex;
         flex-direction: row;
