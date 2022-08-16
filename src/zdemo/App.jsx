@@ -1,5 +1,6 @@
 import React, { memo } from 'react'
-import ReactVirtualList from '../components/ReactVirtualList';
+import ReactVirtualList from './ReactVirtualList';
+
 // 定义可是滚动的样式
 const styleObj = {
   contentWidth: 800,

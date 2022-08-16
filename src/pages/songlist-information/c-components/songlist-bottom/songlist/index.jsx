@@ -53,7 +53,9 @@ const MioSonglistBottomSonglist = memo((props) => {
       </div>
     
     <ReactVirtualList {...styleObj} list={songlist} item={songItem}/>
-
+    {
+      songlist.length<=10 && <div>loading</div>
+    }
     </MioSonglistBottomSonglistDiv>
   )
 })

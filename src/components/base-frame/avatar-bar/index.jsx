@@ -3,6 +3,7 @@ import React, { memo } from 'react'
 import styled from '@emotion/styled'
 
 import { ThemeColor } from '../../../common/css-var'
+import { useHistory } from 'react-router';
 
 // 接受一个全局的 redux
 const theme = 'dark';
@@ -39,6 +40,7 @@ const MioAvatarBarDiv = styled.div`
       height: 30px;
       border-radius: 50%;
       background-size: cover;
+      cursor: pointer;
     }
   }
 
@@ -58,11 +60,19 @@ const MioAvatarBarDiv = styled.div`
 `
 
 const MioAvatarBar = memo(() => {
+  const history = useHistory();
+
+  const avatarClick = () => {
+    history.push({
+      pathname: '/login',
+       //search:`?${encodeURI(JSON.stringify(record))}` 如果传递的是对象，需要对对象进行url编码不然解码会报错
+    })
+  }
   return (
     <MioAvatarBarDiv theme={theme}>
       <div className="avatar-bar-avatar">
-        <img src="/src/assets/imgs/avatar.png" alt="" />
-        <span className="avatar-bar-avatar-name item">小路绫</span>
+        <img src="/src/assets/imgs/avatar.png" onClick={e => {avatarClick()}} />
+        <span className="avatar-bar-avatar-name item" onClick={e => {avatarClick()}}>小路绫</span>
         <span className="avatar-bar-avatar-more item">▼</span>
       </div>
       

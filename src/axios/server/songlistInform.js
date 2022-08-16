@@ -11,3 +11,14 @@ export function getTotalSonglist(id,limit,offset) {
     }
   })
 }
+
+export function getCommentList(id,limit=20,offset=0) {
+  return request({
+    url: '/comment/playlist',
+    params: {
+      id: id,
+      limit: limit,
+      offset: offset
+    }
+  })
+}

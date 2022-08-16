@@ -14,6 +14,7 @@ const MioMine = React.lazy(_ => import("../pages/mine"));
 
 const MioSonglistInformation = React.lazy(_ => import("../pages/songlist-information"));
 
+const MioLogin = React.lazy(_ => import("../pages/Login"));
 const routes = [
   {
     path: '/',
@@ -74,6 +75,10 @@ const routes = [
   {
     path: '/songlistInfomation',
     component: MioSonglistInformation
+  },
+  {
+    path: '/login',
+    component: MioLogin
   }
 ];
 

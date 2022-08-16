@@ -7,6 +7,7 @@ import { foundMusicNavList } from '../../axios/local-data';
 import { MioFoundMusicDiv } from './css';
 import { clickNav } from '../../store/slices/found-music/foundMusicSlice'
 import { useEffect } from 'react';
+import { userLoginAnonimous } from '../../axios/server/userLogin';
 
 const MioFoundMusic = memo((props) => {
   const { route } = props;
@@ -29,6 +30,9 @@ const MioFoundMusic = memo((props) => {
       default: key = 999998;break;
     }
     navClick(key);
+    return () => {
+      navClick(999998);
+    }
   },[])
 
   // 事件方法

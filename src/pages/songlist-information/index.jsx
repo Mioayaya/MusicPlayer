@@ -14,6 +14,7 @@ import MioSonglistTop from './c-components/songlist-top';
 import { useState } from 'react';
 import calculatePlayNumber from '../../utils/calculatePlayNumber';
 import MioSonglistBottomSonglist from './c-components/songlist-bottom/songlist';
+import MioSonglistBottomCommentList from './c-components/songlist-bottom/comment-list';
 
 const MioSonglistInformation = memo(() => {
   const dispatch = useDispatch();
@@ -40,18 +41,21 @@ const MioSonglistInformation = memo(() => {
   useEffect(() => {
     // 修改左侧nav条
     dispatch(setNavKey(9999));
-    const routerData = location.hash.split('?id=')[1];
+    const routerData = Number(location.hash.split('?id=')[1]);
+    // console.log(routerData);
     getSonglistDetail(routerData).then(res => {
       dispatch(setSonglistInformation(res.playlist));
+    }).catch(err => {
+      console.log(err);
     })
     // console.log(routerData);
     //console.log(JSON.parse(decodeURI(routerData)))对象解码
     // 注意！当刷新页面获取的参数还在
     
     // 退出时清空redux数据
-    return function clear() {
-      dispatch(clearAllData())
-    }
+    // return function clear() {
+    //   dispatch(clearAllData())
+    // }
   },[]);
 
   useEffect(() => {
@@ -107,7 +111,9 @@ const MioSonglistInformation = memo(() => {
               
             </div>
         }
-        {nav==1 && <div className="part2">部分2</div>}
+        {nav==1 && <div className="part2">
+                      <MioSonglistBottomCommentList id={songlistInformation.id}/>
+                   </div>}
         {nav==2 && <div className="part3">部分3</div>}
       </div>
 

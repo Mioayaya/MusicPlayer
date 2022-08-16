@@ -95,7 +95,7 @@ const MioRecmdSongList = memo(() => {
           {
             recmdSongList.map((item,index) => {
               return (
-                <SwiperSlide key={item.id}
+                <SwiperSlide key={index}
                              onClick={e => {showSonglistDetail(item.id,index)}}
                              onDoubleClick={e => {gotoSonglistInformation(item.id)}}
                 >
