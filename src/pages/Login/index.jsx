@@ -1,41 +1,120 @@
-import React, { memo } from 'react'
 import axios from 'axios';
+import 'antd/dist/antd.css';
+import React, { memo } from 'react'
+import { Button, message } from 'antd';
 import { useState } from 'react'
-import { getQrCreate, getQrKey} from '../../axios/server/userLogin';
+import { useEffect } from 'react';
+import { useHistory } from 'react-router';
+
+import { getUserStatus,baseUrl } from '../../axios/server/userLogin';
 import { MioLoginDiv  } from './css'
+
 const MioLogin = memo(() => {
   const [img,setImg] = useState('');
-  const baseUrl = 'https://cloud-music-ten-iota.vercel.app';
+  const [loginFlag,setLoginFlag] = useState(false);
+  const [sessionFlag,setSessionFlag] = useState('true');
+  const history = useHistory();
+
+  useEffect(() => {
+    // 如果登录成功 获取用户信息
+    if(loginFlag) {
+      sessionStorage.setItem('login','true');
+      let cookie = sessionStorage.getItem('cookie');
+      const url = getUserStatus(cookie);
+      axios.get(url).then(res => {
+        sessionStorage.setItem('userId',res.data.data.profile.userId);
+        sessionStorage.setItem('userAvatar',res.data.data.profile.avatarUrl);
+        sessionStorage.setItem('userNickname',res.data.data.profile.nickname);
+      })
+      history.push({
+        pathname: '/',        
+      })
+    }
+  },[loginFlag])
+
+  useEffect(() => {
+    let route = sessionStorage.getItem('login');
+    setSessionFlag(route);
+    // 如果已经是登录状态 则不显示 这个页面，强制跳转到首页 -- 
+    if(route=='true') {
+      
+      history.push({
+        pathname: '/',        
+      })
+    }
+  },[])
+
   // 业务代码
 
   async function login() {
     let nowTime = Date.now();
     let key = (await axios.get(`${baseUrl}/login/qr/key?timestamp=${nowTime}`)).data.data.unikey;
     let sginImg = (await axios.get(`${baseUrl}/login/qr/create?key=${key}&qrimg=true`)).data.data.qrimg;
-    console.log(sginImg);
     setImg(sginImg);
-    // let check = setInterval(async () => {
-    //   let nowtime2 = new Date().getTime();
-    //   let res = await axios.get(`${baseUrl}/login/qr/check?key=${key}&timestamp=${nowtime2}`).then()
-    //   console.log(res.data.message, '---')
-    //   if (res.data.code == 800) {
-    //     alert(res.data.message)
-    //     clearInterval(check)
-    //   }
-    //   if (res.data.code == 803) {
-    //     alert(res.data.message)
-    //     clearInterval(check)
-    //   }
-    // }, 3000)
+    let check = setInterval(async () => {
+      let nowtime2 = new Date().getTime();
+      let res = await axios.get(`${baseUrl}/login/qr/check?key=${key}&timestamp=${nowtime2}`).then();
+      // console.log(res.data.message, '---')
+      if (res.data.code == 800) {
+        // alert(res.data.message)
+        messageWarning(res.data.message);
+        clearInterval(check);
+      }
+      // 803登录成功
+      if (res.data.code == 803) {
+        // alert(res.data.message)
+        messageSuccess(res.data.message);
+        clearInterval(check);
+        // 设置cookie
+        const cookie = res.data.cookie;
+        sessionStorage.setItem('cookie',cookie);
+        setLoginFlag(true);
+      }
+      // 等待两分钟
+      if (nowtime2-nowTime>120000) {
+        clearInterval(check);
+      }
+    }, 3000)
   } 
+
+  // 成功弹窗
+  const messageSuccess = (content) => {
+    message.success({
+      content: content,
+      className: 'custom-class',
+      style: {
+        marginTop: '20vh',
+      },
+    });
+  };
+
+  // 失败弹窗
+  const messageWarning = (content) => {
+    message.warning({
+      content: content,
+      className: 'custom-class',
+      style: {
+        marginTop: '20vh',
+      },
+    })
+  }
+
+  
 
   return (
     <MioLoginDiv Imgurl={img}>
-      <span>目前只支持二维码登录</span>
-      <div className="login">
-        <button onClick={e => {login()}}>获取二维码</button>
-        <div className="prcode"></div>        
-      </div>
+      {
+        sessionFlag!='true' && 
+            <div>
+              <span>目前只支持二维码登录</span>
+              <div className="login">
+                <Button onClick={e => {login()}}>获取二维码</Button>
+                <div className="prcode"></div>        
+              </div>
+            </div>
+        
+      }
+      
     </MioLoginDiv>
   )
 })

@@ -5,6 +5,7 @@ export const MioLoginDiv = styled.div`
   color: white;
   margin: 20px 20px 0 20px;
   .login {
+    color: black;
     width: 200px;
     margin: auto;
     display: flex;
@@ -13,6 +14,7 @@ export const MioLoginDiv = styled.div`
       width: 200px;
       height: 200px;
       background-image: url("${props => props.Imgurl}");
+      background-size: cover;
     }
   }
 `

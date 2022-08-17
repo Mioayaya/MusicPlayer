@@ -1,10 +1,11 @@
 import request from "../axios";
 
+export const baseUrl = 'https://cloud-music-ten-iota.vercel.app';
+
 // 获取二维码key
-export function getQrKey() {
-  request({
-    url: '/login/qr/key'
-  })
+export function getUserStatus(cookie) {
+  const url = '/login/status'
+  return `${baseUrl}${url}?cookie=${cookie}`
 }
 
 // 获取二维码图片

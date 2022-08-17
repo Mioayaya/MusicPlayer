@@ -7,7 +7,6 @@ import { foundMusicNavList } from '../../axios/local-data';
 import { MioFoundMusicDiv } from './css';
 import { clickNav } from '../../store/slices/found-music/foundMusicSlice'
 import { useEffect } from 'react';
-import { userLoginAnonimous } from '../../axios/server/userLogin';
 
 const MioFoundMusic = memo((props) => {
   const { route } = props;

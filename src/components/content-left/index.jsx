@@ -13,9 +13,9 @@ const MioContentLeft = memo(() => {
   const dispatch = useDispatch();
   const activeKey = useSelector(state => state.contentLeftSlice.navKey);
   const [ activeIndex,setActiveIndex ] = useState(0);
-
+  let routerData = '';
   useEffect(() => {
-    let routerData = location.hash.split('#/')[1];
+    routerData = location.hash.split('#/')[1];
     /foundmusic/.test(routerData)?routerData='foundmusic':routerData=routerData;
     let key = 0;
     switch(routerData) {
@@ -24,7 +24,7 @@ const MioContentLeft = memo(() => {
       default: key = 99999;
     }
     dispatch(setNavKey(key));
-  },[])
+  },[activeKey,routerData])
 
   return (
     <MioContentLeftDiv theme={theme}>
