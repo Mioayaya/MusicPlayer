@@ -40,10 +40,9 @@ const songItem =(props) => {
 
 const MioSonglistBottomSonglist = memo((props) => {
 
-  const {songlist} = props;
-  console.log(songlist[0]);
+  const {songlist,songTotalLength} = props;
   return (
-    <MioSonglistBottomSonglistDiv onScroll={e=>{console.log(e.target.scrollTop)}}>
+    <MioSonglistBottomSonglistDiv>
       <div className="song-list-item-top">
         <span className="act top">操作</span>
         <span className="title top">歌曲</span>
@@ -54,7 +53,7 @@ const MioSonglistBottomSonglist = memo((props) => {
     
     <ReactVirtualList {...styleObj} list={songlist} item={songItem}/>
     {
-      songlist.length<=10 && <div>loading</div>
+      songlist.length != songTotalLength && <div>loading</div>
     }
     </MioSonglistBottomSonglistDiv>
   )

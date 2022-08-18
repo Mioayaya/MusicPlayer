@@ -1,13 +1,14 @@
 import axios from 'axios';
-import 'antd/dist/antd.css';
 import React, { memo } from 'react'
-import { Button, message } from 'antd';
 import { useState } from 'react'
 import { useEffect } from 'react';
 import { useHistory } from 'react-router';
+import { Message,Button } from "@arco-design/web-react";
 
 import { getUserStatus,baseUrl } from '../../axios/server/userLogin';
 import { MioLoginDiv  } from './css'
+
+
 
 const MioLogin = memo(() => {
   const [img,setImg] = useState('');
@@ -57,16 +58,19 @@ const MioLogin = memo(() => {
       // console.log(res.data.message, '---')
       if (res.data.code == 800) {
         // alert(res.data.message)
-        messageWarning(res.data.message);
+        Message.warning(res.data.message);
         clearInterval(check);
       }
       // 803登录成功
       if (res.data.code == 803) {
         // alert(res.data.message)
-        messageSuccess(res.data.message);
+        Message.success(res.data.message);
         clearInterval(check);
         // 设置cookie
         const cookie = res.data.cookie;
+        // 将cookie保存到本地中
+        localStorage.setItem('cookie',cookie);
+        // 将cookie保存到会话中
         sessionStorage.setItem('cookie',cookie);
         setLoginFlag(true);
       }
@@ -77,38 +81,14 @@ const MioLogin = memo(() => {
     }, 3000)
   } 
 
-  // 成功弹窗
-  const messageSuccess = (content) => {
-    message.success({
-      content: content,
-      className: 'custom-class',
-      style: {
-        marginTop: '20vh',
-      },
-    });
-  };
-
-  // 失败弹窗
-  const messageWarning = (content) => {
-    message.warning({
-      content: content,
-      className: 'custom-class',
-      style: {
-        marginTop: '20vh',
-      },
-    })
-  }
-
-  
-
   return (
     <MioLoginDiv Imgurl={img}>
       {
         sessionFlag!='true' && 
             <div>
-              <span>目前只支持二维码登录</span>
+              <span>只支持二维码登录</span>
               <div className="login">
-                <Button onClick={e => {login()}}>获取二维码</Button>
+                <Button type="primary" onClick={e => {login()}}>获取二维码</Button>
                 <div className="prcode"></div>        
               </div>
             </div>

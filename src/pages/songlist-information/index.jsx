@@ -37,7 +37,6 @@ const MioSonglistInformation = memo(() => {
   /* state数据 */
   const [nav,setNav] = useState(0);
 
-
   useEffect(() => {
     // 修改左侧nav条
     dispatch(setNavKey(9999));
@@ -45,17 +44,7 @@ const MioSonglistInformation = memo(() => {
     // console.log(routerData);
     getSonglistDetail(routerData).then(res => {
       dispatch(setSonglistInformation(res.playlist));
-    }).catch(err => {
-      console.log(err);
     })
-    // console.log(routerData);
-    //console.log(JSON.parse(decodeURI(routerData)))对象解码
-    // 注意！当刷新页面获取的参数还在
-    
-    // 退出时清空redux数据
-    // return function clear() {
-    //   dispatch(clearAllData())
-    // }
   },[]);
 
   useEffect(() => {
@@ -105,7 +94,7 @@ const MioSonglistInformation = memo(() => {
           nav==0 && 
             <div className="part1">
               {
-                songlist.length ? <MioSonglistBottomSonglist songlist={songlist}/> 
+                songlist.length ? <MioSonglistBottomSonglist songlist={songlist} songTotalLength={songTotalLength}/> 
                 : <div>loading</div>
               }
               

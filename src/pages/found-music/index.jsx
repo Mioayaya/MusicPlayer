@@ -7,6 +7,7 @@ import { foundMusicNavList } from '../../axios/local-data';
 import { MioFoundMusicDiv } from './css';
 import { clickNav } from '../../store/slices/found-music/foundMusicSlice'
 import { useEffect } from 'react';
+import { setNavKey } from '../../store/slices/content-left';
 
 const MioFoundMusic = memo((props) => {
   const { route } = props;
@@ -17,6 +18,7 @@ const MioFoundMusic = memo((props) => {
 
   useEffect(() => {
     let key = 10;
+    // 设置foundmusci nav
     const routerData = location.hash.split('foundmusic/')[1];
     switch (routerData) {
       case 'recommend':   key = 10; break;
@@ -29,6 +31,9 @@ const MioFoundMusic = memo((props) => {
       default: key = 999998;break;
     }
     navClick(key);
+
+    // 设置一下 同步左侧栏 本页面就首页呢
+    dispatch(setNavKey(0));
     return () => {
       navClick(999998);
     }
