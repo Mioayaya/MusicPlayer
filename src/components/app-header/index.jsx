@@ -6,11 +6,14 @@ import MioAvatarBar from '../base-frame/avatar-bar';
 import axios from 'axios';
 import { getUserStatus } from '../../axios/server/userLogin';
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { setUserInform } from '../../store/slices/user-inform';
 
 // 接受一个全局的 redux
 const theme = 'dark';
 
 const MioAppHeader = memo(() => {
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const cookie = localStorage.getItem('cookie');
@@ -18,14 +21,18 @@ const MioAppHeader = memo(() => {
     // 如果有cookie 并且是未登录的状态
     if(cookie && isLogin!='true') {
       // 设置登录状态
-      console.log(233);
+      document.cookie = `MUSIC_U=${cookie.split('MUSIC_U=')[1].split(';')[0]};NMTID=${cookie.split('NMTID=')[1].split(';')[0]}`;
       sessionStorage.setItem('cookie',cookie);
       sessionStorage.setItem('login','true');
-      const url = getUserStatus(cookie);
+      const url = getUserStatus(cookie); 
       axios.get(url).then(res => {
-        sessionStorage.setItem('userId',res.data.data.profile.userId);
-        sessionStorage.setItem('userAvatar',res.data.data.profile.avatarUrl);
-        sessionStorage.setItem('userNickname',res.data.data.profile.nickname);
+        const id = res.data.data.profile.userId;
+        const avatar = res.data.data.profile.avatarUrl;
+        const nickname = res.data.data.profile.nickname;
+        sessionStorage.setItem('userId',id);
+        sessionStorage.setItem('userAvatar',avatar);
+        sessionStorage.setItem('userNickname',nickname);
+        dispatch(setUserInform({id,avatar,nickname}));
       })
     }
   },[])

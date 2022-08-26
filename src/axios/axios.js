@@ -5,8 +5,11 @@ export default function request(option) {
 		// 1.创建axios的实例
 		const instance = originAxios.create({
 			// baseURL: 'http://123.207.32.32:9001/',
-			baseURL: 'https://cloud-music-ten-iota.vercel.app/',
-			timeout: 10000
+			// baseURL: 'https://cloud-music-ten-iota.vercel.app/',
+			baseURL: 'http://127.0.0.1:3000/',
+			timeout: 10000,
+			// 设置axios跨域
+			withCredentials: true
 		});
 
 		// 配置请求和响应拦截

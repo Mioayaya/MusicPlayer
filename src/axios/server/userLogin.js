@@ -1,6 +1,7 @@
 import request from "../axios";
 
-export const baseUrl = 'https://cloud-music-ten-iota.vercel.app';
+// export const baseUrl = 'https://cloud-music-ten-iota.vercel.app';
+export const baseUrl = 'http://127.0.0.1:3000';
 
 // 获取二维码key
 export function getUserStatus(cookie) {

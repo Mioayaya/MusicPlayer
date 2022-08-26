@@ -65,13 +65,14 @@ const MioAvatarBarDiv = styled.div`
 `
 
 const MioAvatarBar = memo(() => {
+  const userInform = useSelector(state => state.userInformSlice.userInform);
   const dispatch = useDispatch();
   const history = useHistory();
   const [userData,setuserData] = useState(0);
   useEffect(() => {
     // 设置用户信息 包括登录状态
     setuserData(getSession());
-  },[sessionStorage.getItem('login')])
+  },[userInform.id])
 
   const avatarClick = () => {
     if(userData.isLogin) {
