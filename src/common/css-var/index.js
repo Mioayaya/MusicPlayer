@@ -46,7 +46,13 @@ export const ThemeColor = {
 
     /**  滚动条 **/
     scrollColor: '#454545'
-  }
+  },
+  // eva初号机配色
+  eva: {
+
+  },
+  // 克莱因蓝
+  // 还没想好
 }
 
 export const MioContentCss = {

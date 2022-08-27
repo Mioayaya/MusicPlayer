@@ -56,9 +56,9 @@ const MioFoundMusicBannar = memo(() => {
           className="mySwiper"
         >
           {
-            foundMusicSlice.map((item) => {
+            foundMusicSlice.map((item,index) => {
               return (
-                <SwiperSlide key={item.targetId}
+                <SwiperSlide key={item.targetId?item.targetId:index+335}
                              onClick={e=>{console.log(123);}}
                 >
                   <img src={item.imageUrl} alt="typeTitle" />

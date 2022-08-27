@@ -16,15 +16,19 @@ const MioContentLeft = memo(() => {
   let routerData = '';
   useEffect(() => {
     routerData = location.hash.split('#/')[1];
+    // 正则匹配
     /foundmusic/.test(routerData)?routerData='foundmusic':routerData=routerData;
     let key = 0;
     switch(routerData) {
       case 'foundmusic': key = 0 ; break; 
-      case 'mine': key = 1 ; break; 
+      case 'radio': key = 1 ; break; 
+      case 'video': key = 2 ; break; 
+      case 'dynamic': key = 3 ; break; 
+      case 'fm': key = 4 ; break; 
       default: key = 99999;
     }
     dispatch(setNavKey(key));
-  },[activeKey,routerData])
+  },[routerData])
 
   return (
     <MioContentLeftDiv theme={theme}>

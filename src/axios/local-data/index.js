@@ -6,29 +6,24 @@ export const contentLeftList = [
     key: 0
   },
   {
-    title: '博客',
-    link: '/mine',
+    title: '电台',
+    link: '/radio',
     key: 1
   },
   {
     title: '视频',
-    link: '/mine',
+    link: '/video',
     key: 2
   },
   {
     title: '动态',
-    link: '/mine',
+    link: '/dynamic',
     key: 3
   },
   {
-    title: '直播',
-    link: '/mine',
-    key: 4
-  },
-  {
     title: 'FM',
-    link: '/mine',
-    key: 5
+    link: '/fm',
+    key: 4
   }
 ];
 

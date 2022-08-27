@@ -11,6 +11,10 @@ const MioFoundMusicSinger = React.lazy(_ => import("../pages/found-music/child-p
 const MioFoundMusicLatestMusic = React.lazy(_ => import("../pages/found-music/child-pages/latest-music"));
 
 const MioMine = React.lazy(_ => import("../pages/mine"));
+const MioRadio = React.lazy(_=> import("../pages/radio"));
+const MioVideo = React.lazy(_=> import("../pages/video"));
+const MioDynamic = React.lazy(_=> import("../pages/dynamic"));
+const MioFm = React.lazy(_=> import("../pages/fm"));
 
 const MioSonglistInformation = React.lazy(_ => import("../pages/songlist-information"));
 
@@ -71,6 +75,22 @@ const routes = [
   {
     path: '/mine',
     component: MioMine
+  },
+  {
+    path: '/radio',
+    component: MioRadio
+  },
+  {
+    path: '/video',
+    component: MioVideo
+  },
+  {
+    path: '/dynamic',
+    component: MioDynamic
+  },
+  {
+    path: '/fm',
+    component: MioFm
   },
   {
     path: '/songlistInfomation',

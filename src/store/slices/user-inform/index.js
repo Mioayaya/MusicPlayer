@@ -10,7 +10,19 @@ export const userInformSlice = createSlice({
       nickname: '', 
     }, 
     // 用户其它信息
-    userOther: ''
+    userOtherInform: {
+      // 歌单信息
+      playlist: {
+        playlist:'',
+        subPlaylist: ''
+      },
+      // 基本信息
+      data: {
+
+      }
+    },
+    // 其它用户信息
+    otherUserInform: ''
   },
   reducers: {
     setUserInform: (state,{payload}) => {
@@ -19,11 +31,14 @@ export const userInformSlice = createSlice({
       state.userInform.id = id;
       state.userInform.avatar = avatar;
       state.userInform.nickname = nickname;
+    },
+    setUserOtherInformData: (state,{payload}) => {
+      state.userOtherInform.data = payload;
     }
   }
 
 })
 
-export const { setUserInform } = userInformSlice.actions;
+export const { setUserInform,setUserOtherInformData } = userInformSlice.actions;
 
 export default userInformSlice.reducer;
