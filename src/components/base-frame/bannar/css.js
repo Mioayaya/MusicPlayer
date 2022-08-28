@@ -37,6 +37,7 @@ export const MioFoundMusicBannarDiv = styled.div`
   }
 
   .swiper-slide img {
+    user-select: none;
     display: block;
     width: 100%;
     height: 100%;

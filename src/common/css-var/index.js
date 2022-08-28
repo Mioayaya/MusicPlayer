@@ -39,7 +39,12 @@ export const ThemeColor = {
     songlistPageFontColor: '#ffffff', // 歌单页面 字体颜色
     songlistPageFontColor2: '#878787', // 歌单页面 字体颜色2
 
-
+    // content-right
+    contentRightDivding: '#454545',   // 分割线颜色
+    contentRightFontNormal: '#d0d0d0',  // 普通字体颜色
+    contentRightFontDark:'#878787',     // 深一点的颜色
+    contentRightFontHover: '#ffffff',  // hover字体颜色
+    // 底部
     fontFooterColor1: '#ffffff',     // hover
     fontFooterColor2: '#cececf',     // normal
     messageColor: '#ec4141',          // 其它标识颜色

@@ -60,8 +60,11 @@ const MioFoundMusicBannar = memo(() => {
               return (
                 <SwiperSlide key={item.targetId?item.targetId:index+335}
                              onClick={e=>{console.log(123);}}
-                >
-                  <img src={item.imageUrl} alt="typeTitle" />
+                >      
+                  <a href={item.url} target="_blank">
+                    <img src={item.imageUrl} alt="typeTitle"/>
+                  </a>
+                  
                 </SwiperSlide>
               )
             })

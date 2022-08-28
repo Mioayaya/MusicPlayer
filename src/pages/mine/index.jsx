@@ -40,7 +40,9 @@ const MioMine = memo(() => {
   return (
     <MioMineDiv theme={theme}>
       {
-        show ? <MioMineShow startSetShow={e => startSetShow()} userOtherInformData={userOtherInformData}/>
+        show ? <MioMineShow startSetShow={e => startSetShow()} 
+                            userOtherInformData={userOtherInformData}
+                            theme = {theme}/>
         : <MioMineChange startSetShow={e => startSetShow()}
                          save={e => setSave(save+1)}/>
       }
