@@ -44,6 +44,7 @@ export const ThemeColor = {
     contentRightFontNormal: '#d0d0d0',  // 普通字体颜色
     contentRightFontDark:'#878787',     // 深一点的颜色
     contentRightFontHover: '#ffffff',  // hover字体颜色
+    contentRightBorder: '#ec4141',    // border颜色
     // 底部
     fontFooterColor1: '#ffffff',     // hover
     fontFooterColor2: '#cececf',     // normal

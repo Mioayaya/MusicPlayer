@@ -82,3 +82,23 @@ export const foundMusicNavList = [
     key: 15
   },
 ]
+
+// 用户页面 创建歌单、收藏歌单、创建电台、收藏电台
+export const userNavBar = [
+  {
+    title: '创建的歌单',
+    key: 16
+  },
+  {
+    title: '收藏的歌单',
+    key: 17
+  },
+  {
+    title: '创建的电台',
+    key: 18
+  },
+  {
+    title: '收藏的电台',
+    key: 19
+  },
+]
