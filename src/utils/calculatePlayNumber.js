@@ -9,7 +9,6 @@ export default function calculatePlayNumber(number,flag=2,type=0) {
   type == 1 ? unit = 'w' : '';
 
   if(typeof(number)!=='number'){
-    console.log(typeof(number));
     return '···';
   }else if(number < 10000) {
     return number;

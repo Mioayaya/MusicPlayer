@@ -47,6 +47,7 @@ export const MioContentLeftDiv = styled.div`
     span {
       margin-bottom: 10px;
       font-size: small;
+      user-select: none;
     }
     .content-left-middle-item {
       color: ${ props => ThemeColor[props.theme].fontContentColor3 };
@@ -54,6 +55,7 @@ export const MioContentLeftDiv = styled.div`
       padding: 10px 0 10px 5px;
       text-decoration: none;
       border-radius: 5px;
+      user-select: none;
       &:hover {
         color: ${ props => ThemeColor[props.theme].fontContentColor1 };
         background-color: ${ props => ThemeColor[props.theme].contentLeftHover };

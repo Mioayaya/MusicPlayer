@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useMemo } from 'react'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router';
@@ -32,20 +32,18 @@ const MioSonglistInformation = memo(() => {
   const authorInform = useSelector(state => state.songlistSlice.authorInform);
 
   /* 路由 */
-  const routerData = location.hash.split('?id=')[1];
+  const [routerData,setRouterData] = useState(Number(location.hash.split('?id=')[1]))
   
   /* state数据 */
   const [nav,setNav] = useState(0);
 
   useEffect(() => {
-    // 修改左侧nav条
-    dispatch(setNavKey(9999));
-    const routerData = Number(location.hash.split('?id=')[1]);
+    setRouterData(Number(location.hash.split('?id=')[1]));
     // console.log(routerData);
     getSonglistDetail(routerData).then(res => {
       dispatch(setSonglistInformation(res.playlist));
     })
-  },[]);
+  },[Number(location.hash.split('?id=')[1]),routerData]);
 
   useEffect(() => {
     // 判断一下是否需要请求

@@ -44,12 +44,12 @@ export const MioSonglistBottomSonglistDiv = styled.div`
     }
   }
   .song-list-item-top {
-    &>*:not(:first-child) {
+    &>*:not(:first-of-type) {
       :hover {
         background-color: #373737;
       }
     }
-    &>*:first-child {
+    &>*:first-of-type {
       text-align: center;
     }
   }

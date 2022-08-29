@@ -12,3 +12,20 @@ export function getUserInform(uid) {
     
   })
 }
+
+// 获取歌单详情
+export function getUserPlaylist(uid) {
+  return request({
+    url: '/user/playlist',
+    params: {
+      uid:uid
+    }
+  })
+}
+
+// 最近播放歌曲
+export function getUserRecentSong(){
+  return request({
+    url: '/record/recent/song',
+  })
+}

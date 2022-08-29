@@ -13,8 +13,10 @@ export const userInformSlice = createSlice({
     userOtherInform: {
       // 歌单信息
       playlist: {
-        playlist:'',
-        subPlaylist: ''
+        playlist: [],        // 创建歌单
+        subPlaylist: [],    // 收藏歌单
+        recentlist: [],     // 最近播放
+        playlistDetail: ''  // 我的歌单详细数据
       },
       // 基本信息
       data: {
@@ -34,11 +36,21 @@ export const userInformSlice = createSlice({
     },
     setUserOtherInformData: (state,{payload}) => {
       state.userOtherInform.data = payload;
+    },
+    setUserPlaylist: (state,{payload}) => {
+      const {playlist,subPlaylist} = payload;
+      state.userOtherInform.playlist.playlist = playlist;
+      state.userOtherInform.playlist.subPlaylist = subPlaylist;
+    },
+    setUserOtherInformPlaylistDetail: (state,{payload}) => {
+      state.userOtherInform.playlist.playlistDetail = payload;
     }
   }
 
 })
 
-export const { setUserInform,setUserOtherInformData } = userInformSlice.actions;
+export const { setUserInform,setUserOtherInformData,
+               setUserPlaylist,
+               setUserOtherInformPlaylistDetail } = userInformSlice.actions;
 
 export default userInformSlice.reducer;

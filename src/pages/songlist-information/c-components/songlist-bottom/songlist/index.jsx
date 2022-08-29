@@ -7,7 +7,7 @@ import { MioSonglistBottomSonglistDiv } from './css'
 // 定义可是滚动的样式
 const styleObj = {
   contentHeight: 500,
-  itemHeight: 35,
+  itemheight: 35,
 }
 
 // 渲染的一条数据 

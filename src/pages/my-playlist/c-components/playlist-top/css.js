@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { ThemeColor } from "../../../../common/css-var";
 
-export const MioSonglistTopDiv = styled.div`
+export const MioMyPlaylistTopDiv = styled.div`
   display: flex;
   flex-direction: row;
   padding: 20px;
@@ -91,6 +91,12 @@ export const MioSonglistTopDiv = styled.div`
       &>*:not(:last-child) {
         margin-right: 20px;
       }
+      
+      .collet {
+        cursor: auto;
+        color: ${props => ThemeColor[props.theme].contentRightForbidFont};
+        background-color: ${props => ThemeColor[props.theme].contentRightForbid};
+      }
     }
 
     .item-4 {
@@ -157,7 +163,17 @@ export const MioSonglistTopDiv = styled.div`
       .dark {
         color: ${props => ThemeColor[props.theme].songlistPageFontColor2};
       }
+      .link {
+        cursor: pointer;
+        user-select: none;
+        color: ${props => ThemeColor[props.theme].songlistPageLinkColor};
+        :hover {
+          color: ${props => ThemeColor[props.theme].songlistPageLinkHoverColor};
+        }
+      }
     }
-
+  }
+  img {
+    user-select: none;
   }
 `
