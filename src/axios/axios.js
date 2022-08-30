@@ -6,7 +6,8 @@ export default function request(option) {
 		const instance = originAxios.create({
 			// baseURL: 'http://123.207.32.32:9001/',
 			// baseURL: 'https://cloud-music-ten-iota.vercel.app/',
-			baseURL: 'http://127.0.0.1:3000/',
+			// baseURL: 'http://127.0.0.1:3000/',
+			baseURL: 'http://raften.cn:3000/',
 			timeout: 10000,
 			// 设置axios跨域
 			withCredentials: true
