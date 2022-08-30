@@ -77,26 +77,32 @@ const MioSonglistInformation = memo(() => {
         : <div>loading</div>
       }
       
-      <div className="songlist-middle">
-        <span className={nav==0?'active':''} onClick={e => {setNav(0)}}>歌曲列表</span>
-        <span className={nav==1?'active':''} onClick={e => {setNav(1)}}>
-          {
-          `评论(${calculatePlayNumber(songlistInformation.commentCount,0)})`
-          }
-        </span>
-        <span className={nav==2?'active':''} onClick={e => {setNav(2)}}>收藏者</span>
-      </div>
+      {
+        songlistInformation && songlistInformation.id == routerData &&
+        <div className="songlist-middle">
+          <span className={nav==0?'active':''} onClick={e => {setNav(0)}}>歌曲列表</span>
+          <span className={nav==1?'active':''} onClick={e => {setNav(1)}}>
+            {
+            `评论(${calculatePlayNumber(songlistInformation.commentCount,0)})`
+            }
+          </span>
+          <span className={nav==2?'active':''} onClick={e => {setNav(2)}}>收藏者</span>
+        </div>
+      }
+      
 
       <div className="songlist-bottom">
         {
-          nav==0 && 
-            <div className="part1">
-              {
-                songlist.length ? <MioSonglistBottomSonglist songlist={songlist} songTotalLength={songTotalLength}/> 
-                : <div>loading</div>
-              }
-              
-            </div>
+          nav==0 
+          && songlistInformation
+            ? songlistInformation.id == routerData 
+              ? <div className="part1">
+                {
+                  <MioSonglistBottomSonglist songlist={songlist} songTotalLength={songTotalLength}/>                   
+                }
+                </div>
+              : <div>loading</div>
+            : <div>loading</div>
         }
         {nav==1 && <div className="part2">
                       <MioSonglistBottomCommentList id={songlistInformation.id}/>

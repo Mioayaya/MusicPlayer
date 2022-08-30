@@ -37,6 +37,10 @@ const MioAppHeader = memo(() => {
     }
     // 如果有cookie 并且是登录状态 刷新页面 未关闭浏览器 
     if(cookie && isLogin =='true') {
+      console.log(1);
+      document.cookie = `MUSIC_U=${cookie.split('MUSIC_U=')[1].split(';')[0]}`;
+      document.cookie = `NMTID=${cookie.split('NMTID=')[1].split(';')[0]}`;
+      console.log(document.cookie);
       const id = sessionStorage.getItem('userId');
       const avatar = sessionStorage.getItem('userAvatar');
       const nickname = sessionStorage.getItem('userNickname');
