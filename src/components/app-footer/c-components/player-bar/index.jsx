@@ -14,10 +14,12 @@ const MioFooterPlayerBar = memo((props) => {
   const [endTime,setEndTime] = useState(0); // 结束时间
   const [isPlay,setIsPlay] = useState(false); // 是否播放
   const [nowTime,setNowTime] = useState(0);
-  
+  // muted
+  // volume
   useEffect(() => {
     getSongUrl(songId).then(res => {
       audioRef.current.src = res.data[0].url;
+      audioRef.current.volume = 0.5;
       audioRef.current.play().then(res => {
         setIsPlay(true);
       }).catch(err => {
@@ -32,6 +34,13 @@ const MioFooterPlayerBar = memo((props) => {
     setNowTime(0);
   },[songId])
 
+  useEffect(() => {
+    window.addEventListener('keydown',onKeyDown);
+    return () => {
+      window.removeEventListener('keydown', onKeyDown); // 销毁
+    };
+  },[isPlay])
+
   const audioRef = useRef();
 
   // methods 
@@ -41,6 +50,12 @@ const MioFooterPlayerBar = memo((props) => {
       setIsPlay(false);
     });
   },[isPlay])
+
+  const onKeyDown = (e) => {
+    if(e.keyCode == 32) {
+      clickPlay();
+    }
+  }
 
   const timeUpdate = (e) => {
     const currentTime = Math.floor(e.target.currentTime);
@@ -52,9 +67,18 @@ const MioFooterPlayerBar = memo((props) => {
 
     if(nowTime > currentTime) {
       setNowTime(currentTime);
-    }
-    
-    // console.log(currentTime);    
+    }   
+  }
+
+  const timeEnded = () => {
+    audioRef.current.currentTime = 0;
+    audioRef.current.play().then(res => {
+      setIsPlay(true);
+    }).catch(err => {
+      setIsPlay(false);
+    });
+    setNowTime(0);
+    setValue(0);
   }
 
   const changeSlider = (val) => {
@@ -70,7 +94,7 @@ const MioFooterPlayerBar = memo((props) => {
   }
 
   return (
-    <MioFooteerPlayerBarDiv>
+    <MioFooteerPlayerBarDiv onKeyDown={e => spaceDown(e)}>
       <div className="top">
         <span className="paly-type">循环</span>
         <span className="last">
@@ -91,7 +115,8 @@ const MioFooterPlayerBar = memo((props) => {
         <span className="word">歌词</span>
       </div>
       <div className="bottom">
-        <span className="now-time">{calculateTimeLength(value*1000)}</span>
+        {/* 现在时间，防止溢出 */}
+        <span className="now-time">{(value<=Math.floor(endTime/1000))?calculateTimeLength(value*1000):calculateTimeLength(endTime)}</span>
         <span className="bar">
           <Slider
             value={value}
@@ -104,7 +129,13 @@ const MioFooterPlayerBar = memo((props) => {
         </span>
         <span className="end-time">{calculateTimeLength(endTime)}</span>
       </div>
-      <audio ref={audioRef} onTimeUpdate={timeUpdate}/>
+
+      <audio ref={audioRef} onTimeUpdate={timeUpdate} onEnded={timeEnded}/>
+
+      <div className="menu-list">
+        <span className="menu-sound">音量调节</span>
+        <span className="menu-play-list">播放列表</span>
+      </div>
     </MioFooteerPlayerBarDiv>
   )
 })

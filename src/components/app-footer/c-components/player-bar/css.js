@@ -75,4 +75,10 @@ export const MioFooteerPlayerBarDiv = styled.div`
     .end-time {      
     }
   }
+
+  .menu-list {
+    position: absolute;
+    right: 20px;
+    top: 25px;
+  }
 `

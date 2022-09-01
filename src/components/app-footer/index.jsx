@@ -50,8 +50,7 @@ const MioAppFooter = memo(() => {
         
       </div>
 
-      <div className="right">
-        播放列表、声音调节
+      <div className="right">      
       </div>
     </MioFooterDiv>
   )
