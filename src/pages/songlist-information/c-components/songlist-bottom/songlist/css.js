@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { ThemeColor } from "../../../../../common/css-var";
 
 export const MioSonglistBottomSonglistDiv = styled.div`
   position: relative;
@@ -24,7 +25,7 @@ export const MioSonglistBottomSonglistDiv = styled.div`
       flex: 1;
       text-align: end;
       .icon {
-        padding-right: 20px;
+        margin-right: 20px;
       }
       .number {
         padding-right: 10px;
@@ -46,16 +47,39 @@ export const MioSonglistBottomSonglistDiv = styled.div`
   .song-list-item-top {
     &>*:not(:first-of-type) {
       :hover {
-        background-color: #373737;
-      }
+        background-color: ${props => ThemeColor[props.theme].contentRightListHover};
+      }      
     }
     &>*:first-of-type {
       text-align: center;
     }
   }
+
+
   .song-list-item {
+    .icon {
+      cursor: pointer;
+    }
+    .liked {
+      color: red;
+    }
     :hover {
-      background-color: #373737;
+      background-color: ${props => ThemeColor[props.theme].contentRightListHover};
     }
   }
+  .emt {
+    background-color: ${props => ThemeColor[props.theme].contentRightListEmt};
+    :hover {
+      background-color: ${props => ThemeColor[props.theme].contentRightListHover};
+    }
+  }
+  .stay {
+    background-color: ${props => ThemeColor[props.theme].contentRightListActive};
+    :hover {
+      background-color: ${props => ThemeColor[props.theme].contentRightListActiveHover};
+    }
+  }
+  
+  
+  
 `

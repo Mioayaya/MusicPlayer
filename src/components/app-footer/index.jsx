@@ -1,30 +1,59 @@
 import React, { memo } from 'react';
-import styled from '@emotion/styled';
+import { useSelector } from 'react-redux';
+import MioFooterPlayerBar from './c-components/player-bar';
 
-import { MioFooterCss,ThemeColor } from '../../common/css-var';
-
-// 接受一个全局的 redux
-const theme = 'dark';
-
-const MioFooterDiv = styled.div`
-  height: ${MioFooterCss.height};
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: 0 ${MioFooterCss.marginWidth} ${MioFooterCss.marginHeight} ${MioFooterCss.marginWidth};
-  margin-bottom: ${MioFooterCss.marginHeight};
-  background-color: ${ props => ThemeColor[props.theme].head };
-  color: ${props => ThemeColor[props.theme].fontFooterColor2};
-  border-top: 2px solid ${props => ThemeColor[props.theme].footerTop};
-  border-end-end-radius: 10px;
-  border-end-start-radius: 10px;
-  box-sizing: border-box;
-`
+import { MioFooterDiv } from './css';
 
 const MioAppFooter = memo(() => {
+  const theme = useSelector(state => state.themeSlice.theme);
+  const playlist = useSelector(state => state.playlistSlice.playlist);
+
   return (
-    <MioFooterDiv theme={theme}>MioAppFooter</MioFooterDiv>
+    <MioFooterDiv theme={theme}>
+      {
+        playlist[playlist.p] 
+        ? <div className="left">
+            <div className="avatar">
+              <img src={playlist[playlist.p].value.al.picUrl} alt="" />
+            </div>
+            <div className="desc">
+              <span className="top">
+                <span className="title">{playlist[playlist.p].value.name}</span>
+                <span className="icon">❤</span>
+              </span>
+              <span className="author">
+                {
+                  playlist[playlist.p].value.ar.map((item,index) => {
+                    return (
+                      <>
+                        <span>{item.name}</span>
+                        { index!==playlist[playlist.p].value.ar.length-1 && <span>/</span>}
+                      </>                      
+                    )
+                  })
+                }
+              </span>          
+            </div>
+          </div>
+        : <div className="left">loading</div>
+      }
+      
+      <div className="player">
+        {
+          playlist[playlist.p] 
+          && 
+          <MioFooterPlayerBar fee={playlist[playlist.p].value.fee} 
+                              songId={playlist[playlist.p].value.id}
+                              playlist={playlist}
+          />
+        }
+        
+      </div>
+
+      <div className="right">
+        播放列表、声音调节
+      </div>
+    </MioFooterDiv>
   )
 })
 

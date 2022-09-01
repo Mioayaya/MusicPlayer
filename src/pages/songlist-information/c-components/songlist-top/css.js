@@ -11,6 +11,7 @@ export const MioSonglistTopDiv = styled.div`
     padding-right: 20px;
     border-radius: 10px;
     img {
+      user-select: none;
       display: block;
       width: 100%;
       height: 100%;
@@ -47,6 +48,7 @@ export const MioSonglistTopDiv = styled.div`
       align-items: center;
       margin-top: 10px;
       img {
+        user-select: none;
         display: block;
         width: 30px;
         height: 30px;

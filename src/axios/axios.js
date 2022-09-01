@@ -2,7 +2,6 @@ import originAxios from 'axios';
 export default function request(option) {
 	return new Promise((resolve, reject) => {
 		// 1.创建axios的实例
-		// baseURL: 'http://123.207.32.32:9001/',
 		// baseURL: 'http://127.0.0.1:3000/',
 		// baseURL: 'https://cloud-music-ten-iota.vercel.app/',
 		const instance = originAxios.create({

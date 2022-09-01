@@ -2,9 +2,10 @@ import React, { useState, useMemo, memo } from 'react'
 import {ReactVirtualListDiv} from './css.js'
 import { useCallback } from 'react';
 import { useRef } from 'react';
+import { useEffect } from 'react';
 
 const ReactVirtualList = memo((props) => {
-  let { list, item: Item, contentWidth, contentHeight, itemheight } = props
+  let { list, item: Item, contentWidth, contentHeight, itemheight,stayStyle } = props
 
     const [start, setStart] = useState(0)
 
@@ -29,11 +30,14 @@ const ReactVirtualList = memo((props) => {
 			return list
 				.slice(start, end)
 				.map((item, index) => (
-					<span key={item.id} id={item.id} itemheight={itemheight} >
-						<Item value={{item,index:(index+start+1)}}></Item>
+					<span key={item.id} 
+                id={item.id} 
+                itemheight={itemheight} 
+          >
+						<Item value={{item,index:(index+start+1),stayStyle}}></Item>
 					</span>
 				))
-    }, [start, end, list, itemheight]);
+    }, [start, end, list, itemheight,stayStyle]);
 
     const transformY = useMemo(() => {
       return start * itemheight + 'px'

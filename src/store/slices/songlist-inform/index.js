@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 export const songlistSlice = createSlice({
-  name: 'theme',
+  name: 'songlist',
   initialState: {
     songlistInformation: '',
     songlist: [],            // 歌曲列表

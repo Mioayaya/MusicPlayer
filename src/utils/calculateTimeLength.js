@@ -1,7 +1,7 @@
 export default function calculateTimeLength(time) {
   // 毫秒 --> 秒
-  let _seconds = Number((time/1000).toFixed(0));
-  const _minutes =  fixedTime(Number((_seconds/60).toFixed(0)));
+  let _seconds = Math.floor(Number((time/1000)));
+  const _minutes =  fixedTime(Math.floor((_seconds/60)));
   _seconds = fixedTime(_seconds%60);
 
   return `${_minutes}:${_seconds}`;

@@ -47,6 +47,11 @@ export const ThemeColor = {
     contentRightBorder: '#ec4141',    // border颜色
     contentRightForbid: '#393939',           // 禁止点击颜色
     contentRightForbidFont: '#707070',           // 禁止点击颜色
+    contentRightList: '#2b2b2b',          // 列表背景色 (和背景色一样)
+    contentRightListEmt: '#333333',              // 偶数行
+    contentRightListHover: '#474747',            // 列表hover
+    contentRightListActive: '#474747',           // 列表选中
+    contentRightListActiveHover: '#414141',      // 列表选中hover
     // 底部
     fontFooterColor1: '#ffffff',     // hover
     fontFooterColor2: '#cececf',     // normal
