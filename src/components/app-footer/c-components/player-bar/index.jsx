@@ -23,7 +23,7 @@ const MioFooterPlayerBar = memo((props) => {
       }).catch(err => {
         setIsPlay(false);
       })
-      setEndTime(res.data[0].time);          
+      setEndTime(res.data[0].time);
       if(res.data[0].time == 0) {
         Message.warning('亲爱的,暂无版权');
       }
@@ -45,10 +45,14 @@ const MioFooterPlayerBar = memo((props) => {
   const timeUpdate = (e) => {
     const currentTime = Math.floor(e.target.currentTime);
 
-      if(currentTime-nowTime > 0) {
-        setValue(value+1);
-        setNowTime(currentTime);
-      }
+    if(currentTime-nowTime > 0) {
+      setValue(value+1);
+      setNowTime(currentTime);
+    }
+
+    if(nowTime > currentTime) {
+      setNowTime(currentTime);
+    }
     
     // console.log(currentTime);    
   }
