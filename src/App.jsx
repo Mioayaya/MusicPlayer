@@ -15,6 +15,7 @@ function App() {
           <MioAppHeader /> 
           <MioContent />
           <MioAppFooter />
+          <div className="texst">hh</div>
         </div>
       </div>
     </HashRouter>

@@ -61,7 +61,7 @@ export const MioSonglistBottomSonglistDiv = styled.div`
       cursor: pointer;
     }
     .liked {
-      color: red;
+      color: #ec4141;
     }
     :hover {
       background-color: ${props => ThemeColor[props.theme].contentRightListHover};
@@ -77,6 +77,20 @@ export const MioSonglistBottomSonglistDiv = styled.div`
     background-color: ${props => ThemeColor[props.theme].contentRightListActive};
     :hover {
       background-color: ${props => ThemeColor[props.theme].contentRightListActiveHover};
+    }
+  }
+  .active {
+    .title {
+      color: #ec4141;
+    }
+    .svg-icon {
+      height: 15px;
+      width: 15px;    
+      margin-right: 10px;
+      color: #ec4141;
+      vertical-align: -0.15em;
+      fill: currentColor;
+      overflow: hidden;
     }
   }
   

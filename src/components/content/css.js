@@ -22,6 +22,17 @@ background-color: ${ props => ThemeColor[props.theme].content};
   overflow-y: scroll;
   overflow-x: hidden;
 }
+.play-list {
+  position: absolute;
+  overflow-y: scroll;
+  right: 0;
+  bottom: 0;
+  width: 350px;
+  height: 100%;
+  background-color: #363636;
+  z-index: 1;
+  display: ${props => props.showPlayList ? 'block': 'none'};
+}
 .scroll {
   /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
   ::-webkit-scrollbar {

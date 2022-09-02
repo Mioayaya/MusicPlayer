@@ -5,7 +5,7 @@ import { useRef } from 'react';
 import { useEffect } from 'react';
 
 const ReactVirtualList = memo((props) => {
-  let { list, item: Item, contentWidth, contentHeight, itemheight,stayStyle } = props
+  let { list, item: Item, contentWidth, contentHeight, itemheight,stayStyle,playId } = props
 
     const [start, setStart] = useState(0)
 
@@ -37,7 +37,7 @@ const ReactVirtualList = memo((props) => {
 						<Item value={{item,index:(index+start+1),stayStyle}}></Item>
 					</span>
 				))
-    }, [start, end, list, itemheight,stayStyle]);
+    }, [start, end, list, itemheight,stayStyle,playId]);
 
     const transformY = useMemo(() => {
       return start * itemheight + 'px'

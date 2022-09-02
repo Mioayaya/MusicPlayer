@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { MioFooterCss,ThemeColor } from "../../common/css-var";
 
 export const MioFooterDiv = styled.div`
+  z-index: 2;
   height: ${MioFooterCss.height};
   position: fixed;
   bottom: 0;
@@ -25,6 +26,7 @@ export const MioFooterDiv = styled.div`
     flex: 1;
     display: flex;
     flex-direction: row;
+    cursor: default;
     .avatar {
       width: 50px;
       height: 50px;

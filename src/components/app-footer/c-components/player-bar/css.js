@@ -22,8 +22,8 @@ export const MioFooteerPlayerBarDiv = styled.div`
       cursor: pointer;
     }
     .icon  {
-      height: 15px;
-      width: 15px;
+      height: 20px;
+      width: 20px;
       color: white;
       vertical-align: -0.15em;
       fill: currentColor;
@@ -32,6 +32,7 @@ export const MioFooteerPlayerBarDiv = styled.div`
   }
 
   .bottom {
+    user-select: none;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -42,7 +43,7 @@ export const MioFooteerPlayerBarDiv = styled.div`
       display: block;
       height: 3px;
       width: 500px;
-
+      padding: 0 5px;
       .arco-slider-road {
         :hover {
           ::before {
@@ -80,5 +81,56 @@ export const MioFooteerPlayerBarDiv = styled.div`
     position: absolute;
     right: 20px;
     top: 25px;
+    font-size: larger; 
+    .menu-sound {
+      position: relative;
+      cursor: pointer;      
+      .volume-slider {
+        display: none;
+        position: absolute;
+        bottom: 20px;
+        left: -5px;
+        height: 100px;
+        width: 30px;
+        background-color: #252525;
+        border: 1px solid #303030;
+        .arco-slider-road.arco-slider-road-vertical {
+          margin: 10px 0;
+          min-height: 80px;
+        }
+        .arco-slider-road::before {
+          width: 3px;
+          background-color: #4c4c4e;
+        }
+        .arco-slider-bar {
+          width: 3px;
+          background-color: #ec4141;
+        }
+        .arco-slider-button::after {
+          border: none;
+          background-color: #ec4141;
+        }
+      }
+      :hover {
+        .volume-slider {
+          display: block;
+        }
+      }
+    }
+    .menu-play-list {
+      user-select: none;
+      cursor: pointer;
+      font-size: 20px;    
+      margin-left: 10px;
+    }
+    .icon  {
+      height: 20px;
+      width: 20px;
+      color: white;
+      vertical-align: -0.15em;
+      fill: currentColor;
+      overflow: hidden;
+    }
+
   }
 `

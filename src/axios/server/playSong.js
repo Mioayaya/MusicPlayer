@@ -17,3 +17,12 @@ export function checkSong(id) {
     }
   })
 }
+
+export function getDetailSong(ids) {
+  return request({
+    url: '/song/detail',
+    params: {
+      ids
+    }
+  })
+}

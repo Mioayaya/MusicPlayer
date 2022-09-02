@@ -1,25 +1,22 @@
 import React, { memo } from 'react'
 import { useRef } from 'react';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
+import { getSonglistDetail } from '../../../../../../axios/server/foundMusic';
+import { getDetailSong } from '../../../../../../axios/server/playSong';
+import { setFirstPlay } from '../../../../../../store/slices/play-list';
 import calculateTimeLength from '../../../../../../utils/calculateTimeLength';
 
 const MiosonglistDetail = memo((props) => {
   const history = useHistory();
-
+  const dispatch = useDispatch();
   const [active,setActive] = useState(-1);
   const listRef = useRef();
   // 模拟是否被喜欢
   const [liked,setLiked] = useState([false,false,false,false,false,false,false,false,false,false]);
-  // 歌曲头像 名称 作者 时长
-  // name -- 歌曲名字
-  // dt -- 时长(毫秒)
-  // ar[] -- 作者
-  // al.picUrl -- 专辑图片
-  // id -- 歌曲id 用于请求 mp3数据
   const {tracks,name} = props.songListDetail;
   const arr = [0,1,2,3,4];
-  // <div className="id">{tracks[0].id}</div>
 
   /* 业务逻辑代码 */
 
@@ -44,6 +41,13 @@ const MiosonglistDetail = memo((props) => {
     }
   }
 
+  // 双击播放
+  const doubleClickPlay = (id) => {
+    getDetailSong(id).then(res => {
+      dispatch(setFirstPlay(res.songs[0]));
+    })
+  }
+
   return (
     <div className='recmd-song-list-bottom-detail'>
       <span className='song-list-name'>{`[${name}]`}</span>
@@ -56,7 +60,7 @@ const MiosonglistDetail = memo((props) => {
 
               <div className={ active===indexy?'item-left item-active':'item-left'}
                    onClick={e => {clickList(e,indexy)} }
-                   onDoubleClick={e => alert('双击了')}
+                   onDoubleClick={e => doubleClickPlay(tracks[indexy].id)}
                    ref={listRef}
               >
                 <img src={tracks[indexy].al.picUrl} alt="" />
@@ -73,7 +77,7 @@ const MiosonglistDetail = memo((props) => {
                     ❤
                   </span>
                   {/* 播放 */}
-                  <span className="play icon">▶</span>
+                  <span className="play icon" onClick={e => doubleClickPlay(tracks[indexy].id)}>▶</span>
                   {/* 跳转到评论区 */}
                   <span className="comment icon">▤</span>
                   <span className="time-length">{calculateTimeLength(tracks[indexy].dt) }</span>
@@ -83,7 +87,7 @@ const MiosonglistDetail = memo((props) => {
               
               <div className={ active===indexz?'item-right item-active':'item-right'}
                    onClick={e => clickList(e,indexz)}
-                   onDoubleClick={e => alert('双击了')}
+                   onDoubleClick={e => doubleClickPlay(tracks[indexz].id)}
               >
                 <img src={tracks[indexz].al.picUrl} alt="" />
                 <div className="item-desc">
@@ -97,7 +101,7 @@ const MiosonglistDetail = memo((props) => {
                   >
                     ❤
                   </span>
-                  <span className="play icon">▶</span>
+                  <span className="play icon" onClick={e => doubleClickPlay(tracks[indexz].id)}>▶</span>
                   <span className="comment icon">▤</span>
                   <span className="time-length">{calculateTimeLength(tracks[indexz].dt)}</span>
                 </div>
