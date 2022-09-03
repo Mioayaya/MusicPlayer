@@ -7,15 +7,25 @@
 - 3.使用Hooks、并且使用 memo 包裹
 - 4.组件内部状态使用 useState 业务数据放在 redux 中
 - 5.网络请求使用 axios
-- 6.ui库使用antdesign
+- 6.ui库使用Design
 
-# package
-- emotion： npm install --save @emotion/styled  --CSS in js --
-- npm install --save normalize.css  -- 初始化css --
-- yarn add @types/node -D   -- 修改别名 --
-- yarn add react-router-dom
-- yarn add react-router-config  
-- yarn add react-router@5.2.0 -s   -- 路由 -- 
+# 关于技术
+## 技术栈
+- React(hooks函数式组件写法)
+- vite 
+- Redux Toolkit
+- ui库 -- arco Design
+- axios封装
+- css -- emotionCss + less
+## 项目技术
+- 歌单中的歌曲列表 采用 虚拟列表
+- 评论展示 采用 无限滚动+滚动请求+虚拟列表
+- 部分点击事件 增加防抖效果
+- 歌词时间轴的同步
+- 歌曲时间调节
+- 一键换肤功能
+- 歌曲播放列表采用 链表存储
+- 歌曲播放顺序 歌曲切换 
 
 # 问题
 - Q1: 使用 react-router-config 配置路由报错 `You should not use <Switch> outside a <Router>`  
