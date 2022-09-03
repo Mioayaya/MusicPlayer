@@ -96,29 +96,51 @@ export const playlistSlice = createSlice({
       }
     },
     randPlay: (state,{payload}) => {
-      // 如果当前目标靠近尾指针  从下往上找
-      if(state.playlist.pend-payload < (payload-state.playlist.phead)) {        
-        let current = state.playlist.pend;
-        while(state.playlist[current].fix != payload || current > payload) {
-          current = state.playlist[current].last;
+      state.playlist.p = payload;
+    },
+    delSingelSong: (state,{payload}) => {
+      // 首先判断一下是否在播放
+      if(state.playlist.p != -1) {
+        if(state.playlist[state.playlist.p].value.id == payload) {
+          state.playlist.p = -1;  
         }
-        state.playlist.p = state.playlist[current].me;        
-      }else {
-        // 从上往上找
-        let current = state.playlist.phead;
-        while(state.playlist[current].fix != payload || current < payload) {
-          current = state.playlist[current].next;
-        }
-        // 没找到就是在附近取 
-        state.playlist.p = state.playlist[current].me; 
       }
+      
+      if(state.playlist[0].value.id == payload) {
+        state.playlist.idlist.shift();
+        for(let i=0;i<state.playlist.length-1;i++) {          
+          state.playlist[i].value = state.playlist[i+1].value;
+        }
+        state.playlist[state.playlist.pend] = null;
+        state.playlist.pend--;
+        state.playlist.length--;
+        state.playlist.p--;
+      }else if(state.playlist[state.playlist.pend].value.id == payload) {
+        // 最后一个 
+        // 直接 length-- pend-- =null
+        state.playlist.idlist.pop();
+        state.playlist[state.playlist.pend] = null;
+        state.playlist.pend--;
+        state.playlist.length--;
+      }else {
+        const meIndex = state.playlist.idlist.indexOf(payload);
+        state.playlist.idlist.splice(meIndex,1);
+        for(let i=meIndex;i<state.playlist.length-1;i++) {
+          state.playlist[i].value = state.playlist[i+1].value;
+        }
+        state.playlist[state.playlist.pend] = null;
+        state.playlist.length--;
+        state.playlist.pend--;
+        if(state.playlist.p > meIndex) state.playlist.p--;
+      }
+      
     }
   }
 })
 
 export const {setFirstPlay,setNowPlayUrl,setNextPlayUrl,
               setPlayListId,clearAllData,setLastPlay,
-              setNextPlay,randPlay
+              setNextPlay,randPlay,delSingelSong
              } = playlistSlice.actions;
 
 export default playlistSlice.reducer;

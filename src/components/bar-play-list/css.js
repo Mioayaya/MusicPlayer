@@ -24,6 +24,7 @@ export const MioBarPlayListDiv = styled.div`
     .clear {
       cursor: pointer;
       color: #85b9e6;
+      margin-right: 20px;
       :hover {
         color: #b3cee5;
       }

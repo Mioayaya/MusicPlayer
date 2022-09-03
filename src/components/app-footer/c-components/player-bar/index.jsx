@@ -40,6 +40,9 @@ const MioFooterPlayerBar = memo((props) => {
       setEndTime(res.data[0].time);
       if(res.data[0].time == 0) {
         Message.warning('亲爱的,暂无版权');
+        setTimeout(() => {
+          dispatch(setNextPlay())
+        },2000);
       }
     })
     setValue(0);
