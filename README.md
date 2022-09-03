@@ -56,6 +56,42 @@
   - 如何携带两个cookie
   - document.cookie添加两个  使用split对原有的cookie切割
 
+- Q9: axios 设置跨域后 也携带不了跨域
+  - 暂时未解决，使用参数的方式传递
+
+- Q10: 如何实现上划下划的动画
+  - 父组件设置 overflow:hidden
+  - 子组件设置滚动动画: 
+    ```css
+    transform: ${props => props.show?'translateY(0px)':'translateY(100vh)'};
+    transition: 0.5s;
+    ``` 
+  - 但是只是这样设置，划出去后，点击不了页面，在划出去之后设置 visibility，使用setTimeout。设置 display:none 有同样的效果,但是动画效果只有一半生效
+    ```js
+    function App() {
+      const songInform = useSelector(state => state.playlistSlice.songInform);
+      const [showStyle,setShowStyle] = useState(true);
+
+      useEffect(() => {
+        if(!songInform.show) {
+          setTimeout(() => {
+            setShowStyle(false)
+          },500)
+        }else {
+          setShowStyle(true)
+        }
+      }, [songInform])
+    
+      return (
+        <div className="App">
+          <div className="song" style={{visibility: showStyle?'visible':'hidden'}}>
+            <MioSongDetail />
+          </div>
+        </div>
+      )
+    }
+    ``` 
+
 ## CSS 相关
 - 图片的覆盖
 - 强制显示一行文本

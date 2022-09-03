@@ -18,9 +18,11 @@ export const playlistSlice = createSlice({
       // }
     }, 
     play: false,  // 播放?暂停
+    nowTime: 0,   // 当前播放时间
     songInform: {
-      nowPlayUrl: '' , // 当前播放资源
-      nextPlayUrl: '', // 下一首播放 防抖
+      word: '',         // 歌词
+      show: false,      // 展示详情
+      showType: 0,      // 模式
     }
     
   },
@@ -51,14 +53,6 @@ export const playlistSlice = createSlice({
         state.playlist[last].next = state.playlist.p;
       }
       
-    },
-    // 传入歌曲url
-    setNowPlayUrl: (state,{payload}) => {
-      state.songInform.nowPlayUrl = payload;
-    },
-    // 传入下一首播放的url
-    setNextPlayUrl: (state,{payload}) => {
-      state.songInform.nextPlayUrl = payload;
     },
     // 播放列表里 播放
     setPlayListId: (state,{payload}) => {
@@ -133,14 +127,17 @@ export const playlistSlice = createSlice({
         state.playlist.pend--;
         if(state.playlist.p > meIndex) state.playlist.p--;
       }
-      
+    },
+    setSongInformShow: (state) => {
+      state.songInform.show = !state.songInform.show
     }
   }
 })
 
 export const {setFirstPlay,setNowPlayUrl,setNextPlayUrl,
               setPlayListId,clearAllData,setLastPlay,
-              setNextPlay,randPlay,delSingelSong
+              setNextPlay,randPlay,delSingelSong,
+              setSongInformShow
              } = playlistSlice.actions;
 
 export default playlistSlice.reducer;
