@@ -7,6 +7,7 @@ export const MioRecmdSongListDiv = styled.div`
   display: flex;
   width: auto;
   flex-direction: column;
+  z-index: 0;
   .recmd-song-list-top {
     margin-bottom: 10px;
     a{

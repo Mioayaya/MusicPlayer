@@ -13,8 +13,8 @@ const MioFooterCardSong = memo((props) => {
 
   // methods
   const showSongDetail = () => {
-    setCardShow(!cardShow);
-    dispatch(setSongInformShow());
+    setCardShow(false);
+    dispatch(setSongInformShow(false));
   }
 
   return (

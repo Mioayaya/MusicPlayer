@@ -12,8 +12,8 @@ const MioFooterCardNative = memo((props) => {
   // methods
   const showSongDetail = () => {
     if(!notclick) {
-      setCardShow(!cardShow);
-      dispatch(setSongInformShow());
+      setCardShow(true);
+      dispatch(setSongInformShow(true));
       setNotClick(true);
       setTimeout(() => {
         setNotClick(false);

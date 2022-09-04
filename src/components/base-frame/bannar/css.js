@@ -1,12 +1,12 @@
 import styled from '@emotion/styled'
 
 export const MioFoundMusicBannarDiv = styled.div`
-
+  z-index: 0;
   .bannar {
     width: 50vw;
     height: 25vh;
     margin: auto;
-    border-radius: 10px;
+    border-radius: 10px;    
   }
 
   .swiper {

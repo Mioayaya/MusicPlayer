@@ -96,7 +96,18 @@ export const playlistSlice = createSlice({
       // 首先判断一下是否在播放
       if(state.playlist.p != -1) {
         if(state.playlist[state.playlist.p].value.id == payload) {
-          state.playlist.p = -1;  
+          // 首先判断是不是只有一首
+          if(state.playlist.length == 1) {
+            state.playlist.p = -1;
+          }else if(state.playlist.p == state.playlist.pend) {
+            // 判断是不是最后一首
+            // 是的话播放上一首
+            state.playlist.p--;
+          }else {
+            // 否则播放下一首
+            state.playlist.p++;
+          }
+          
         }
       }
       
@@ -128,8 +139,8 @@ export const playlistSlice = createSlice({
         if(state.playlist.p > meIndex) state.playlist.p--;
       }
     },
-    setSongInformShow: (state) => {
-      state.songInform.show = !state.songInform.show
+    setSongInformShow: (state,{payload}) => {
+      state.songInform.show = payload;
     }
   }
 })
