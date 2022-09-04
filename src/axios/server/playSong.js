@@ -26,3 +26,12 @@ export function getDetailSong(ids) {
     }
   })
 }
+
+export function getSonglyric(id) {
+  return request({
+    url: '/lyric',
+    params: {
+      id
+    }
+  })
+}

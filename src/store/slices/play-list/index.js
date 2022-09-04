@@ -23,6 +23,22 @@ export const playlistSlice = createSlice({
       word: '',         // 歌词
       show: false,      // 展示详情
       showType: 0,      // 模式
+    },
+    iricsInform: {
+      irics: [
+        // time:    // 当前时间
+        // lrc:     // 主歌词
+        // tlyric： // 翻译
+        // romalrc： // 罗马音
+      ],
+      lyricUser: {
+        id: 0,
+        nickname: ''
+      } ,// 滚动歌词贡献者
+      transUser: {
+        id: 0,
+        nickname: ''
+      },// 翻译者
     }
     
   },
@@ -141,6 +157,9 @@ export const playlistSlice = createSlice({
     },
     setSongInformShow: (state,{payload}) => {
       state.songInform.show = payload;
+    },
+    setPlayPause: (state,{payload}) => {
+      state.play = payload;
     }
   }
 })
@@ -148,7 +167,7 @@ export const playlistSlice = createSlice({
 export const {setFirstPlay,setNowPlayUrl,setNextPlayUrl,
               setPlayListId,clearAllData,setLastPlay,
               setNextPlay,randPlay,delSingelSong,
-              setSongInformShow
+              setSongInformShow,setPlayPause
              } = playlistSlice.actions;
 
 export default playlistSlice.reducer;
