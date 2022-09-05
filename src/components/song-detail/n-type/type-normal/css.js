@@ -31,12 +31,26 @@ export const MioSongDetailNormalDiv = styled.div`
 export const MioSongDetailNormalTopDiv = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 20px 20px;
   cursor: default;
-
+  margin-top: 50px;
+  
   .top-tools {
-    user-select: none;
-    cursor: pointer;
+    user-select: none;    
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    z-index: 1;
+    background-color: #2b2b2b;
+    .down {
+      cursor: pointer;
+      width: 20px;
+      height: 20px;
+      font-size: 20px;
+      margin: 10px;
+      padding: 5px;
+    }
   }
 
   .title {

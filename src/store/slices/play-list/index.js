@@ -160,6 +160,11 @@ export const playlistSlice = createSlice({
     },
     setPlayPause: (state,{payload}) => {
       state.play = payload;
+    },
+    setIricsInform: (state,{payload}) => {
+      state.iricsInform.irics = payload.iricsArry;
+      state.iricsInform.lyricUser = payload.lyricUser;
+      state.iricsInform.transUser = payload.transUser;
     }
   }
 })
@@ -167,7 +172,8 @@ export const playlistSlice = createSlice({
 export const {setFirstPlay,setNowPlayUrl,setNextPlayUrl,
               setPlayListId,clearAllData,setLastPlay,
               setNextPlay,randPlay,delSingelSong,
-              setSongInformShow,setPlayPause
+              setSongInformShow,setPlayPause,
+              setIricsInform
              } = playlistSlice.actions;
 
 export default playlistSlice.reducer;

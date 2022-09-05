@@ -15,6 +15,7 @@ const MioSongDetailNormalTop = memo((props) => {
       <div className="top-tools">
         <div className="down" onClick={e => dispatch(setSongInformShow(false))} title="收起音乐详情">﹀</div>        
       </div>
+      
       <div className="title">
         <div className="song-name">{playlist[playlist.p].value.name.split('(')[0]}</div>
         <div className="song-name-desu">{playlist[playlist.p].value.name.split('(')[1]?playlist[playlist.p].value.name.split('(')[1].split(')')[0]:''}</div>
@@ -38,9 +39,11 @@ const MioSongDetailNormalTop = memo((props) => {
             <img src={playlist[playlist.p].value.al.picUrl} alt="" />
           </div>
         </div>
+
         <div className="content-iyrics">          
           <MioSongDetailIrics />        
         </div>
+
         <div className="content-others">
           其它
         </div>

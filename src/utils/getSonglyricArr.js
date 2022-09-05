@@ -5,30 +5,16 @@
  * 4. 纯音乐
  */
 export function getSonglyricArr(res) {
-  // 滚动歌词贡献者
-  const lyricUser = {
-    id: 0,
-    nickname: ''
-  };   
-  // 翻译贡献值
-  const transUser = {
-    id: 0,
-    nickname: ''
-  };
 
-  let lrc = {
-    time: [],
-    value: [],
-  };     // 歌词
-  let tlyric = {
-    time: [],
-    value: []
-  };  // 翻译
-  let romalrc = {
-    time: [],
-    value: []
-  }; // 罗马音
+  const iricsArry = [];    // 最终对象数组
+  const lyricUser = {id: 0,nickname: ''};  // 滚动歌词贡献者
+  const transUser = {id: 0,nickname: ''};  // 翻译者
+
+  let lrc = {time: [],value: [],};     // 歌词
+  let tlyric = {time: [],value: []};  // 翻译
+  let romalrc = {time: [],value: []}; // 罗马音
   let type = 0;     // 0 只有lrc 1 纯音乐 2 lrc+tlyic 3 都有
+  const irics = {time: [],lrc: [],tlyric: [],romalrc: [],}
   let arr = [];
 
   // lrc methods
@@ -66,11 +52,71 @@ export function getSonglyricArr(res) {
     transUser.nickname = res.transUser.nickname;
   }
 
+  if(type == 0 || type == 1) {
+    irics.time = lrc.time;
+    irics.lrc = lrc.value;
+  }
+
+  if(type == 2 || type == 3) {
+    let p = 0;
+    let start = false;
+    irics.time = lrc.time;
+    irics.lrc = lrc.value;
+    for(p;p<tlyric.time.length;p++) {
+      if(parseInt(tlyric.time[p]) === 0) {
+        break;
+      }
+    }
+
+    for(let i=0;i<irics.time.length;i++) {
+      irics.tlyric[i] = '';
+      if(irics.time[i] == tlyric.time[p]) {
+        start = true;
+      }
+      if(start) {
+        irics.tlyric[i] = tlyric.value[p];
+        p++;
+      }
+    }
+  }
+
+  if(type == 3) {
+    let romP = 0;
+    let romStart = false;
+    for(romP;romP<tlyric.time.length;romP++) {
+      if(parseInt(romalrc.time[romP]) === 0) {
+        break;
+      }
+    }
+
+    for(let i=0;i<irics.time.length;i++) {
+      irics.romalrc[i] = '';
+      if(irics.time[i] == romalrc.time[romP]) {
+        romStart = true;
+      }
+      if(romStart) {
+        irics.romalrc[i] = romalrc.value[romP];
+        romP++;
+      }
+    }
+  }
+
+  // 转换为一个数组
+
+  for(let i =0;i<irics.time.length;i++) {
+    const _obj = { 
+      time: irics.time[i].split('.')[0],
+      lrc: irics.lrc[i] ? irics.lrc[i] : '',
+      tlyric: irics.tlyric[i] ? irics.tlyric[i] : '',
+      romalrc: irics.romalrc[i] ? irics.romalrc[i] : ''
+    };
+    
+    iricsArry.push(_obj);
+  }
+
+
   return {
-    lrc,
-    tlyric,
-    type,
-    romalrc,
+    iricsArry,
     lyricUser,
     transUser
   }

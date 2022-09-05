@@ -1,18 +1,20 @@
 import React, { memo, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { getSonglyric } from '../../../../../axios/server/playSong';
+import { setIricsInform } from '../../../../../store/slices/play-list';
 import { getSonglyricArr } from '../../../../../utils/getSonglyricArr';
 
 import { MioSongDetailIricsDiv } from './css'
 
 const MioSongDetailIrics = memo((props) => {
+  const dispatch = useDispatch();
   const theme = useSelector(state => state.themeSlice.theme);
   const playlist = useSelector(state => state.playlistSlice.playlist);
 
   useEffect(() => {
     if(playlist[playlist.p]) {
       getSonglyric(playlist[playlist.p].value.id).then(res => {
-        console.log(getSonglyricArr(res));        
+        dispatch(setIricsInform(getSonglyricArr(res)));
       })
     }
   },[playlist])
