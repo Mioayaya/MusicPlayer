@@ -31,6 +31,7 @@ export const playlistSlice = createSlice({
         // tlyric： // 翻译
         // romalrc： // 罗马音
       ],
+      timeArr: [],
       lyricUser: {
         id: 0,
         nickname: ''
@@ -39,6 +40,7 @@ export const playlistSlice = createSlice({
         id: 0,
         nickname: ''
       },// 翻译者
+      type: 0  // 类型
     }
     
   },
@@ -163,8 +165,13 @@ export const playlistSlice = createSlice({
     },
     setIricsInform: (state,{payload}) => {
       state.iricsInform.irics = payload.iricsArry;
+      state.iricsInform.timeArr = payload.timeArr;
       state.iricsInform.lyricUser = payload.lyricUser;
       state.iricsInform.transUser = payload.transUser;
+      state.iricsInform.type = payload.type;
+    },
+    setIricsNowTime: (state,{payload}) => {
+      state.nowTime = payload;
     }
   }
 })
@@ -173,7 +180,7 @@ export const {setFirstPlay,setNowPlayUrl,setNextPlayUrl,
               setPlayListId,clearAllData,setLastPlay,
               setNextPlay,randPlay,delSingelSong,
               setSongInformShow,setPlayPause,
-              setIricsInform
+              setIricsInform,setIricsNowTime
              } = playlistSlice.actions;
 
 export default playlistSlice.reducer;

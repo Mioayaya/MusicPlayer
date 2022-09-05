@@ -59,7 +59,6 @@ export function getSonglyricArr(res) {
 
   if(type == 2 || type == 3) {
     let p = 0;
-    let start = false;
     irics.time = lrc.time;
     irics.lrc = lrc.value;
     for(p;p<tlyric.time.length;p++) {
@@ -70,10 +69,8 @@ export function getSonglyricArr(res) {
 
     for(let i=0;i<irics.time.length;i++) {
       irics.tlyric[i] = '';
+      console.log(irics.time[i],tlyric.time[p]);
       if(irics.time[i] == tlyric.time[p]) {
-        start = true;
-      }
-      if(start) {
         irics.tlyric[i] = tlyric.value[p];
         p++;
       }
@@ -94,7 +91,7 @@ export function getSonglyricArr(res) {
       if(irics.time[i] == romalrc.time[romP]) {
         romStart = true;
       }
-      if(romStart) {
+      if(romStart && lrc.value[i] != '') {
         irics.romalrc[i] = romalrc.value[romP];
         romP++;
       }
@@ -114,10 +111,14 @@ export function getSonglyricArr(res) {
     iricsArry.push(_obj);
   }
 
+  let timeArr = [];
+  timeArr = irics.time.map(item => (item.split('.')[0]))
 
   return {
     iricsArry,
+    timeArr,
     lyricUser,
-    transUser
+    transUser,
+    type
   }
 }

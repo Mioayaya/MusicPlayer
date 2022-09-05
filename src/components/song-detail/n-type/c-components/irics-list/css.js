@@ -11,15 +11,38 @@ export const MioSongDetailIricsDiv = styled.div`
   .shadow-top {
     position: absolute;    
     top: 0;
+    z-index: 1;
     background: linear-gradient(to top,rgba(0,0,0,0),#2b2b2b);
   }
   .shadow-bottom {
     position: absolute;
-    bottom: 0;    
+    bottom: 0; 
+    z-index: 1;   
     background: linear-gradient(to bottom,rgba(0,0,0,0),#2b2b2b);
   }
-  // 定义滚动条样式
 
+  .lyric-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .item-sentence {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      align-items: center;
+      .space {
+        height: 4rem;
+      }
+      .item-time {
+        user-select: none;
+        position: absolute;
+        left: 0;
+      }
+    }
+  }
+
+  // 定义滚动条样式
   ::-webkit-scrollbar {
     width: 0.5rem;
     height: 0.5rem;

@@ -9,7 +9,7 @@ import { useRef } from 'react';
 import calculateTimeLength from '../../../../utils/calculateTimeLength';
 import { useCallback } from 'react';
 import { setPlayListShow } from '../../../../store/slices/show';
-import { setLastPlay, setNextPlay,randPlay, setPlayPause } from '../../../../store/slices/play-list';
+import { setLastPlay, setNextPlay,randPlay, setPlayPause, setIricsNowTime } from '../../../../store/slices/play-list';
 import getRandNumber from '../../../../utils/getRandNumber';
 
 const playType = ['顺序播放','随机播放','单曲循环','列表循环'];
@@ -83,7 +83,9 @@ const MioFooterPlayerBar = memo((props) => {
 
     if(nowTime > currentTime) {
       setNowTime(currentTime);
-    }   
+    }
+
+    dispatch(setIricsNowTime(Math.floor(e.target.currentTime)));
   }
 
   const timeEnded = () => {

@@ -89,7 +89,7 @@ export const MioSongDetailNormalTopDiv = styled.div`
         aspect-ratio: 1 / 1;
         border-radius: 50%;
         margin: auto;
-        animation:fadenum 18000s infinite;
+        animation:fadenum 24000s infinite;
         animation-play-state: ${props => props.aniPlay?'running':'paused'};
         @keyframes fadenum{
           100%{transform:rotate(360000deg);}
