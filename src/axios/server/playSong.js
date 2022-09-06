@@ -35,3 +35,24 @@ export function getSonglyric(id) {
     }
   })
 }
+
+// 获取相似歌曲
+export function getSimiSong(id) {
+  return request({
+    url: '/simi/song',
+    params: {
+      id
+    }
+  })
+}
+
+// 获取歌曲评论
+export function getSongComment(id,offset) {
+  return request({
+    url: '/comment/music',
+    params: {
+      id,
+      offset
+    }
+  })
+}
