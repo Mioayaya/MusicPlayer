@@ -1,6 +1,6 @@
 import React, { memo,useState  } from 'react'
 import { Slider,Message } from '@arco-design/web-react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { MioFooteerPlayerBarDiv } from './css'
 import { useEffect } from 'react';
@@ -17,6 +17,8 @@ const playType = ['顺序播放','随机播放','单曲循环','列表循环'];
 const MioFooterPlayerBar = memo((props) => {
   const {fee,songId,playlist} = props; 
   const dispatch = useDispatch();
+  const iricsNowTime = useSelector(state => state.playlistSlice.nowTime);
+  const nowTimeClick = useSelector(state => state.playlistSlice.nowTimeClick);
   const [value, setValue] = useState(0);      // 现在的时间
   const [endTime,setEndTime] = useState(0);   // 结束时间
   const [isPlay,setIsPlay] = useState(false); // 是否播放
@@ -56,6 +58,17 @@ const MioFooterPlayerBar = memo((props) => {
       window.removeEventListener('keydown', onKeyDown); // 销毁
     };
   },[isPlay])
+
+  useEffect(() => {
+    setNowTime(iricsNowTime);
+    setValue(iricsNowTime);
+    audioRef.current.currentTime = iricsNowTime;
+    audioRef.current.play().then(res => {
+      setIsPlay(true);
+    }).catch(err => {
+      setIsPlay(false);
+    })
+  },[nowTimeClick])
 
   const audioRef = useRef();
 
@@ -124,6 +137,7 @@ const MioFooterPlayerBar = memo((props) => {
   const changeSlider = (val) => {
     setValue(val);
     audioRef.current.currentTime = val;
+    dispatch(setIricsNowTime(val));
     if(isPlay == false) {
       audioRef.current.play().then(err => {
         setIsPlay(true);

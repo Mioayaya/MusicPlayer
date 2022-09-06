@@ -69,7 +69,6 @@ export function getSonglyricArr(res) {
 
     for(let i=0;i<irics.time.length;i++) {
       irics.tlyric[i] = '';
-      console.log(irics.time[i],tlyric.time[p]);
       if(irics.time[i] == tlyric.time[p]) {
         irics.tlyric[i] = tlyric.value[p];
         p++;
@@ -89,9 +88,6 @@ export function getSonglyricArr(res) {
     for(let i=0;i<irics.time.length;i++) {
       irics.romalrc[i] = '';
       if(irics.time[i] == romalrc.time[romP]) {
-        romStart = true;
-      }
-      if(romStart && lrc.value[i] != '') {
         irics.romalrc[i] = romalrc.value[romP];
         romP++;
       }

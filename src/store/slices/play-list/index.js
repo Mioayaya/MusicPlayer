@@ -19,6 +19,7 @@ export const playlistSlice = createSlice({
     }, 
     play: false,  // 播放?暂停
     nowTime: 0,   // 当前播放时间
+    nowTimeClick: 0,  // 歌词点击了
     songInform: {
       word: '',         // 歌词
       show: false,      // 展示详情
@@ -172,6 +173,9 @@ export const playlistSlice = createSlice({
     },
     setIricsNowTime: (state,{payload}) => {
       state.nowTime = payload;
+    },
+    setNowTimeClick: (state) => {
+      state.nowTimeClick++;
     }
   }
 })
@@ -180,7 +184,8 @@ export const {setFirstPlay,setNowPlayUrl,setNextPlayUrl,
               setPlayListId,clearAllData,setLastPlay,
               setNextPlay,randPlay,delSingelSong,
               setSongInformShow,setPlayPause,
-              setIricsInform,setIricsNowTime
+              setIricsInform,setIricsNowTime,
+              setNowTimeClick
              } = playlistSlice.actions;
 
 export default playlistSlice.reducer;
