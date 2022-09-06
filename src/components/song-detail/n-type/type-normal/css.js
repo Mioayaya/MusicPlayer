@@ -112,5 +112,45 @@ export const MioSongDetailNormalTopDiv = styled.div`
       flex: 3;
     }
   }
+
+  .content-others {
+    margin-left: 50px;
+    .simi-desc {
+      color: #636363;
+    }
+    .item-simi {
+      width: 75%;
+      display: flex;
+      padding: 5px 0 5px 3px;
+      flex-direction: row;
+      align-items: center;
+      .pic {
+        width: 35px;
+        height: 35px;
+        border-radius: 10px;
+        margin-right: 10px;
+        white-space: nowrap;
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 10px;
+          background-size: cover;
+          object-fit: cover;
+        }
+      }
+      .name {
+        flex: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;      /* 超出部分省略号 */
+        word-break: break-all;        /* break-all(允许在单词内换行。) */  
+        display: -webkit-box;         /* 对象作为伸缩盒子模型显示 */
+        -webkit-box-orient: vertical; /* 设置或检索伸缩盒对象的子元素的排列方式 */
+        -webkit-line-clamp: 1;        /* 显示的行数 */
+      }
+      :hover {
+        background-color: #474747;
+      }
+    }
+  }
   
 `

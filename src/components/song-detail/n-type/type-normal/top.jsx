@@ -1,6 +1,7 @@
 import React, { memo, useEffect, useState,useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { setSongInformShow } from '../../../../store/slices/play-list';
+import { getDetailSong, getSimiSong } from '../../../../axios/server/playSong';
+import { setFirstPlay, setPlayListId, setSongInformShow } from '../../../../store/slices/play-list';
 import MioSongDetailIrics from '../c-components/irics-list';
 
 import { MioSongDetailNormalTopDiv } from './css'
@@ -8,7 +9,22 @@ import { MioSongDetailNormalTopDiv } from './css'
 const MioSongDetailNormalTop = memo((props) => {
   const {theme,playlist} = props;  
   const dispatch = useDispatch();
-  const aniPlay = useSelector(state => state.playlistSlice.play);  
+  const aniPlay = useSelector(state => state.playlistSlice.play);
+  const [simiList,setSimiList] = useState([]);
+
+  useEffect(() => {
+    if(playlist[playlist.p]) {
+      getSimiSong(playlist[playlist.p].value.id).then(res => {
+        setSimiList(res.songs)
+      })
+    }
+  },[playlist])
+
+  const simiClick = (id) => {
+    getDetailSong(id).then(res => {      
+      dispatch(setFirstPlay(res.songs[0]));
+    })
+  }
 
   return (
     <MioSongDetailNormalTopDiv theme={theme} aniPlay={aniPlay}>
@@ -45,8 +61,28 @@ const MioSongDetailNormalTop = memo((props) => {
         </div>
 
         <div className="content-others">
-          其它
+          {
+            simiList.length
+            ? <>
+                <div className="simi-desc" title='双击播放'>相似推荐</div>
+                {
+                  simiList.map(item => (
+                    <div className="item-simi" 
+                         onDoubleClick={e => simiClick(item.id)}
+                         title={item.name}     
+                    >
+                      <div className="pic">
+                        <img src={item.album.picUrl} alt="" />
+                      </div>
+                      <div className="name">{item.name}</div>
+                    </div>
+                  ))
+                }
+              </>
+            : ''
+          }
         </div>
+
       </div>
     </MioSongDetailNormalTopDiv>
   )
