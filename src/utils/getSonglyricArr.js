@@ -78,7 +78,6 @@ export function getSonglyricArr(res) {
 
   if(type == 3) {
     let romP = 0;
-    let romStart = false;
     for(romP;romP<tlyric.time.length;romP++) {
       if(parseInt(romalrc.time[romP]) === 0) {
         break;

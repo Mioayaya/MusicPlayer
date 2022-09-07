@@ -41,7 +41,11 @@ export const playlistSlice = createSlice({
         id: 0,
         nickname: ''
       },// 翻译者
-      type: 0  // 类型
+      type: 0 , // 类型      
+    },
+    comment: {
+      hotList:[],     // 热评  
+      normalList:[]   // 普通评论
     }
     
   },
@@ -176,6 +180,11 @@ export const playlistSlice = createSlice({
     },
     setNowTimeClick: (state) => {
       state.nowTimeClick++;
+    },
+    setHotCommit: (state,{payload}) => {
+      if(payload) {
+        state.comment.hotList = payload;
+      }
     }
   }
 })
@@ -185,7 +194,7 @@ export const {setFirstPlay,setNowPlayUrl,setNextPlayUrl,
               setNextPlay,randPlay,delSingelSong,
               setSongInformShow,setPlayPause,
               setIricsInform,setIricsNowTime,
-              setNowTimeClick
+              setNowTimeClick,setHotCommit
              } = playlistSlice.actions;
 
 export default playlistSlice.reducer;
