@@ -20,10 +20,9 @@ const MioSongComment = memo((props) => {
   useEffect(() => {
     if(playlist[playlist.p]) {
       getSongComment(playlist[playlist.p].value.id,0).then(res => {
-        console.log(normalList);
         dispatch(setHotCommit(res.hotComments));
         dispatch(setNormalList({arr:res.comments,type:0}));        
-        setOffset(1);
+        setOffset(20);
         setMore(res.more);
         setTotal(res.total);
         setPlayP(playlist.p);
@@ -36,7 +35,7 @@ const MioSongComment = memo((props) => {
       if(playlist[playlist.p]) {
         getSongComment(playlist[playlist.p].value.id,offset).then(res => {          
           dispatch(setNormalList({arr:res.comments,type:1}));
-          setOffset(offset+1);
+          setOffset(offset+20);
           setMore(res.more);
         })
       }
@@ -50,7 +49,7 @@ const MioSongComment = memo((props) => {
       {
         hotComment.length 
         ? <>
-          <MioCommentTemplate comment={hotComment} title="热门评论" commentLength={hotComment.length}/>
+          <MioCommentTemplate comment={hotComment} title="热门评论" commentLength={hotComment.length} commentWidth="50%"/>
           {offset == 1 && <div className='loading'>加载中</div>}
           </> 
         : ''
@@ -59,7 +58,7 @@ const MioSongComment = memo((props) => {
         normalList.length
         ? 
           <>
-          <MioCommentTemplate comment={normalList} title="全部评论" commentLength={total}/>
+          <MioCommentTemplate comment={normalList} title="全部评论" commentLength={total} commentWidth="50%"/>
           {more && <div className='loading'>加载中</div>}
           </>
         : ''

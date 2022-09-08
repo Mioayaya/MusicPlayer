@@ -12,13 +12,13 @@ export function getTotalSonglist(id,limit,offset) {
   })
 }
 
-export function getCommentList(id,limit=20,offset=0) {
+export function getCommentList(id,offset,limit=20) {
   return request({
     url: '/comment/playlist',
     params: {
       id: id,
-      limit: limit,
-      offset: offset
+      offset: offset,
+      limit
     }
   })
 }

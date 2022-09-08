@@ -9,6 +9,11 @@ export const songlistSlice = createSlice({
     firstLoad: 0,            // 分段加载
     songTotalLength: 0,      // 所有歌曲数目
     authorInform: '',           // 用户信息
+    comment: {
+      isScroll: false,
+      hotComment: [],
+      normalComment: []
+    }
   },
   reducers: {
     setSonglistInformation: (state,{payload}) => {
@@ -38,11 +43,36 @@ export const songlistSlice = createSlice({
       state.firstLoad = 0;
       state.songTotalLength = 0;
       state.authorInform = '';
+    },
+    setCommentScroll: (state,{payload}) => {
+      state.comment.isScroll = payload;
+    },
+    setSLHotComment: (state,{payload}) => {
+      state.comment.hotComment = payload;
+      state.comment.normalComment = [];
+    },
+    setSLNormalComment: (state,{payload}) => {
+      if(payload.arr) {
+        if(payload.type == 1) {
+          state.comment.normalComment.push(...payload.arr);
+        }else {
+          state.comment.normalComment = [];
+          state.comment.normalComment = payload.arr;
+        }
+      }
+    },
+    clearSLComment: (state) => {
+      state.comment.hotComment = [];
+      state.comment.normalComment = [];
     }
   }
 
 });
 
-export const { setSonglistInformation,setSonglist,setAuthorInform,clearAllData }  = songlistSlice.actions;
+export const {  setSonglistInformation,setSonglist,
+                setAuthorInform,clearAllData,
+                setCommentScroll,setSLHotComment,
+                setSLNormalComment,clearSLComment
+              }  = songlistSlice.actions;
 
 export default songlistSlice.reducer;

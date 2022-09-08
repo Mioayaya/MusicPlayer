@@ -9,12 +9,16 @@ export const MioCommentTemplateDiv = styled.div`
   color: #d4d4d4;
   margin-top: 50px;
   .title {
-    width: 50%;
+    /* width: 50%; */
+    /* width: 100%; */
+    width: ${props => props.commentWidth};
     font-weight: 600;
   }
   
   .comment-item {
-    width: 50%;
+    /* width: 50%; */
+    /* width: 99%; */
+    width: ${props => props.commentWidth};
     display: flex;
     flex-direction: row;
     padding: 10px 0;

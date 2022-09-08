@@ -94,7 +94,9 @@ const MioSonglistInformation = memo(() => {
       <div className="songlist-bottom">
         {
           nav==0 
-          && songlistInformation
+          && 
+          (
+            songlistInformation
             ? songlistInformation.id == routerData 
               ? <div className="part1">
                 {
@@ -103,9 +105,10 @@ const MioSonglistInformation = memo(() => {
                 </div>
               : <div>loading</div>
             : <div>loading</div>
+          )
         }
         {nav==1 && <div className="part2">
-                      <MioSonglistBottomCommentList id={songlistInformation.id}/>
+                    <MioSonglistBottomCommentList id={songlistInformation.id}/>
                    </div>}
         {nav==2 && <div className="part3">部分3</div>}
       </div>

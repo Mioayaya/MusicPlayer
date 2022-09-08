@@ -5,10 +5,10 @@ import getStandTime from '../../../../utils/getStandTime';
 import { MioCommentTemplateDiv } from './css'
 
 const MioCommentTemplate = memo((props) => {
-  const {comment,title,commentLength} = props;
+  const {comment,title,commentLength,commentWidth} = props;
 
   return (
-    <MioCommentTemplateDiv>
+    <MioCommentTemplateDiv commentWidth={commentWidth}>
       {
         title 
         ? <span className="title">{`${title}(${commentLength})`}</span>
