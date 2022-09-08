@@ -57,6 +57,7 @@ export const MioSongDetailNormalTopDiv = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-right: 60px;
     color: #636363;
     .song-name {
       font-size: 1.5rem;

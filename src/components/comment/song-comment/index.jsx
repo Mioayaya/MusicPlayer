@@ -2,7 +2,7 @@ import React, { memo,useState,useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getSongComment } from '../../../axios/server/playSong';
-import { setHotCommit } from '../../../store/slices/play-list';
+import { setHotCommit, setNormalList } from '../../../store/slices/play-list';
 import MioCommentTemplate from '../c-component/comment-template';
 import { MioSongCommentDiv } from './css';
 
@@ -10,26 +10,32 @@ const MioSongComment = memo((props) => {
   const {scroll,playlist,scrollTop} = props;
   const dispatch = useDispatch();
   const hotComment = useSelector(state => state.playlistSlice.comment.hotList);
+  const normalList = useSelector(state => state.playlistSlice.comment.normalList);
   const [offset,setOffset] = useState(0);
   const [more,setMore] = useState(true);
-
+  const [total,setTotal] = useState(0);
+  const [playP,setPlayP] = useState(-1);  
+  
   // 第一次加载
   useEffect(() => {
     if(playlist[playlist.p]) {
       getSongComment(playlist[playlist.p].value.id,0).then(res => {
+        console.log(normalList);
         dispatch(setHotCommit(res.hotComments));
-        console.log(res);
+        dispatch(setNormalList({arr:res.comments,type:0}));        
         setOffset(1);
         setMore(res.more);
+        setTotal(res.total);
+        setPlayP(playlist.p);
       })
     }
   },[playlist.p])
 
-  useEffect(() => {
-    if(scroll && more) {
+  useEffect(() => {    
+    if(scroll && more && playP == playlist.p) {
       if(playlist[playlist.p]) {
         getSongComment(playlist[playlist.p].value.id,offset).then(res => {          
-          console.log(res);
+          dispatch(setNormalList({arr:res.comments,type:1}));
           setOffset(offset+1);
           setMore(res.more);
         })
@@ -43,7 +49,19 @@ const MioSongComment = memo((props) => {
       {/* 热评 */}
       {
         hotComment.length 
-        ? <MioCommentTemplate comment={hotComment} title="热门评论" commentLength={hotComment.length}/>
+        ? <>
+          <MioCommentTemplate comment={hotComment} title="热门评论" commentLength={hotComment.length}/>
+          {offset == 1 && <div className='loading'>加载中</div>}
+          </> 
+        : ''
+      }
+      {        
+        normalList.length
+        ? 
+          <>
+          <MioCommentTemplate comment={normalList} title="全部评论" commentLength={total}/>
+          {more && <div className='loading'>加载中</div>}
+          </>
         : ''
       }
       

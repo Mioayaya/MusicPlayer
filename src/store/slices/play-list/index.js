@@ -185,6 +185,16 @@ export const playlistSlice = createSlice({
       if(payload) {
         state.comment.hotList = payload;
       }
+    },
+    setNormalList: (state,{payload}) => {
+      console.log(payload);
+      if(payload) {
+        if(payload.type == 1) {
+          state.comment.normalList.push(...payload.arr);
+        }else {
+          state.comment.normalList = [];
+        }
+      }
     }
   }
 })
@@ -194,7 +204,8 @@ export const {setFirstPlay,setNowPlayUrl,setNextPlayUrl,
               setNextPlay,randPlay,delSingelSong,
               setSongInformShow,setPlayPause,
               setIricsInform,setIricsNowTime,
-              setNowTimeClick,setHotCommit
+              setNowTimeClick,setHotCommit,
+              setNormalList
              } = playlistSlice.actions;
 
 export default playlistSlice.reducer;

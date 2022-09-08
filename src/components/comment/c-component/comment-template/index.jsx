@@ -24,7 +24,7 @@ const MioCommentTemplate = memo((props) => {
                 <img src={item.user.avatarUrl} alt="" />
               </div>
               <div className="item-main">
-                <div className="item-main-name">{item.user.nickname}</div>
+                <span className="item-main-name">{item.user.nickname}</span>
                 <div className="item-main-content">{item.content}</div>
                 {
                   item.beReplied.length 
@@ -37,7 +37,7 @@ const MioCommentTemplate = memo((props) => {
                           <img src={reply.user.avatarUrl} alt="" />
                         </div>
                         <div className="item-replied-main">
-                          <div className="item-replied-main-name">@{reply.user.nickname}</div>
+                          <span className="item-replied-main-name">@{reply.user.nickname}</span>
                           <div className="item-replied-main-content">{reply.content}</div>
                         </div>
                       </div>
