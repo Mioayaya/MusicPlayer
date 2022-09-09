@@ -9,7 +9,7 @@ import { useRef } from 'react';
 import calculateTimeLength from '../../../../utils/calculateTimeLength';
 import { useCallback } from 'react';
 import { setPlayListShow } from '../../../../store/slices/show';
-import { setLastPlay, setNextPlay,randPlay, setPlayPause, setIricsNowTime } from '../../../../store/slices/play-list';
+import { setLastPlay, setNextPlay,randPlay, setPlayPause, setIricsNowTime,setTolVolume } from '../../../../store/slices/play-list';
 import getRandNumber from '../../../../utils/getRandNumber';
 
 const playType = ['顺序播放','随机播放','单曲循环','列表循环'];
@@ -19,6 +19,7 @@ const MioFooterPlayerBar = memo((props) => {
   const dispatch = useDispatch();
   const iricsNowTime = useSelector(state => state.playlistSlice.nowTime);
   const nowTimeClick = useSelector(state => state.playlistSlice.nowTimeClick);
+  const tolVolume = useSelector(state => state.playlistSlice.volume);
   const [value, setValue] = useState(0);      // 现在的时间
   const [endTime,setEndTime] = useState(0);   // 结束时间
   const [isPlay,setIsPlay] = useState(false); // 是否播放
@@ -32,8 +33,8 @@ const MioFooterPlayerBar = memo((props) => {
     getSongUrl(songId).then(res => {
       audioRef.current.src = res.data[0].url;
       // 设置初始音量
-      audioRef.current.volume = 0.2;
-      setVolume(20);
+      audioRef.current.volume = tolVolume/100;
+      setVolume(tolVolume);
       audioRef.current.play().then(res => {
         setIsPlay(true);
       }).catch(err => {
@@ -152,12 +153,14 @@ const MioFooterPlayerBar = memo((props) => {
     mute?audioRef.current.muted=true:audioRef.current.muted=false;
     if(volume == 0) {
       setVolume(20);
+      dispatch(setTolVolume(val));
       audioRef.current.volume = 0.2;
     }
   }
 
   const clickSetVolume = (val) => {
     setVolume(val);
+    dispatch(setTolVolume(val));
     audioRef.current.volume = val/100;
     if(val == 0) {
       setMute(false);
