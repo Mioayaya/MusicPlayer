@@ -1,4 +1,7 @@
 import React, { memo,useState } from 'react'
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router';
+import { setNavKey } from '../../../../store/slices/content-left';
 import calculatePlayNumber from '../../../../utils/calculatePlayNumber';
 import getCropImg from '../../../../utils/getCropImg';
 import getTime from '../../../../utils/getTime';
@@ -11,6 +14,16 @@ const MioMyPlaylistTop = memo((props) => {
   const avatarImgurl = getCropImg(userInform.avatar,30,30);
 
   const [ show, setShow] = useState(false);
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const userClick = () => {
+    dispatch(setNavKey(99998));
+    history.push({
+      pathname: '/mine'
+    })
+  }
+
 
   return (
     <MioMyPlaylistTopDiv theme={theme} show={show}>
@@ -23,8 +36,8 @@ const MioMyPlaylistTop = memo((props) => {
           <div className="title">{playlist.name}</div>
         </div>
         <div className="item-2">
-          <img src={avatarImgurl} alt="[]" className="avatar"/>
-          <span className="author-name">{userInform.nickname}</span>
+          <img src={avatarImgurl} alt="[]" className="avatar" onClick={e => userClick()}/>
+          <span className="author-name" onClick={e => userClick()}>{userInform.nickname}</span>
           <span className="create-time">{getTime(playlist.createTime)+'创建'}</span>
         </div>
         <div className="item-3">

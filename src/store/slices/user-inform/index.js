@@ -25,7 +25,16 @@ export const userInformSlice = createSlice({
       }
     },
     // 其它用户信息
-    otherUserInform: ''
+    otherUserInform: {
+      playlist: {
+        playlist: [],        // 创建歌单
+        subPlaylist: [],    // 收藏歌单
+        // 跳到歌单页面即可       
+      },
+      data: {
+
+      }
+    }
   },
   reducers: {
     setUserInform: (state,{payload}) => {
@@ -49,14 +58,17 @@ export const userInformSlice = createSlice({
     },
     setUserOtherInformSonglist: (state,{payload}) => {
       state.userOtherInform.playlist.songlist = payload;
+    },
+    setOtherUserData: (state,{payload}) => {
+      state.otherUserInform.data = payload;
     }
   }
 
 })
 
 export const { setUserInform,setUserOtherInformData,
-               setUserPlaylist,
+               setUserPlaylist,setOtherUserData,
                setUserOtherInformPlaylistDetail,
-               setUserOtherInformSonglist } = userInformSlice.actions;
+               setUserOtherInformSonglist, } = userInformSlice.actions;
 
 export default userInformSlice.reducer;

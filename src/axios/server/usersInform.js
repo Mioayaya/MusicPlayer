@@ -14,11 +14,13 @@ export function getUserInform(uid) {
 }
 
 // 获取歌单详情
-export function getUserPlaylist(uid) {
+export function getUserPlaylist(uid,offset,limit=30) {
   return request({
     url: '/user/playlist',
     params: {
       uid:uid,
+      offset,
+      limit:limit
     },
   })
 }

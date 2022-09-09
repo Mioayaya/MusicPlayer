@@ -42,7 +42,9 @@ const MioMine = memo(() => {
       {
         show ? <MioMineShow startSetShow={e => startSetShow()} 
                             userOtherInformData={userOtherInformData}
-                            theme = {theme}/>
+                            theme = {theme}
+                            uid = {userInform.id}
+                />
         : <MioMineChange startSetShow={e => startSetShow()}
                          save={e => setSave(save+1)}/>
       }

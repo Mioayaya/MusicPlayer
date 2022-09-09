@@ -71,7 +71,17 @@ export const MioMineShowTopDiv = styled.div`
       .btns {
         position: absolute;
         right: 0;
-        top: -25px;
+        top: -35px;
+        span {
+          padding: 5px;
+          border: 2px solid #4a4a4a;
+          border-radius: 15px;
+          cursor: pointer;
+          user-select: none;
+          :hover {
+            background-color: #353535;
+          }
+        }
       }
     }
 

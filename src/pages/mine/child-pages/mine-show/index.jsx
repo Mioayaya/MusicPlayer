@@ -9,11 +9,11 @@ import MioMineShowBottom from './child-components/mine-show-bottom';
 import { useMemo } from 'react';
 
 const MioMineShow = memo((props) => {
-  const {userOtherInformData,theme,startSetShow} = props;
+  const {userOtherInformData,theme,startSetShow,uid} = props;
   
   // hooks
   const [active,setActive] = useState(16);
-
+  
   const data = useMemo(() => {
     let _data = '创建歌单';
     switch(active) {
@@ -39,7 +39,9 @@ const MioMineShow = memo((props) => {
                                setActive={ key => setActive(key)}
             />
             <MioMineShowBottom theme={theme}
-                               data={data}
+                                data={data}
+                                uid={uid}
+                                playlistCount={userOtherInformData.playlistCount}
             />
           </>
         : <div className="loading">loading</div>

@@ -1,5 +1,8 @@
 import React, { memo } from 'react'
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router';
+import { setNavKey } from '../../../../store/slices/content-left';
 
 import calculatePlayNumber from '../../../../utils/calculatePlayNumber';
 import getCropImg from '../../../../utils/getCropImg';
@@ -13,6 +16,16 @@ const MioSonglistTop = memo((props) => {
   const avatarImgurl = getCropImg(authorInform.avatarUrl,30,30);
   
   const [ show, setShow] = useState(false);
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const userClick = (uid) => {
+    dispatch(setNavKey(99998));
+    history.push({
+      pathname: '/spaceuid',
+      search: `?uid=${uid}`
+    });
+  }
 
   return (
     <MioSonglistTopDiv theme={theme} show={show}>
@@ -25,8 +38,8 @@ const MioSonglistTop = memo((props) => {
           <div className="title">{songlistInformation.name}</div>
         </div>
         <div className="item-2">
-          <img src={avatarImgurl} alt="[]" className="avatar"/>
-          <span className="author-name">{authorInform.nickname}</span>
+          <img src={avatarImgurl} alt="[]" className="avatar" onClick={e => userClick(authorInform.userId)}/>
+          <span className="author-name" onClick={e => userClick(authorInform.userId)}>{authorInform.nickname}</span>
           <span className="create-time">{getTime(songlistInformation.createTime)+'创建'}</span>
         </div>
         <div className="item-3">
