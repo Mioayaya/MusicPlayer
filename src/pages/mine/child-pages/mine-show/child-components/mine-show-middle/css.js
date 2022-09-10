@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { ThemeColor } from "../../../../../../common/css-var";
 
 export const MioMineShowMiddleDiv = styled.div`
+  margin-bottom: 20px;
   .nav-bar {
     display: flex;
     flex-direction: row;

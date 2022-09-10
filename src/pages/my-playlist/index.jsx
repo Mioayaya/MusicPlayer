@@ -6,6 +6,7 @@ import { getSonglistDetail } from '../../axios/server/foundMusic';
 import { getTotalSonglist } from '../../axios/server/songlistInform';
 import { setUserOtherInformPlaylistDetail, setUserOtherInformSonglist } from '../../store/slices/user-inform';
 import calculatePlayNumber from '../../utils/calculatePlayNumber';
+import MioSonglistBottomCommentList from '../songlist-information/c-components/songlist-bottom/comment-list';
 import MioSonglistBottomSonglist from '../songlist-information/c-components/songlist-bottom/songlist';
 import MioMyPlaylistTop from './c-components/playlist-top';
 
@@ -68,7 +69,9 @@ const MioMyPlayList = memo(() => {
         {/* playlist 存在 -> 当前的  */}
         {
           nav==0 
-          && playlist 
+          && 
+          (
+            playlist 
             ? playlist.id == routerData 
               ? <div className="part1">
                 {
@@ -77,9 +80,14 @@ const MioMyPlayList = memo(() => {
                 </div>
               : <div>loading</div>
             : <div>loading</div>
+          )
         }
-        {nav==1 && <div className="part2">part2</div>}
-        {nav==2 && <div className="part3">部分3</div>}
+        {
+          nav==1 && <div className="part2">
+                     <MioSonglistBottomCommentList id={playlist.id}/>
+                    </div>
+        }
+        {nav==2 && <div className="part3">暂未开发</div>}
       </div>
 
     </MioMyPlaylistDiv>

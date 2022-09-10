@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { ThemeColor } from "../../../../../../../../common/css-var";
 
-export const MioCreatePlaylistDiv = styled.div`
+export const MioSubPlaylistDiv = styled.div`
   width: 100%;
   text-align: center;
   .click,.forbid {
@@ -16,6 +16,7 @@ export const MioCreatePlaylistDiv = styled.div`
       background-color: #353535;
     }
   }
+  
   .forbid {
     cursor: not-allowed;
     color: #6a6a6a;
@@ -24,4 +25,5 @@ export const MioCreatePlaylistDiv = styled.div`
       background-color: #393939;
     }
   }
+
 `

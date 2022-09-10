@@ -1,11 +1,25 @@
 import React, { memo } from 'react'
-import calculateTimeLength from '../../../../utils/calculateTimeLength';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router';
+import { setSongInformShow } from '../../../../store/slices/play-list';
+import { setUserCounter } from '../../../../store/slices/user-inform';
 import getStandTime from '../../../../utils/getStandTime';
 
 import { MioCommentTemplateDiv } from './css'
 
 const MioCommentTemplate = memo((props) => {
   const {comment,title,commentLength,commentWidth} = props;
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const userClick = (uid) => {
+    dispatch(setSongInformShow(false));
+    dispatch(setUserCounter());
+    history.push({
+      pathname: '/spaceuid',
+      search: `?uid=${uid}`
+    });
+  }
 
   return (
     <MioCommentTemplateDiv commentWidth={commentWidth}>
@@ -20,11 +34,11 @@ const MioCommentTemplate = memo((props) => {
             <div className="comment-item"
                   key={item.commentId}
             >
-              <div className="item-avatar">
+              <div className="item-avatar" onClick={e => userClick(item.user.userId)}>
                 <img src={item.user.avatarUrl} alt="" />
               </div>
               <div className="item-main">
-                <span className="item-main-name">{item.user.nickname}</span>
+                <span className="item-main-name" onClick={e => userClick(item.user.userId)}>{item.user.nickname}</span>
                 <div className="item-main-content">{item.content}</div>
                 {
                   item.beReplied.length 
@@ -33,11 +47,11 @@ const MioCommentTemplate = memo((props) => {
                       <div className="item-replied"
                            key={indey}
                       >
-                        <div className="item-replied-avatar">
+                        <div className="item-replied-avatar" onClick={e => userClick(reply.user.userId)}>
                           <img src={reply.user.avatarUrl} alt="" />
                         </div>
                         <div className="item-replied-main">
-                          <span className="item-replied-main-name">@{reply.user.nickname}</span>
+                          <span className="item-replied-main-name" onClick={e => userClick(reply.user.userId)}>@{reply.user.nickname}</span>
                           <div className="item-replied-main-content">{reply.content}</div>
                         </div>
                       </div>

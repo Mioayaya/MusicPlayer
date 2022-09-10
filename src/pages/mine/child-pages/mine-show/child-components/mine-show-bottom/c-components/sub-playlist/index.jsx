@@ -4,60 +4,59 @@ import { useState } from 'react';
 import { getUserPlaylist } from '../../../../../../../../axios/server/usersInform';
 import MioNormalList from '../normal-list';
 
-import { MioCreatePlaylistDiv } from './css'
+import { MioSubPlaylistDiv } from './css'
 
-// limit = 20;
-const MioCreatePlaylist = memo((props) => {
+const MioSubPlaylist = memo((props) => {
   const { uid,playlistCount } = props;
-  const [ offset,setOffset ] = useState(0);
+  const [ offset,setOffset ] = useState(playlistCount-1);
   const [ playlistArr,setPlayliseArr ] = useState([]);
+  const [ more,setMore ] = useState(false);
   let Limit = 20;
 
   useEffect(() => {
-    if(uid) {        
-      if(offset == 0) Limit--;
+    if(uid) {
       getUserPlaylist(uid,offset,Limit).then(res => {
-        const arr = res.playlist;
-        const _arr = arr.filter(item => item.userId == uid);        
-        setPlayliseArr(_arr);
-        if(offset==0) Limit++
+        console.log(res);
+        setPlayliseArr(res.playlist);
+        setMore(res.more)
       })
     }
   },[uid,offset])
 
-  const preClick = () => {
-    if(offset>=Limit-1) {      
-      offset==Limit-1 ? setOffset(0):setOffset(offset-Limit);
+  const preClick = () => {        
+    if(offset>=(playlistCount+Limit-1)) {
+      setOffset(offset-Limit);
     }
   }
 
   const nextClick = () => {
-    if(offset+Limit<playlistCount-1) {              
-      offset==0 ? setOffset(offset+Limit-1):setOffset(offset+Limit);
+    if(more) {
+      setOffset(offset+Limit);
     }
   }
 
   return (
-    <MioCreatePlaylistDiv>
+    <MioSubPlaylistDiv>
       {
         playlistArr.length != 0
         ? <MioNormalList playlistArr={playlistArr} uid={uid}/>
-        : <div>loading</div>
+        : ''
       }
 
       {
-        (offset>=Limit-1)
+        (offset>=playlistCount-1+Limit)
         ? <span className='click' onClick={e => preClick()}>{'<'}</span>
         : <span className='forbid'>{'<'}</span>
       }
 
       {
-        (offset+Limit<playlistCount-1)
+        (more)
         ? <span className='click' onClick={e => nextClick()}>{'>'}</span>
         : <span className='forbid'>{'>'}</span>
       }
-    </MioCreatePlaylistDiv>
+    </MioSubPlaylistDiv>
   )
 })
 
-export default MioCreatePlaylist
+
+export default MioSubPlaylist

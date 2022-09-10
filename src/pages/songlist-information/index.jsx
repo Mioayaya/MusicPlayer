@@ -110,7 +110,7 @@ const MioSonglistInformation = memo(() => {
         {nav==1 && <div className="part2">
                     <MioSonglistBottomCommentList id={songlistInformation.id}/>
                    </div>}
-        {nav==2 && <div className="part3">部分3</div>}
+        {nav==2 && <div className="part3">暂未开发</div>}
       </div>
 
     </MioSonglistInformationDiv>

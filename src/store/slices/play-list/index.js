@@ -188,7 +188,6 @@ export const playlistSlice = createSlice({
       }
     },
     setNormalList: (state,{payload}) => {
-      console.log(payload);
       if(payload) {
         if(payload.type == 1) {
           state.comment.normalList.push(...payload.arr);

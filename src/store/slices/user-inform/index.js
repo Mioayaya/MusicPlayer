@@ -34,7 +34,8 @@ export const userInformSlice = createSlice({
       data: {
 
       }
-    }
+    },
+    userCounter: 0,     // 路由id变化，但是页面不变化
   },
   reducers: {
     setUserInform: (state,{payload}) => {
@@ -61,6 +62,10 @@ export const userInformSlice = createSlice({
     },
     setOtherUserData: (state,{payload}) => {
       state.otherUserInform.data = payload;
+    },
+    setUserCounter: (state) => {
+      state.userCounter++;
+      if(state.userCounter === 100) state.userCounter = 0;
     }
   }
 
@@ -69,6 +74,7 @@ export const userInformSlice = createSlice({
 export const { setUserInform,setUserOtherInformData,
                setUserPlaylist,setOtherUserData,
                setUserOtherInformPlaylistDetail,
-               setUserOtherInformSonglist, } = userInformSlice.actions;
+               setUserOtherInformSonglist,
+               setUserCounter, } = userInformSlice.actions;
 
 export default userInformSlice.reducer;

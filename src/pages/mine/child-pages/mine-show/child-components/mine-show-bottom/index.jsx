@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { getUserPlaylist } from '../../../../../../axios/server/usersInform';
 import MioCreatePlaylist from './c-components/create-playlist';
+import MioSubPlaylist from './c-components/sub-playlist';
 
 import { MioMineShowBottomDiv } from './css'
 
@@ -14,12 +15,16 @@ const MioMineShowBottom = memo((props) => {
 
   return (
     <MioMineShowBottomDiv>
-      { data=='创建歌单' 
+      { 
+        data=='创建歌单' 
         && <MioCreatePlaylist playlistCount={playlistCount} uid={uid}/>
       }
-      { data=='收藏歌单' && '收藏歌单'}
-      { data=='创建电台' && '创建电台'}
-      { data=='收藏电台' && '收藏电台'}
+      { 
+        data=='收藏歌单' 
+        && <MioSubPlaylist playlistCount={playlistCount} uid={uid}/>
+      }
+      { data=='创建电台' && '暂未开发'}
+      { data=='收藏电台' && '暂未开发'}
     </MioMineShowBottomDiv>
   )
 })

@@ -8,10 +8,18 @@ export const showSlice = createSlice({
   reducers: {
     setPlayListShow: (state) => {
       state.playListShow = !state.playListShow
+    },
+    setPlayListShowFalse: (state) => {
+      state.playListShow = false;
+    },
+    setPlayListShowTrue: (state) => {
+      state.playListShow = true;
     }
   }
 })
 
-export const {setPlayListShow} = showSlice.actions;
+export const { setPlayListShow,setPlayListShowFalse,
+               setPlayListShowTrue
+             } = showSlice.actions;
 
 export default showSlice.reducer;

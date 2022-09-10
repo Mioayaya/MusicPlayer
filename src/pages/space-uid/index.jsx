@@ -15,6 +15,7 @@ import MioMineShowBottom from '../mine/child-pages/mine-show/child-components/mi
 const MioSpaceUid = memo((props) => {
   const dispatch = useDispatch();
   const otherUserData = useSelector(state => state.userInformSlice.otherUserInform.data);
+  const userCounter = useSelector(state => state.userInformSlice.userCounter);
   const theme = useSelector(state => state.themeSlice.theme);
   const [routerData,setRouterData] = useState(Number(location.hash.split('?uid=')[1]))
   const [active,setActive] = useState(16);
@@ -26,7 +27,7 @@ const MioSpaceUid = memo((props) => {
         dispatch(setOtherUserData(res));
       })
     }
-  },[Number(location.hash.split('?id=')[1]),routerData]);
+  },[userCounter,routerData]);
 
   const data = useMemo(() => {
     let _data = '创建歌单';

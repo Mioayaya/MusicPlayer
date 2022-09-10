@@ -26,6 +26,7 @@ export const MioCommentTemplateDiv = styled.div`
       flex: 1;
       .item-main-content {
         padding-bottom: 5px;
+        word-break: break-all;
       }
     }
 

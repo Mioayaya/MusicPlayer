@@ -19,6 +19,7 @@ export const MioAppHeaderDiv = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  z-index: 1;
 
   .header-left {
     margin-left: ${MioHeadCss.marginWidth};
