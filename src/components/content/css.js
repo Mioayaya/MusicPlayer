@@ -30,7 +30,7 @@ background-color: ${ props => ThemeColor[props.theme].content};
   width: 350px;
   height: 100%;
   background-color: #363636;
-  z-index: 1;
+  z-index: 11;
   display: ${props => props.showPlayList ? 'block': 'none'};
 }
 .scroll {

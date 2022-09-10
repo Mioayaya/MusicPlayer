@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { MioFooterCss,ThemeColor } from "../../common/css-var";
 
 export const MioFooterDiv = styled.div`
-  z-index: 2;
+  z-index: 20;
   height: ${MioFooterCss.height};
   position: fixed;
   bottom: 0;

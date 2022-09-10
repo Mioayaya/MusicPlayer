@@ -3,5 +3,28 @@ import { ThemeColor } from '../../common/css-var/index'
 
 export const MioSearchDiv = styled.div`
   height: 0;
-  color: wheat;
+  margin: 20px;
+  color: #d0d0d0;
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .nav-bar {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    font-size: 1rem;
+    user-select: none;    
+    &>*:not(:last-child) {
+      margin-right: 20px;
+    }
+    .nav {
+      cursor: pointer;
+    }
+    .active {
+      font-weight: 600;
+      border-bottom: 1px solid #ec4141;
+    }
+  }
 `

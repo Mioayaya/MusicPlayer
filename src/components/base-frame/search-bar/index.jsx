@@ -2,7 +2,10 @@ import axios from 'axios';
 import React, { memo } from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router';
 import { getSearchSuggest } from '../../../axios/server/search';
+import { setUserCounter } from '../../../store/slices/user-inform';
 import MioSearchSuggest from './c-components/suggest-search';
 
 import { MioSearchBarDiv } from './css';
@@ -11,6 +14,8 @@ import { MioSearchBarDiv } from './css';
 const theme = 'dark';
 
 const MioSearchBar = memo(() => {
+  const histort = useHistory();
+  const dispatch = useDispatch();
   const [searchValue,setSerachValue] = useState('');
   const [suggestObj,setSuggestObj] = useState({});
   const [showSuggest,setShowSuggest] = useState(false);
@@ -41,16 +46,29 @@ const MioSearchBar = memo(() => {
     }
   },[searchValue])
 
-    const suggestSearch = async () => {   
+  const suggestSearch = async () => {   
     if(searchValue) {
       const res = await axios.get(getSearchSuggest(searchValue));
       setSuggestObj(res.data.result);
-    } 
+    }
   }
 
 
   const searchSubmit = (e) => {
     e.preventDefault();
+    if(searchValue) {
+      histort.push({
+        pathname: '/search',
+        search: `?keywords=${searchValue}`
+      })
+      setShowSuggest(false);
+      dispatch(setUserCounter());
+    }
+  }
+
+  const inputOnchange = (e) => {
+    setSerachValue(e.target.value);
+    setShowSuggest(true);
   }
 
   return (
@@ -66,7 +84,7 @@ const MioSearchBar = memo(() => {
                role="combobox" 
                placeholder="beautiful world - 宇多田光" 
                aria-live="polite"
-               onChange={e => setSerachValue(e.target.value)}
+               onChange={e => inputOnchange(e)}
                onFocus={e => setShowSuggest(true)}
         />
       </form>
