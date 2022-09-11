@@ -19,7 +19,10 @@ const MioContent = memo(() => {
   const showPlayList = useSelector(state => state.showSlice.playListShow);
 
   const homeScroll = useCallback((e) => {
-    const flag = (e.target.scrollTop+e.target.clientHeight) == e.target.scrollHeight;
+    let flag = false;
+    if((e.target.scrollTop+e.target.clientHeight) >= (e.target.scrollHeight-1)) {
+      flag = true;
+    }
     dispatch(setCommentScroll(flag));
   },[]);
 

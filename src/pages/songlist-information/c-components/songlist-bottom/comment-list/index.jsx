@@ -40,8 +40,6 @@ const MioSonglistBottomCommentList = memo((props) => {
 
   useEffect(() => {
     if(songListComment.isScroll && more && isFirstLoad) {
-      console.log(songListComment.isScroll);
-      console.log(offset);
       getCommentList(id,offset).then(res => {
         dispatch(setSLNormalComment({arr:res.comments,type:1}));
         setOffset(offset+20);
