@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import { getSearchSuggest } from '../../../axios/server/search';
 import { setUserCounter } from '../../../store/slices/user-inform';
+import { setNavKey } from '../../../store/slices/content-left'
 import MioSearchSuggest from './c-components/suggest-search';
 
 import { MioSearchBarDiv } from './css';
@@ -63,6 +64,7 @@ const MioSearchBar = memo(() => {
       })
       setShowSuggest(false);
       dispatch(setUserCounter());
+      dispatch(setNavKey(99998));
     }
   }
 

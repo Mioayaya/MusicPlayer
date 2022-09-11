@@ -3,8 +3,12 @@ import { ThemeColor } from '../../common/css-var/index'
 
 export const MioSearchDiv = styled.div`
   height: 0;
-  margin: 20px;
-  color: #d0d0d0;
+  margin-top: 20px;
+  color: #d0d0d0;  
+
+  .title,.nav-bar {
+    margin-left: 20px;
+  }
 
   .title {
     font-size: 1.5rem;

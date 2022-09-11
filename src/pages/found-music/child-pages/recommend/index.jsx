@@ -31,22 +31,22 @@ const MioFoundMusicRecommend = memo(() => {
       
       {/* 推荐歌单组件 */}
       <MioRecmdSongList />
-      
+
       {/* 最新音乐 */}
-      <div>最新音乐</div>
+      {/* <div>最新音乐</div> */}
 
       {/* 推荐MV */}
-      <div>推荐MV</div>
+      {/* <div>推荐MV</div> */}
       
       {/* 热门播客 */}
-      <div>热门播客</div>
+      {/* <div>热门播客</div> */}
 
       {/* 独家放送 */}
-      <div>独家放送</div>
+      {/* <div>独家放送</div> */}
 
       {/* 主题播客 */}
-      <div>主题播客</div>
-
+      {/* <div>主题播客</div> */}
+    
 
     </MioFoundMusicRecommendDiv>
   )

@@ -1,9 +1,9 @@
-import axios from 'axios';
 import React, { memo } from 'react'
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux'
-import { getSearchRes } from '../../axios/server/search';
+import MioSearchArtist from './c-components/artist-res';
+import MioSearchSong from './c-components/songs-res';
 
 import { MioSearchDiv } from './css'
 
@@ -12,19 +12,10 @@ const navArr = ['单曲','歌手','专辑','歌单','用户'];
 const MioSearch = memo((props) => {
   const userCounter = useSelector(state => state.userInformSlice.userCounter);
   const [routerData,setRouterData] = useState((location.hash.split('?keywords=')[1]));
-  const [active,setActive] = useState(0);
-  const [resArr,setResArr] = useState([]);
-  const [type,setType] = useState(1);
-  const [offset,setOffset] = useState(0);
-  const [total,setTotal] = useState(0);
+  const [active,setActive] = useState(0);  
 
   useEffect(() => {
-    setRouterData((location.hash.split('?keywords=')[1]));
-    if(routerData) {      
-      // axios.get(getSearchRes(routerData,50,offset,10)).then(res => {
-      //   console.log(res);
-      // })
-    }
+    setRouterData(decodeURI(location.hash.split('?keywords=')[1]));    
   },[userCounter,routerData])
   return (
     <MioSearchDiv>
@@ -45,11 +36,11 @@ const MioSearch = memo((props) => {
       </div>
       {
         active==0
-        && '单曲组件'
+        && <MioSearchSong routerData={routerData} type={1}/>
       }
       {
         active==1
-        && '歌手组件'
+        && <MioSearchArtist routerData={routerData} type={100}/>
       }
       {
         active==2
