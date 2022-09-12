@@ -2,10 +2,11 @@ import React, { memo } from 'react'
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux'
-import MioSearchArtist from './c-components/artist-res';
-import MioSearchSong from './c-components/songs-res';
 
 import { MioSearchDiv } from './css'
+
+import MioSearchBase from './c-components/base-res';
+import MioSearchSong from './c-components/songs-res';
 
 const navArr = ['单曲','歌手','专辑','歌单','用户'];
 
@@ -40,19 +41,19 @@ const MioSearch = memo((props) => {
       }
       {
         active==1
-        && <MioSearchArtist routerData={routerData} type={100}/>
+        && <MioSearchBase routerData={routerData} type={100} nameType="歌手"/>
       }
       {
         active==2
-        && '专辑组件'
+        && <MioSearchBase routerData={routerData} type={10} nameType="专辑"/>
       }
       {
         active==3
-        && '歌单组件'
+        && <MioSearchBase routerData={routerData} type={1000} nameType="歌单"/>
       }
       {
         active==4
-        && '用户组件'
+        && <MioSearchBase routerData={routerData} type={1002} nameType="用户"/>
       }
     </MioSearchDiv>
   )

@@ -16,7 +16,6 @@ const MioSubPlaylist = memo((props) => {
   useEffect(() => {
     if(uid) {
       getUserPlaylist(uid,offset,Limit).then(res => {
-        console.log(res);
         setPlayliseArr(res.playlist);
         setMore(res.more)
       })

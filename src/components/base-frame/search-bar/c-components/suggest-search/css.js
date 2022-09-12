@@ -7,6 +7,7 @@ export const MioSearchSuggestDiv = styled.div`
   background-color: #363636;
   border-radius: 5px;
   overflow-y: scroll;
+  box-shadow: 0px 0px 5px #121212;  
   display: ${props => props.showSuggest?'block':'none'};
 
   .search-item {

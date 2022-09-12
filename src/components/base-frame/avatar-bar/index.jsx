@@ -1,71 +1,24 @@
 // 头像等 组件条
 import React, { memo } from 'react'
 import { useEffect } from 'react';
-import styled from '@emotion/styled'
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 
-import { ThemeColor } from '../../../common/css-var'
+
 import getSession from '../../../utils/getSession';
 import { useState } from 'react';
 import { setNavKey } from '../../../store/slices/content-left';
+import { MioAvatarBarDiv } from './css';
+import calculatePlayNumber from '../../../utils/calculatePlayNumber';
 
 // 接受一个全局的 redux
 const theme = 'dark';
 
-const MioAvatarBarDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  color: ${ props => ThemeColor[props.theme].fontHeadColor2 };
 
-  &>*:not(last-child) {
-    margin-right: 25px;
-  }
-
-  .avatar-bar-avatar {
-    height: auto;
-    width: auto;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    user-select: none;
-
-    .item {
-      margin-left: 5px;
-      
-      &:hover{
-        color: ${ props => ThemeColor[props.theme].fontHeadColor1 };
-        cursor: pointer;
-      }
-    }
-    
-    img {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background-size: cover;
-      cursor: pointer;
-    }
-  }
-
-  .icon {
-    width: 1.5em; 
-    height: 1.5em;
-    vertical-align: -0.15em;
-    fill: currentColor;
-    overflow: hidden;
-    color: ${ props => ThemeColor[props.theme].fontHeadColor2 };
-    &:hover {
-      color: ${ props => ThemeColor[props.theme].fontHeadColor1 };
-      cursor: pointer;
-    }
-  }
-  
-`
 
 const MioAvatarBar = memo(() => {
   const userInform = useSelector(state => state.userInformSlice.userInform);
+  const useOtherData = useSelector(state => state.userInformSlice.userOtherInform.data);
   const dispatch = useDispatch();
   const history = useHistory();
   const [userData,setuserData] = useState(0);
@@ -91,11 +44,46 @@ const MioAvatarBar = memo(() => {
   return (
     <MioAvatarBarDiv theme={theme}>
       <div className="avatar-bar-avatar">
-        <img src={userData.isLogin?userData.data.userAvatar:'/src/assets/imgs/avatar.png'} onClick={e => {avatarClick()}} />
+        <div className="avatar">
+          <img src={userData.isLogin?userData.data.userAvatar:'/src/assets/imgs/avatar.png'} onClick={e => {avatarClick()}} />
+          {
+            userData.isLogin
+            ? <div className="mini-inform">            
+                <div className="top">
+                  <span className="name">{userData.data.userNickname}</span>
+                </div>
+                <div className="middle">
+                  <div className="event">
+                    <span className="number">{calculatePlayNumber(useOtherData.eventCount,2,1)}</span>
+                    <span className="txt">动态</span>
+                  </div>
+                  <div className="follow">
+                    <span className="number">{calculatePlayNumber(useOtherData.follows,2,1)}</span>
+                    <span className="txt">关注</span>
+                  </div>
+                  <div className="followed">
+                    <span className="number">{calculatePlayNumber(useOtherData.followeds,2,1)}</span>
+                    <span className="txt">粉丝</span>
+                  </div>
+                </div>
+                <div className="bottom">
+                  <div className="self">
+                    <span onClick={e => avatarClick()}>个人中心</span>
+                    <span>{'>'}</span>
+                  </div>
+                  <div className="singout">
+                    <span>退出登录</span>
+                    <span>{'>'}</span>
+                  </div>
+                </div>
+              </div>
+            : ''
+          }
+          
+        </div>
         <span className="avatar-bar-avatar-name item" onClick={e => {avatarClick()}}>
           {userData.isLogin?userData.data.userNickname:'小路绫'}
         </span>
-        <span className="avatar-bar-avatar-more item">▼</span>
       </div>
       
       {/* 换肤 */}

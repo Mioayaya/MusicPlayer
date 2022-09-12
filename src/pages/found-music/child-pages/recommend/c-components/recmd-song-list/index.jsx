@@ -74,7 +74,7 @@ const MioRecmdSongList = memo(() => {
   return (
     <MioRecmdSongListDiv>
       <div className="recmd-song-list-top">
-        <NavLink to='foundmusic/songlist'
+        <NavLink to='/foundmusic/songlist'
                  onClick={ e => {dispatch(clickNav(12))}}
         >
           {'推荐歌单 >'}

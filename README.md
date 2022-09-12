@@ -141,14 +141,11 @@ res
 
 # todo
 -- --
-search 页面⬜
+search 页面✅
 换肤 ⬜
 设置页面 ⬜ (换背景)
-滚动监听 ⬜ (歌曲界面)
-loading ⬜
-专属定制 ⬜
-歌单 ⬜
-avatar hover ⬜
+歌单列表分段加载 ⬜
+avatar hover ✅
 -- --
 ## components 
 - header ✅
@@ -182,7 +179,7 @@ avatar hover ⬜
 
 ## header
 ### 搜索 ✅
-### 点击头像展示 ⬜
+### 点击头像展示 ✅
 ### 换肤 ⬜
 ### 设置 ⬜
 ### 关闭 ⬜

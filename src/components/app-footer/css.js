@@ -26,6 +26,10 @@ export const MioFooterDiv = styled.div`
     flex: 1;
     height: 60px;
     overflow: hidden;
+    user-select: none;
+    .tip {
+      line-height: 60px;
+    }
   }
 
   .player {

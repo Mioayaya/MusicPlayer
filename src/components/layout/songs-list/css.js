@@ -56,7 +56,7 @@ export const MioLayoutSongListDiv = styled.div`
     }
   }
 
-  &>:nth-child(2n) {
+  &>:nth-of-type(2n) {
     background-color: #333333;      
     :hover {
       background-color: #474747;

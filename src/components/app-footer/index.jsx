@@ -32,7 +32,9 @@ const MioAppFooter = memo(() => {
                                  setCardShow={setCardShow}
             />
           </div>
-        : <div className="left">loading</div>
+        : <div className="left">
+            <span className="tip">{'选择一首歌曲播放吧 (; ≖ᴗ≖)'}</span>
+          </div>
       }
       
       <div className="player">

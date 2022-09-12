@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
 import { ThemeColor } from "../../../../common/css-var";
 
-export const MioSearchArtistDiv = styled.div`
+export const MioSearchBaseDiv = styled.div`
   margin-top: 20px;
-  
+
   .number-title {
     margin-left: 20px;
   }

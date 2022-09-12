@@ -34,6 +34,7 @@ export const MioAppHeaderDiv = styled.div`
       background-size: cover;
       border-radius: 50%;
       margin-right: ${MioHeadCss.itemMarginWidth};
+      cursor: pointer;
     }
     .header-left-title {
      margin-right:  50px;

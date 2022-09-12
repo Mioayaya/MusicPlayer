@@ -19,7 +19,9 @@ const MioMyPlayList = memo(() => {
   const songlist = useSelector(state => state.userInformSlice.userOtherInform.playlist.songlist);
   const userInform = useSelector(state => state.userInformSlice.userInform);
   const [routerData,setRouterData] = useState(Number(location.hash.split('?id=')[1]));
+  const [offset,setOffset] = useState(0);
   const [nav,setNav] = useState(0);
+  const Limit = 50;
 
   useEffect(() => {
     setRouterData(Number(location.hash.split('?id=')[1]));

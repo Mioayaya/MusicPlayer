@@ -29,7 +29,7 @@ const MioLayoutSongList = memo((props) => {
         songList.map((item,index) => {
           return (
             <div className={active==item.id?'song-list-item active':'song-list-item'}
-                 key={item.name}
+                 key={item.id}
                  onClick={e => setActive(item.id)}
                  onDoubleClick={e => itemDoubleClick(item)}
             >

@@ -7,12 +7,15 @@ import axios from 'axios';
 import { getUserStatus } from '../../axios/server/userLogin';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { setUserInform } from '../../store/slices/user-inform';
+import { setUserInform, setUserOtherInformData } from '../../store/slices/user-inform';
+import { getUserInform } from '../../axios/server/usersInform';
+import { useHistory } from 'react-router';
 
 // 接受一个全局的 redux
 const theme = 'dark';
 
 const MioAppHeader = memo(() => {
+  const history = useHistory();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -33,7 +36,17 @@ const MioAppHeader = memo(() => {
         sessionStorage.setItem('userAvatar',avatar);
         sessionStorage.setItem('userNickname',nickname);
         dispatch(setUserInform({id,avatar,nickname}));
+
+        getUserInform(id).then(res => {
+          const data = {level:res.level,createTime:res.createTime,
+                        createDays:res.createDays,listenSongs:res.listenSongs,
+                        peopleCanSeeMyPlayRecord:res.peopleCanSeeMyPlayRecord,
+                        ...res.profile};
+          dispatch(setUserOtherInformData(data));          
+        })
+
       })
+      
     }
     // 如果有cookie 并且是登录状态 刷新页面 未关闭浏览器 
     if(cookie && isLogin =='true') {
@@ -43,13 +56,26 @@ const MioAppHeader = memo(() => {
       const avatar = sessionStorage.getItem('userAvatar');
       const nickname = sessionStorage.getItem('userNickname');
       dispatch(setUserInform({id,avatar,nickname}));
+      getUserInform(id).then(res => {
+        const data = {level:res.level,createTime:res.createTime,
+                      createDays:res.createDays,listenSongs:res.listenSongs,
+                      peopleCanSeeMyPlayRecord:res.peopleCanSeeMyPlayRecord,
+                      ...res.profile};
+        dispatch(setUserOtherInformData(data));
+      })
     }
   },[])
+
+  const logoClick = () => {
+    history.push({
+      pathname: '/'
+    })
+  }
 
   return (
     <MioAppHeaderDiv theme={theme}>
       <div className="header-left">
-        <div className="header-left-img"></div>
+        <div className="header-left-img" onClick={e => logoClick()}></div>
         <span className='header-left-title'>AyayaMusic</span>
         <span className='header-left-last step'>{'<'}</span>
         <span className='header-left-next step'>{'>'}</span>

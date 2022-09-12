@@ -57,7 +57,7 @@ export const foundMusicNavList = [
     key: 10
   },
   {
-    title: '专属定制',
+    title: '每日推荐',
     link: '/foundmusic/custom',
     key: 11
   },

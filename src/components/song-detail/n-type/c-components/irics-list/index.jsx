@@ -82,8 +82,10 @@ const MioSongDetailIrics = memo((props) => {
   },[nowTime,activeP])
 
   const startNow = () => {
-    let nowTime = iricsInform.irics[onScrollP].time;
-    if(!nowTime) nowTime = '00:00';
+    let nowTime = 0;
+    iricsInform.irics[onScrollP] 
+    ? nowTime = iricsInform.irics[onScrollP].time
+    : nowTime = '00:00'
     dispatch(setIricsNowTime(timeToNumber(nowTime)));
     dispatch(setNowTimeClick());
   }
