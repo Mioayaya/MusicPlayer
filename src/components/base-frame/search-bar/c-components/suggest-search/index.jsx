@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import { getDetailSong } from '../../../../../axios/server/playSong';
 import { setFirstPlay } from '../../../../../store/slices/play-list';
+import { setUserCounter } from '../../../../../store/slices/user-inform';
 
 import { MioSearchSuggestDiv } from './css'
 
@@ -31,6 +32,15 @@ const MioSearchSuggest = memo((props) => {
       pathname: '/songlistInfomation',
       search: `?id=${id}`,
     })
+  }
+
+  const artistClick = (keywords) => {
+    history.push({
+      pathname: '/search',
+      search: `?keywords=${keywords}`
+    })
+    dispatch(setUserCounter());
+    dispatch(setNavKey(99998));
   }
 
   return (
@@ -66,7 +76,7 @@ const MioSearchSuggest = memo((props) => {
                         item=='artists'
                         && 
                         // 歌手  id
-                        <div className="item-list">
+                        <div className="item-list" onClick={e => artistClick(itemx.name)}>
                           <span className="item-name">{itemx.name}</span>
                         </div>
                       }

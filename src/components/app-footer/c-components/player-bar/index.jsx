@@ -60,7 +60,7 @@ const MioFooterPlayerBar = memo((props) => {
     };
   },[isPlay])
 
-  useEffect(() => {
+  useEffect(() => {    
     setNowTime(iricsNowTime);
     setValue(iricsNowTime);
     audioRef.current.currentTime = iricsNowTime;
