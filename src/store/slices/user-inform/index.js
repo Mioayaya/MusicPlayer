@@ -58,7 +58,7 @@ export const userInformSlice = createSlice({
       state.userOtherInform.playlist.songlist = payload.tracks;
     },
     setUserOtherInformSonglist: (state,{payload}) => {
-      state.userOtherInform.playlist.songlist = payload;
+      state.userOtherInform.playlist.songlist.push(payload);
     },
     setOtherUserData: (state,{payload}) => {
       state.otherUserInform.data = payload;

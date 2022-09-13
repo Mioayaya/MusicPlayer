@@ -77,7 +77,7 @@ export const foundMusicNavList = [
     key: 14
   },
   {
-    title: '最新音乐',
+    title: '项目介绍',
     link: '/foundmusic/latestmusic',
     key: 15
   },

@@ -19,6 +19,7 @@ export const songlistSlice = createSlice({
     setSonglistInformation: (state,{payload}) => {
       state.songlistInformation = payload;
       // 同时先加载 10首歌曲 如果有的话
+      state.songlist = null;
       state.songlist = payload.tracks;
       state.firstLoad = payload.tracks.length;
       // 复制所有歌曲数
@@ -26,8 +27,8 @@ export const songlistSlice = createSlice({
     },
     setSonglist: (state,{payload}) => {
       if(payload) {
-        state.songlist = payload;
-        state.firstLoad = state.songTotalLength;
+        state.songlist.push(...payload);
+        state.firstLoad = state.songlist.length;
       }
     },
     setAuthorInform: (state,{payload}) => {

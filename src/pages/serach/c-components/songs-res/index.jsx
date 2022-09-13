@@ -36,7 +36,11 @@ const MioSearchSong = memo((props) => {
 
   return (
     <MioSearchSongDiv>
-      <div className="number-title">{'共: '+total+' 首'}</div>
+      {
+        resArr.length!=0
+        &&
+        <div className="number-title">{'共: '+total+' 首'}</div>
+      }
       {
         resArr.length!=0
         ? <MioLayoutSongList songList={resArr} offset={offset}/>

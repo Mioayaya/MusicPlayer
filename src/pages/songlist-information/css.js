@@ -37,4 +37,9 @@ export const MioSonglistInformationDiv = styled.div`
   .songlist-bottom {
     margin-top: 20px;
   }
+  
+  .loading {
+    margin-top: 50px;
+    text-align: center;    
+  }
 `

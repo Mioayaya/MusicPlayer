@@ -33,34 +33,37 @@ const MioSonglistInformation = memo(() => {
 
   /* 路由 */
   const [routerData,setRouterData] = useState(Number(location.hash.split('?id=')[1]))
-  
   /* state数据 */
+  const [offset,setOffset] = useState(0);
   const [nav,setNav] = useState(0);
+  const Limit = 30;
 
   useEffect(() => {
+    setOffset(0);
     setRouterData(Number(location.hash.split('?id=')[1]));
     // console.log(routerData);
     getSonglistDetail(routerData).then(res => {
       dispatch(setSonglistInformation(res.playlist));
+      setOffset(res.playlist.tracks.length);
     })
   },[Number(location.hash.split('?id=')[1]),routerData]);
 
   useEffect(() => {
-    // 判断一下是否需要请求
-    if((songTotalLength-firstLoad) > 0) {
-      getTotalSonglist(songlistInformation.id,(songTotalLength),0)
-        .then(res => {
-          dispatch(setSonglist(res.songs));
-      })
-    }
-    // 请求用户数据
     if(songlistInformation.userId) {
       getUserInform(songlistInformation.userId).then(res => {
-        dispatch(setAuthorInform(res.profile));
+        dispatch(setAuthorInform(res.profile));        
+      })
+    }    
+  },[songlistInformation.userId])
+
+  useEffect(() => {
+    if(offset < songTotalLength && offset!=0) {      
+      getTotalSonglist(songlistInformation.id,offset,Limit).then(res => {
+        dispatch(setSonglist(res.songs));
+        setOffset(offset+Limit);
       })
     }
-    
-  },[songlistInformation.userId])
+  },[offset])
 
   return (
     <MioSonglistInformationDiv theme={theme}>
@@ -72,9 +75,9 @@ const MioSonglistInformation = memo(() => {
             ? <MioSonglistTop songlistInformation={songlistInformation}
                               theme={theme}
                               authorInform={authorInform}
-            />
-            : <div>loading</div>
-        : <div>loading</div>
+              />
+            : <div className="loading">······拼命加载中······</div>
+        : <div className="loading">······拼命加载中······</div>
       }
       
       {
@@ -103,8 +106,8 @@ const MioSonglistInformation = memo(() => {
                   <MioSonglistBottomSonglist songlist={songlist} songTotalLength={songTotalLength}/>                   
                 }
                 </div>
-              : <div>loading</div>
-            : <div>loading</div>
+              : ''
+            : ''
           )
         }
         {nav==1 && <div className="part2">

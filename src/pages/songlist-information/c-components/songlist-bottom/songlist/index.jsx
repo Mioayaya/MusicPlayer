@@ -100,11 +100,8 @@ const MioSonglistBottomSonglist = memo((props) => {
         <span className="time top">时间</span>
       </div>
     
-    <ReactVirtualList {...styleObj} list={songlist} item={songItem} stayStyle={stayStyle} playId={playId}/>
-    {
-      songlist.length != songTotalLength && <div>loading</div>
-    }
-
+    <ReactVirtualList {...styleObj} list={songlist} totalLength={songTotalLength} item={songItem} stayStyle={stayStyle} playId={playId}/>
+    
     </MioSonglistBottomSonglistDiv>
   )
 

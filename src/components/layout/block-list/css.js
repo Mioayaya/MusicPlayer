@@ -43,9 +43,10 @@ export const MioLayoutBlockListDiv = styled.div`
         }
       }
       .item-name {
-        margin-left: 10px;
+        margin-left: 10px;        
       }
       .user-gender {
+        margin-left: 7px;
         color: #fff;
         user-select: none;
         height: 20px;

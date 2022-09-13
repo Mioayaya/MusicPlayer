@@ -2,15 +2,17 @@ import React, { memo } from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
+
 import { getSonglistDetail } from '../../axios/server/foundMusic';
 import { getTotalSonglist } from '../../axios/server/songlistInform';
 import { setUserOtherInformPlaylistDetail, setUserOtherInformSonglist } from '../../store/slices/user-inform';
 import calculatePlayNumber from '../../utils/calculatePlayNumber';
+import { MioMyPlaylistDiv } from './css'
+
 import MioSonglistBottomCommentList from '../songlist-information/c-components/songlist-bottom/comment-list';
 import MioSonglistBottomSonglist from '../songlist-information/c-components/songlist-bottom/songlist';
 import MioMyPlaylistTop from './c-components/playlist-top';
 
-import { MioMyPlaylistDiv } from './css'
 
 const MioMyPlayList = memo(() => {
   const dispatch = useDispatch();
@@ -24,21 +26,24 @@ const MioMyPlayList = memo(() => {
   const Limit = 50;
 
   useEffect(() => {
+    setOffset(0);
     setRouterData(Number(location.hash.split('?id=')[1]));
     getSonglistDetail(routerData).then(res => {
       dispatch(setUserOtherInformPlaylistDetail(res.playlist));
+      setOffset(res.playlist.tracks.length);
     })
   },[Number(location.hash.split('?id=')[1]),routerData])
 
   useEffect(() => {
     if(playlist) {
-      if(playlist.trackIds.length - songlist.length > 0) {
-        getTotalSonglist(playlist.id,playlist.trackIds.length,0).then(res => {
+      if(offset < playlist.trackIds.length && offset!=0) {      
+        getTotalSonglist(songlistInformation.id,offset,Limit).then(res => {
           dispatch(setUserOtherInformSonglist(res.songs));
+          setOffset(offset+Limit);
         })
       }
     }
-  },[playlist])
+  },[playlist,offset])
 
   return (
     <MioMyPlaylistDiv theme={theme}>
@@ -49,8 +54,8 @@ const MioMyPlayList = memo(() => {
                               playlist={playlist}
                               userInform={userInform}
             />
-          : <div>loading</div>
-        : <div>loading</div>
+          : <div className="loading">加载中</div>
+        : <div className="loading">加载中</div>
       }
 
       {
@@ -80,8 +85,8 @@ const MioMyPlayList = memo(() => {
                   <MioSonglistBottomSonglist songlist={songlist} songTotalLength={playlist.trackIds.length}/>
                 }
                 </div>
-              : <div>loading</div>
-            : <div>loading</div>
+              : ''
+            : ''
           )
         }
         {

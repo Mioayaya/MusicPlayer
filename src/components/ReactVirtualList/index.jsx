@@ -2,11 +2,9 @@ import React, { useState, useMemo, memo } from 'react'
 import {ReactVirtualListDiv} from './css.js'
 import { useCallback } from 'react';
 import { useRef } from 'react';
-import { useEffect } from 'react';
 
 const ReactVirtualList = memo((props) => {
-  let { list, item: Item, contentWidth, contentHeight, itemheight,stayStyle,playId } = props
-
+  let { list,totalLength, item: Item, contentWidth, contentHeight, itemheight,stayStyle,playId } = props
     const [start, setStart] = useState(0)
 
     const listDom = useRef()
@@ -30,9 +28,7 @@ const ReactVirtualList = memo((props) => {
 			return list
 				.slice(start, end)
 				.map((item, index) => (
-					<span key={item.id} 
-                id={item.id} 
-                itemheight={itemheight} 
+					<span key={item.id}
           >
 						<Item value={{item,index:(index+start+1),stayStyle}}></Item>
 					</span>
@@ -57,6 +53,11 @@ const ReactVirtualList = memo((props) => {
 						style={{ height: contentHeight + 'px', transform: `translate3d(0, ${transformY}, 0)` }}
 					>
 						{renderList}
+            {
+              list.length < totalLength
+              &&
+              <div className="loading">加载中</div>
+            }
 					</div>
         </div>
     </ReactVirtualListDiv>

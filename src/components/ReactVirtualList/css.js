@@ -9,6 +9,12 @@ export const ReactVirtualListDiv = styled.div`
   right: 0;
   opacity: 0.8;
   overflow-y: scroll;
+
+  .loading {
+    margin-top: 0;
+    text-align: center;
+  }
+
   .listWrapper {
     display: flex;
     flex-direction: column;
