@@ -74,7 +74,7 @@ const MioSonglistBottomSonglist = memo((props) => {
           <span className="title">{props.value.item.name}</span>
           <span className="singer">
             {
-              props.value.item.ar.map((item,index) => {
+              props.value.item.ar && props.value.item.ar.map((item,index) => {
                 return (
                   <span key={item.id}>
                     <span>{item.name}</span>

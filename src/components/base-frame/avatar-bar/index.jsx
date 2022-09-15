@@ -11,11 +11,13 @@ import { setNavKey } from '../../../store/slices/content-left';
 import { MioAvatarBarDiv } from './css';
 import calculatePlayNumber from '../../../utils/calculatePlayNumber';
 import MioChangeCloths from '../change-cloths';
+import { setUSerLogout } from '../../../store/slices/show';
 
 const MioAvatarBar = memo(() => {
   const theme = useSelector(state => state.themeSlice.theme);
   const userInform = useSelector(state => state.userInformSlice.userInform);
   const useOtherData = useSelector(state => state.userInformSlice.userOtherInform.data);
+  const userLogin = useSelector(state => state.showSlice.userLogin);
   const dispatch = useDispatch();
   const history = useHistory();
   const [userData,setuserData] = useState(0);
@@ -27,7 +29,7 @@ const MioAvatarBar = memo(() => {
   },[userInform.id])
 
   const avatarClick = () => {
-    if(userData.isLogin) {
+    if(userLogin) {
       dispatch(setNavKey(99998));
       history.push({
         pathname: '/mine'
@@ -46,13 +48,25 @@ const MioAvatarBar = memo(() => {
       pathname: '/settings'
     })
   }
+
+  const signOut = () => {
+    dispatch(setUSerLogout());
+    document.cookie = null;
+    sessionStorage.setItem('cookie','');
+    sessionStorage.setItem('login','false');
+    sessionStorage.setItem('userNickname','');
+    sessionStorage.setItem('userId','');
+    sessionStorage.setItem('userAvatar','');
+    localStorage.setItem('cookie','');
+  }
+
   return (
     <MioAvatarBarDiv theme={theme} cloths={cloths}>
       <div className="avatar-bar-avatar">
         <div className="avatar">
-          <img src={userData.isLogin?userData.data.userAvatar:'/src/assets/imgs/avatar.png'} onClick={e => {avatarClick()}} />
+          <img src={(userLogin&&userData.isLogin)?userData.data.userAvatar:'https://raften.cn/ayaya/pic/avatar.png'} onClick={e => {avatarClick()}} />
           {
-            userData.isLogin
+            (userLogin&&userData.isLogin)
             ? <div className="mini-inform">            
                 <div className="top">
                   <span className="name">{userData.data.userNickname}</span>
@@ -76,7 +90,7 @@ const MioAvatarBar = memo(() => {
                     <span onClick={e => avatarClick()}>个人中心</span>
                     <span>{'>'}</span>
                   </div>
-                  <div className="singout">
+                  <div className="singout" onClick={e => signOut()}>
                     <span>退出登录</span>
                     <span>{'>'}</span>
                   </div>

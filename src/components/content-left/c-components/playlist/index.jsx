@@ -20,7 +20,7 @@ const MioPlaylist = memo((props) => {
     if(sessionStorage.getItem('login') != 'true') {
       Message.warning('请先登录');
     }else if(e.target.className == 'add'){
-      alert('创建歌单');      
+      // alert('创建歌单'); 
     }else {
       setShow(!show);
     }

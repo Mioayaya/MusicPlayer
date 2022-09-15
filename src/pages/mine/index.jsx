@@ -9,17 +9,28 @@ import { getUserInform } from '../../axios/server/usersInform';
 import MioMineShow from './child-pages/mine-show';
 import MioMineChange from './child-pages/mine-change';
 import { setUserOtherInformData } from '../../store/slices/user-inform';
+import { useHistory } from 'react-router';
 
 const MioMine = memo(() => {
   // 全局变量
   const theme = useSelector(state => state.themeSlice.theme);
   const userInform = useSelector(state => state.userInformSlice.userInform);
   const userOtherInformData = useSelector(state => state.userInformSlice.userOtherInform.data);
+  const userLogin = useSelector(state => state.showSlice.userLogin);
   
   // hooks
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const history = useHistory();
   const [show,setShow] = useState(true);
   const [save,setSave] = useState(0);
+
+  useEffect(() => {
+    if(!userLogin) {
+      history.push({
+        pathname: '/login'
+      })
+    }
+  },[userLogin])
 
   useEffect(() => {
     // const url = getUserSubcount(sessionStorage.getItem('cookie'));
@@ -40,16 +51,21 @@ const MioMine = memo(() => {
   return (
     <MioMineDiv theme={theme}>
       {
-        show ? <MioMineShow startSetShow={e => startSetShow()} 
-                            userOtherInformData={userOtherInformData}
-                            theme = {theme}
-                            uid = {userInform.id}
-                />
-        : <MioMineChange startSetShow={e => startSetShow()}
-                         save={e => setSave(save+1)}/>
-      }
-      
-      
+        userLogin 
+        &&
+        (
+          show 
+          ? 
+          <MioMineShow startSetShow={e => startSetShow()} 
+                       userOtherInformData={userOtherInformData}
+                       theme = {theme}
+                       uid = {userInform.id}
+          />
+          : <MioMineChange startSetShow={e => startSetShow()}
+                           save={e => setSave(save+1)}
+            />
+        )
+      }        
     </MioMineDiv>
   )
 })
