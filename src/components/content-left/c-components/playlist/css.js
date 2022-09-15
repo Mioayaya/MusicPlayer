@@ -9,11 +9,11 @@ export const MioPlaylistDiv = styled.div`
     flex-direction: row;
     align-items: center;
     cursor: pointer;
-    .name {
-      color: ${props => ThemeColor[props.theme].contentRightFontDark};
+    .name {      
+      color: ${props => ThemeColor[props.theme].public.darkColor};
     }
     .show {
-      color: ${props => ThemeColor[props.theme].contentRightFontDark};
+      color: ${props => ThemeColor[props.theme].public.darkColor};
       font-size: smaller;
       display: block;
       position: absolute;
@@ -36,24 +36,24 @@ export const MioPlaylistDiv = styled.div`
     display: flex;
     flex-direction: column;
     margin-top: 10px;
-    .playlist-item {
-      color: ${ props => ThemeColor[props.theme].fontContentColor3 };
+    .playlist-item {      
+      color: ${props => ThemeColor[props.theme].public.titleColor};
       padding: 10px 0 10px 5px;
       user-select: none;
       border-radius: 5px;
       &:hover {
-        color: ${ props => ThemeColor[props.theme].fontContentColor1 };
-        background-color: ${ props => ThemeColor[props.theme].contentLeftHover };
+        color: ${props => ThemeColor[props.theme].public.lightColor};        
+        background-color: ${props => ThemeColor[props.theme].content.listHover};
       }
       .icon {
         margin-right: 5px;
       }
     }
     .playlist-item.active {
-      color: ${ props => ThemeColor[props.theme].fontContentColor2 };
-      background-color: ${ props => ThemeColor[props.theme].contentLeftHover };
+      color: ${props => ThemeColor[props.theme].public.focusColor};
+      background-color: ${props => ThemeColor[props.theme].content.listHover};
       &:hover {
-        color: ${ props => ThemeColor[props.theme].fontContentColor2 };
+        color: ${props => ThemeColor[props.theme].public.focusColor};
       }
     }
   }

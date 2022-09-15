@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { ThemeColor } from '../../../common/css-var'
 
 export const MioFoundMusicBannarDiv = styled.div`
   z-index: 0;
@@ -46,17 +47,17 @@ export const MioFoundMusicBannarDiv = styled.div`
   }
   // 小圆点颜色
   .swiper-pagination-bullet-active {
-    background-color: red;
+    background-color: ${props => ThemeColor[props.theme].public.messageColor};
   }
   // 按钮样式
   .swiper-button-prev,.swiper-button-next{
-    color: #f3f3f3;
+    color: ${props => ThemeColor[props.theme].public.btnBarnnar};
     &:hover {
-      color: #000;
+      color: ${props => ThemeColor[props.theme].public.btnBarnnarHover};
     }
     ::after {
       font-size: 10px;
-      background-color: #c0c1bf;
+      background-color: ${props => ThemeColor[props.theme].public.btn};
       width: 25px;
       height: 25px;
       text-align: center;

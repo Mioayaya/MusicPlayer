@@ -20,6 +20,7 @@ const MioFooterPlayerBar = memo((props) => {
   const iricsNowTime = useSelector(state => state.playlistSlice.nowTime);
   const nowTimeClick = useSelector(state => state.playlistSlice.nowTimeClick);
   const tolVolume = useSelector(state => state.playlistSlice.volume);
+  const theme = useSelector(state => state.themeSlice.theme);
   const [value, setValue] = useState(0);      // 现在的时间
   const [endTime,setEndTime] = useState(0);   // 结束时间
   const [isPlay,setIsPlay] = useState(false); // 是否播放
@@ -193,7 +194,7 @@ const MioFooterPlayerBar = memo((props) => {
   }
 
   return (
-    <MioFooteerPlayerBarDiv onKeyDown={e => spaceDown(e)}>
+    <MioFooteerPlayerBarDiv onKeyDown={e => spaceDown(e)} theme={theme}>
       <div className="top">
         <span className="paly-type" onClick={e => onChangeType()}>
           {playType[type]}

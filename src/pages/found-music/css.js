@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
+import { ThemeColor } from '../../common/css-var';
 
 export const MioFoundMusicDiv = styled.div`
   height: 0;
-  color: white;
+  color: ${props => ThemeColor[props.theme].public.lightColor};
   margin: 20px 20px 0 20px;
   .found-music-nav {
     display: flex;
@@ -11,7 +12,7 @@ export const MioFoundMusicDiv = styled.div`
     .found-music-nav-item {
       display: block;
       text-decoration: none;
-      color: white;
+      color: ${props => ThemeColor[props.theme].public.titleColor};
       font-size: large;
     }
     .found-music-nav-item-active {

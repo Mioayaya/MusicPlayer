@@ -6,17 +6,15 @@ import MioAvatarBar from '../base-frame/avatar-bar';
 import axios from 'axios';
 import { getUserStatus } from '../../axios/server/userLogin';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setUserInform, setUserOtherInformData } from '../../store/slices/user-inform';
 import { getUserInform } from '../../axios/server/usersInform';
 import { useHistory } from 'react-router';
 
-// 接受一个全局的 redux
-const theme = 'dark';
-
 const MioAppHeader = memo(() => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const theme = useSelector(state => state.themeSlice.theme);
 
   useEffect(() => {
     const cookie = localStorage.getItem('cookie');

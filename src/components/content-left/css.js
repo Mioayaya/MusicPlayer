@@ -6,33 +6,32 @@ export const MioContentLeftDiv = styled.div`
   display: flex;
   flex-direction: column;
   height: 0;
-  color: ${ props => ThemeColor[props.theme].fontContentColor3 };
+  color: ${props => ThemeColor[props.theme].public.titleColor};
   box-sizing: border-box;
   margin: 10px 0 0 10px;
   // 上半部分 css
   .content-left-top {
-    color: ${ props => ThemeColor[props.theme].fontContentColor3 };
+    color: ${ props => ThemeColor[props.theme].public.titleColor };
     display: flex;
     flex-direction: column;
     .content-left-top-item {
-      color: ${ props => ThemeColor[props.theme].fontContentColor3 };
+      color: ${ props => ThemeColor[props.theme].public.titleColor };
       display: block;
       padding: 10px 0 10px 5px;
       text-decoration: none;
       border-radius: 5px;
       margin-bottom: 5px;
       &:hover {
-        color: ${ props => ThemeColor[props.theme].fontContentColor1 };
-        background-color: ${ props => ThemeColor[props.theme].contentLeftHover };
+        background-color: ${ props => ThemeColor[props.theme].content.listHover };
       }
     }
     .content-left-top-item-active {
       font-size: large;
       font-weight: 700;
-      color: ${ props => ThemeColor[props.theme].fontContentColor2 };
-      background-color: ${ props => ThemeColor[props.theme].contentLeftHover };
+      color: ${ props => ThemeColor[props.theme].public.focusColor };
+      background-color: ${ props => ThemeColor[props.theme].content.listHover };
       &:hover {
-        color: ${ props => ThemeColor[props.theme].fontContentColor2 };
+        color: ${ props => ThemeColor[props.theme].public.focusColor };
       }
     }
   }
@@ -41,7 +40,7 @@ export const MioContentLeftDiv = styled.div`
   .content-left-middle {
     margin-left: 5px;
     margin-top: 10px;
-    color: ${ props => ThemeColor[props.theme].fontContentColor4 };
+    color: ${ props => ThemeColor[props.theme].public.txtColor };
     display: flex;
     flex-direction: column;
     span {
@@ -50,22 +49,22 @@ export const MioContentLeftDiv = styled.div`
       user-select: none;
     }
     .content-left-middle-item {
-      color: ${ props => ThemeColor[props.theme].fontContentColor3 };
+      color: ${ props => ThemeColor[props.theme].public.titleColor };
       display: block;
       padding: 10px 0 10px 5px;
       text-decoration: none;
       border-radius: 5px;
       user-select: none;
       &:hover {
-        color: ${ props => ThemeColor[props.theme].fontContentColor1 };
-        background-color: ${ props => ThemeColor[props.theme].contentLeftHover };
+        color: ${ props => ThemeColor[props.theme].public.lightColor };
+        background-color: ${ props => ThemeColor[props.theme].content.listHover };
       }
     }
     .content-left-middle-item-active {
-      color: ${ props => ThemeColor[props.theme].fontContentColor2 };
-      background-color: ${ props => ThemeColor[props.theme].contentLeftHover };
+      color: ${ props => ThemeColor[props.theme].public.focusColor };
+      background-color: ${ props => ThemeColor[props.theme].content.listHover };
       &:hover {
-        color: ${ props => ThemeColor[props.theme].fontContentColor2 };
+        color: ${ props => ThemeColor[props.theme].public.focusColor };
       }
     }
   }

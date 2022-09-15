@@ -38,6 +38,6 @@ export const ReactVirtualListDiv = styled.div`
   /*定义滑块 内阴影+圆角*/
   ::-webkit-scrollbar-thumb {
     border-radius: 0.625rem;
-    background-color: ${ props => ThemeColor[props.theme].scrollColor};
+    background-color: ${ props => ThemeColor[props.theme].public.scrollColor};
   }
 `

@@ -16,17 +16,17 @@ export const MioSearchSongDiv = styled.div`
     .arco-pagination-list {
       margin: auto;
       .arco-pagination-item {
-        color: #878787;
-        border: 1px solid #414141;
+        color: ${props => ThemeColor[props.theme].public.txtColor};
+        border: 1px solid ${props => ThemeColor[props.theme].public.border};
         :hover {
-          background-color: #414141;
+          background-color: ${props => ThemeColor[props.theme].public.border};
         }
       }
       .arco-pagination-item-active {
-        color: #ffffff;
-        background-color: #ec4141;
+        color: ${props => ThemeColor[props.theme].public.lightColor};
+        background-color: ${props => ThemeColor[props.theme].public.messageColor};
         :hover {
-          background-color: #ec4141;
+          background-color: ${props => ThemeColor[props.theme].public.messageColor};
         }
       }
     }

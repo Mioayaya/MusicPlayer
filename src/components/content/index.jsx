@@ -10,14 +10,10 @@ import MioBarPlayList from '../bar-play-list';
 import { useCallback } from 'react';
 import { setCommentScroll } from '../../store/slices/songlist-inform';
 
-
-// 接受一个全局的 redux
-const theme = 'dark';
-
 const MioContent = memo(() => {
   const dispatch = useDispatch();
   const showPlayList = useSelector(state => state.showSlice.playListShow);
-
+  const theme = useSelector(state => state.themeSlice.theme);
   const homeScroll = useCallback((e) => {
     let flag = false;
     if((e.target.scrollTop+e.target.clientHeight) >= (e.target.scrollHeight-1)) {

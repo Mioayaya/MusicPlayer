@@ -8,9 +8,11 @@ import { getSearchRes } from '../../../../axios/server/search';
 import { MioSearchSongDiv } from './css'
 
 import MioLayoutSongList from '../../../../components/layout/songs-list';
+import { useSelector } from 'react-redux';
 
 const MioSearchSong = memo((props) => {
   const {routerData,type} = props;
+  const theme = useSelector(state => state.themeSlice.theme);
   const [resArr,setResArr] = useState([]);
   const [offset,setOffset] = useState(0);
   const [total,setTotal] = useState(0);
@@ -35,7 +37,7 @@ const MioSearchSong = memo((props) => {
   }
 
   return (
-    <MioSearchSongDiv>
+    <MioSearchSongDiv theme={theme}>
       {
         resArr.length!=0
         &&

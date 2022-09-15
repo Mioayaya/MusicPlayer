@@ -12,6 +12,7 @@ const navArr = ['单曲','歌手','专辑','歌单','用户'];
 
 const MioSearch = memo((props) => {
   const userCounter = useSelector(state => state.userInformSlice.userCounter);
+  const theme = useSelector(state => state.themeSlice.theme);
   const [routerData,setRouterData] = useState((location.hash.split('?keywords=')[1]));
   const [active,setActive] = useState(0);  
 
@@ -19,7 +20,7 @@ const MioSearch = memo((props) => {
     setRouterData(decodeURI(location.hash.split('?keywords=')[1]));    
   },[userCounter,routerData])
   return (
-    <MioSearchDiv>
+    <MioSearchDiv theme={theme}>
       <div className="title">搜索 {routerData}</div>
       <div className="nav-bar">
         {

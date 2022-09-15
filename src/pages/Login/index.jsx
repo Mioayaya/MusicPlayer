@@ -7,6 +7,8 @@ import { Message,Button } from "@arco-design/web-react";
 
 import { getUserStatus,baseUrl } from '../../axios/server/userLogin';
 import { MioLoginDiv  } from './css'
+import { useDispatch, useSelector } from 'react-redux';
+import { setUserLogin } from '../../store/slices/show';
 
 
 
@@ -15,6 +17,8 @@ const MioLogin = memo(() => {
   const [loginFlag,setLoginFlag] = useState(false);
   const [sessionFlag,setSessionFlag] = useState('true');
   const history = useHistory();
+  const dispatch = useDispatch();
+  const theme = useSelector(state => state.themeSlice.theme);
 
   useEffect(() => {
     // 如果登录成功 获取用户信息
@@ -72,6 +76,7 @@ const MioLogin = memo(() => {
         localStorage.setItem('cookie',cookie);
         // 将cookie保存到会话中
         sessionStorage.setItem('cookie',cookie);
+        dispatch(setUserLogin());
         setLoginFlag(true);
       }
       // 等待两分钟
@@ -82,7 +87,7 @@ const MioLogin = memo(() => {
   } 
 
   return (
-    <MioLoginDiv Imgurl={img}>
+    <MioLoginDiv Imgurl={img} theme={theme}>
       {
         sessionFlag!='true' && 
             <div>

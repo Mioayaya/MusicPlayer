@@ -10,18 +10,17 @@ import { useState } from 'react';
 import { setNavKey } from '../../../store/slices/content-left';
 import { MioAvatarBarDiv } from './css';
 import calculatePlayNumber from '../../../utils/calculatePlayNumber';
-
-// 接受一个全局的 redux
-const theme = 'dark';
-
-
+import MioChangeCloths from '../change-cloths';
 
 const MioAvatarBar = memo(() => {
+  const theme = useSelector(state => state.themeSlice.theme);
   const userInform = useSelector(state => state.userInformSlice.userInform);
   const useOtherData = useSelector(state => state.userInformSlice.userOtherInform.data);
   const dispatch = useDispatch();
   const history = useHistory();
   const [userData,setuserData] = useState(0);
+  const [cloths,setCloths] = useState(false);
+  
   useEffect(() => {
     // 设置用户信息 包括登录状态
     setuserData(getSession());
@@ -41,8 +40,14 @@ const MioAvatarBar = memo(() => {
       })
     }
   }
+
+  const settingClick = () => {
+    history.push({
+      pathname: '/settings'
+    })
+  }
   return (
-    <MioAvatarBarDiv theme={theme}>
+    <MioAvatarBarDiv theme={theme} cloths={cloths}>
       <div className="avatar-bar-avatar">
         <div className="avatar">
           <img src={userData.isLogin?userData.data.userAvatar:'/src/assets/imgs/avatar.png'} onClick={e => {avatarClick()}} />
@@ -87,12 +92,16 @@ const MioAvatarBar = memo(() => {
       </div>
       
       {/* 换肤 */}
-      <svg className="avatar-bar-cloths icon" aria-hidden="true">
+      <svg className="avatar-bar-cloths icon" aria-hidden="true" onClick={e => setCloths(!cloths)}>
         <use xlinkHref="#icon-yifu"></use>
       </svg>
 
+      <div className="cloths-card">
+        <MioChangeCloths />
+      </div>
+
       {/* 设置 */}
-      <svg className="avatar-bar-cloths icon" aria-hidden="true">
+      <svg className="avatar-bar-cloths icon" aria-hidden="true" onClick={e => settingClick()}>
         <use xlinkHref="#icon-settings"></use>
       </svg>
 

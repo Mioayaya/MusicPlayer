@@ -4,9 +4,10 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import theme from '../../../store/slices/theme'
+import { ThemeColor } from '../../../common/css-var'
 
 const MioWatingDiv = styled.div`
-  color: white;
+  color: ${props => ThemeColor[props.theme].public.titleColor};
   text-align: center;
   margin-top: 20%;
 `

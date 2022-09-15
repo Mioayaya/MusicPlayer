@@ -1,71 +1,401 @@
 import { ayaya } from "../../assets/imgs/ayayaBase"
 // 项目颜色
+// 纯色相同色
+const sameColor = {
+  public: {
+    lightColor: '#ffffff',
+    darkColor: '#acacac',   
+    titleColor: '#373737',
+    txtColor: '#676767',
+    focusColor: '#cccccc',
+    iconColor: '#000000',
+    linkColor: '#85b9e6',
+    linkHover: '#b3cee5',
+    emt: '#fafafa',
+    emtHover: '#f1f2f3',
+    active: '#e5e5e5',
+    activeHover: '#f1f2f3',    
+    btnColor: '#000000',
+    btnHover: '#f2f2f2',
+    btnForbid: '#d9d9d9',
+    btnBarnnar: '#f3f3f3',
+    btnBarnnarHover: '#000000',
+    shadow: '#121212',
+
+    border: '#d9d9d9',
+    messageColor: '#e5ca89',
+    scrollColor: '#e0e0e0'
+  },
+  content: {
+    listHover: '#f6f6f7',
+    split: '#e0e0e0',
+    background: '#ffffff',
+    card: '#ffffff',
+    replied: '#f5f5f5',     // 评论回复
+    commentTime: '#b1b0b1',
+    // 评论区渐变线
+    commentLiner: `linear-gradient(to left, #ffffff 0%,#e0e0e0 50%, #ffffff 100%)`,
+    // 歌词渐变消失
+    iricsLinerTop: `linear-gradient(to top,rgba(0,0,0,0),#ffffff)`,
+    iricsLinerBottom: `linear-gradient(to bottom,rgba(0,0,0,0),#ffffff)`,
+  },
+  footer: {
+    barAfter: '#4c4c4e',
+    txtColor: '#000000',
+    split: '#e0e0e0',
+    background: '#ffffff',
+    border: '#303030'
+  },
+}
+
 export const ThemeColor = {
   // 黑色主题
   dark: {
-    /* heade */ 
-    head: '#222225',              // 头部背景颜色
-    headLight: '#2b2b2e',         // 头部背景-浅一点的颜色
-    headShadow: '#b72525',        // head下的线
-    headStep: '#1f1f24',          // 上一步、下一步 背景色
-    searchIcon: '#ffffff',        // 搜索icon颜色，
-    searchIconHover: '#b3b3b4',   // 搜索icon颜色 hover，
-    searchBar: '#2b2b2e',            // 搜索条背景颜色
-    fontHeadColor1: '#ffffff',       // headd顶部的字体颜色 白色 
-    fontHeadColor2: '#adafb2',       // head字体更浅一点 (右边字体色)
-    fontHeadColor3: 'gray',          // placeholder颜色
-    
-    // content
-    content: '#2b2b2b',           // 内容背景颜色
+    public: {
+      lightColor: '#ffffff',
+      darkColor: '#7c7c7c',          
+      titleColor: '#d0d0d0',
+      txtColor: '#878787',
+      focusColor: '#cccccc',
+      iconColor: '#adafb2',
+      linkColor: '#85b9e6',
+      linkHover: '#b3cee5',
+      emt: '#333333',
+      emtHover: '#474747',
+      active: '#474747',
+      activeHover: '#414141',
+      btn: '#4b4b4b',
+      btnColor: '#cececf',
+      btnHover: '#353535',
+      btnForbid: '#393939',
+      btnBarnnar: '#f3f3f3',
+      btnBarnnarHover: '#000000',
+      shadow: '#121212',
 
-    // content-left
-    contentLeftHover: '#333333',     // 左侧选中&hover颜色
-    contentDividing: '#454545',      // 左右分割色
-    fontContentColor1: '#ffffff',    // 内容色 颜色由白到灰 -- hover
-    fontContentColor2: '#cccccc',    // focus 
-    fontContentColor3: '#d0d0d0',    // normal
-    fontContentColor4: '#7c7c7c',    // 灰色
-    
-    footer: '#222225',            // 播放栏颜色
-    footerTop: '#3d3d40',         // 播放栏与content分割的颜色
+      border: '#4a4a4a',
+      messageColor: '#ec4141',
+      scrollColor: '#454545'
+    },
+    header: {
+      split: '#b72525',
+      background: '#222225',
+      card: '#363636',
+      cardTitle: '#ff758f',
+      searchBar: '#2b2b2e'
+    },
+    content: {
+      listHover: '#333333',
+      split: '#454545',
+      background: '#2b2b2b',
+      card: '#363636',
+      replied: '#333333',     // 评论回复
+      commentTime: '#636363',
+      // 评论区渐变线
+      commentLiner: `linear-gradient(to left, #353535 0%,#555555 50%, #353535 100%)`,
+      iricsLinerTop: `linear-gradient(to top,rgba(0,0,0,0),#2b2b2b)`,
+      iricsLinerBottom: `linear-gradient(to bottom,rgba(0,0,0,0),#2b2b2b)`,
 
-    /* 歌单页面 */
-    songlistPageIconColor: '#ff0000', // 歌单iconyanse
-    songlistPageLinkColor: '#85b9e6',     // 链接颜色
-    songlistPageLinkHoverColor: '#b3cee5',  // hover后颜色
-    songlistPageBorder: '#4b4b4b',          // border颜色
-    songlistPageButtonHover: '#353535',     // 按钮hover
-    songlistPageFontColorTitle: '#d0d0d0', // 歌单标题颜色
-    songlistPageFontColor: '#ffffff', // 歌单页面 字体颜色
-    songlistPageFontColor2: '#878787', // 歌单页面 字体颜色2
-
-    // content-right
-    contentRightDivding: '#454545',   // 分割线颜色
-    contentRightFontNormal: '#d0d0d0',  // 普通字体颜色
-    contentRightFontDark:'#878787',     // 深一点的颜色
-    contentRightFontHover: '#ffffff',  // hover字体颜色
-    contentRightBorder: '#ec4141',    // border颜色
-    contentRightForbid: '#393939',           // 禁止点击颜色
-    contentRightForbidFont: '#707070',           // 禁止点击颜色
-    contentRightList: '#2b2b2b',          // 列表背景色 (和背景色一样)
-    contentRightListEmt: '#333333',              // 偶数行
-    contentRightListHover: '#474747',            // 列表hover
-    contentRightListActive: '#474747',           // 列表选中
-    contentRightListActiveHover: '#414141',      // 列表选中hover
-    // 底部
-    fontFooterColor1: '#ffffff',     // hover
-    fontFooterColor2: '#cececf',     // normal
-    messageColor: '#ec4141',          // 其它标识颜色
-
-    /**  滚动条 **/
-    scrollColor: '#454545'
+    },
+    footer: {
+      barAfter: '#4c4c4e',
+      txtColor: '#cececf',
+      split: '#3d3d40',
+      background: '#222225',
+      border: '#303030'
+    },
   },
   // eva初号机配色
   eva: {
+    public: {
+      lightColor: '#ffffff',
+      darkColor: '#7c7c7c',          
+      titleColor: '#e0e0e0',
+      txtColor: '#878787',
+      focusColor: '#cccccc',
+      iconColor: '#adafb2',
+      linkColor: '#85b9e6',
+      linkHover: '#b3cee5',
+      emt: '#7B7484',
+      emtHover: '#968ca2',
+      active: '#B0A8B9',
+      activeHover: '#968ca2',
+      btn: '#4b4b4b',
+      btnColor: '#cececf',
+      btnHover: '#353535',
+      btnForbid: '#393939',
+      btnBarnnar: '#f3f3f3',
+      btnBarnnarHover: '#000000',
+      shadow: '#121212',
 
+      border: '#4a4a4a',
+      messageColor: '#63dc58',
+      scrollColor: '#5E4781'
+    },
+    header: {
+      split: '#1fbf2e',
+      background: '#241644',
+      card: '#4B4453',
+      cardTitle: '#ff758f',
+      searchBar: '#4B4453'
+    },
+    content: {
+      listHover: '#7B7484',
+      split: '#066b12',
+      background: '#2d1b4f',
+      card: '#4B4453',
+      replied: '#4B4453',     // 评论回复
+      commentTime: '#636363',
+      // 评论区渐变线
+      commentLiner: `linear-gradient(to left, #353535 0%,#555555 50%, #353535 100%)`,
+      // 歌词渐变消失
+      iricsLinerTop: `linear-gradient(to top,rgba(0,0,0,0),#2d1b4f)`,
+      iricsLinerBottom: `linear-gradient(to bottom,rgba(0,0,0,0),#2d1b4f)`,
+
+    },
+    footer: {
+      barAfter: '#4c4c4e',
+      txtColor: '#cececf',
+      split: '#066b12',
+      background: '#241644',
+      border: '#303030'
+    },
   },
   // 克莱因蓝
-  // 还没想好
+  klein: {
+    public: {
+      lightColor: '#ffffff',
+      darkColor: '#acacac',          
+      titleColor: '#e0e0e0',
+      txtColor: '#b1b0b1',
+      focusColor: '#cccccc',
+      iconColor: '#adafb2',
+      linkColor: '#85b9e6',
+      linkHover: '#b3cee5',
+      emt: '#968ca2',
+      emtHover: '#8080a0',
+      active: '#B0A8B9',
+      activeHover: '#8080a0',
+      btn: '#97818d',
+      btnColor: '#cececf',
+      btnHover: '#97818d',
+      btnForbid: '#404e64',
+      btnBarnnar: '#f3f3f3',
+      btnBarnnarHover: '#000000',
+      shadow: '#121212',
+
+      border: '#918081',
+      messageColor: '#e5ca89',
+      scrollColor: '#918081'
+    },
+    header: {
+      split: '#9d989d',
+      background: '#0a2981',
+      card: '#164598',
+      cardTitle: '#ff758f',
+      searchBar: '#164598'
+    },
+    content: {
+      listHover: '#8080a0',
+      split: '#ad9d93',
+      background: '#2164b0',
+      card: '#164598',
+      replied: '#0d2b86',     // 评论回复
+      commentTime: '#b1b0b1',
+      // 评论区渐变线
+      commentLiner: `linear-gradient(to left, #2164b0 0%,#ffffff 50%, #2164b0 100%)`,
+      // 歌词渐变消失
+      iricsLinerTop: `linear-gradient(to top,rgba(0,0,0,0),#2164b0)`,
+      iricsLinerBottom: `linear-gradient(to bottom,rgba(0,0,0,0),#2164b0)`,
+
+    },
+    footer: {
+      barAfter: '#4c4c4e',
+      txtColor: '#cececf',
+      split: '#ad9d93',
+      background: '#0a2981',
+      border: '#303030'
+    },
+  },
+  white: {
+    public: {
+      ...sameColor.public,
+      btn: '#ebebeb',
+      messageColor: '#ec4141'
+    },
+    header: {
+      split: '#e0e0e0',
+      background: '#f5f5f5',
+      card: '#ffffff',
+      cardTitle: '#000000',
+      searchBar: '#ebebeb'
+    },
+    content: {
+      ...sameColor.content,
+    },
+    footer: {
+      ...sameColor.footer,
+    }
+  },
+  cherry: {
+    public: {
+      ...sameColor.public,
+      btn: 'rgba(255,255,255,0.4)',
+      messageColor: '#ffc0cb'
+    },
+    header: {
+      split: '#e0e0e0',
+      background: '#ffc0cb',
+      card: '#ffffff',
+      cardTitle: '#000000',
+      searchBar: 'rgba(255,255,255,0.4)'
+    },
+    content: {
+      ...sameColor.content,
+    },
+    footer: {
+      ...sameColor.footer,
+    }
+  },
+  pink: {
+    public: {
+      ...sameColor.public,
+      btn: 'rgba(255,255,255,0.4)',
+      messageColor: '#ff5c8a'
+    },
+    header: {
+      split: '#e0e0e0',
+      background: '#ff5c8a',
+      card: '#ffffff',
+      cardTitle: '#000000',
+      searchBar: 'rgba(255,255,255,0.4)'
+    },
+    content: {
+      ...sameColor.content,
+    },
+    footer: {
+      ...sameColor.footer,
+    }
+  },
+  purple: {
+    public: {
+      ...sameColor.public,
+      btn: 'rgba(255,255,255,0.4)',
+      messageColor: '#717ff9'
+    },
+    header: {
+      split: '#e0e0e0',
+      background: '#717ff9',
+      card: '#ffffff',
+      cardTitle: '#000000',
+      searchBar: 'rgba(255,255,255,0.4)'
+    },
+    content: {
+      ...sameColor.content,
+    },
+    footer: {
+      ...sameColor.footer,
+    }
+  },
+  blue: {
+    public: {
+      ...sameColor.public,
+      btn: 'rgba(255,255,255,0.4)',
+      messageColor: '#4791eb'
+    },
+    header: {
+      split: '#e0e0e0',
+      background: '#4791eb',
+      card: '#ffffff',
+      cardTitle: '#000000',
+      searchBar: 'rgba(255,255,255,0.4)'
+    },
+    content: {
+      ...sameColor.content,
+    },
+    footer: {
+      ...sameColor.footer,
+    }
+  },
+  skyblue: {
+    public: {
+      ...sameColor.public,
+      btn: 'rgba(255,255,255,0.4)',
+      messageColor: '#39afea'
+    },
+    header: {
+      split: '#e0e0e0',
+      background: '#39afea',
+      card: '#ffffff',
+      cardTitle: '#000000',
+      searchBar: 'rgba(255,255,255,0.4)'
+    },
+    content: {
+      ...sameColor.content,
+    },
+    footer: {
+      ...sameColor.footer,
+    }
+  },
+  green: {
+    public: {
+      ...sameColor.public,
+      btn: 'rgba(255,255,255,0.4)',
+      messageColor: '#6acc19'
+    },
+    header: {
+      split: '#e0e0e0',
+      background: '#6acc19',
+      card: '#ffffff',
+      cardTitle: '#000000',
+      searchBar: 'rgba(255,255,255,0.4)'
+    },
+    content: {
+      ...sameColor.content,
+    },
+    footer: {
+      ...sameColor.footer,
+    }
+  },
+  orange: {
+    public: {
+      ...sameColor.public,
+      btn: 'rgba(255,255,255,0.4)',
+      messageColor: '#ff8f57'
+    },
+    header: {
+      split: '#e0e0e0',
+      background: '#ff8f57',
+      card: '#ffffff',
+      cardTitle: '#000000',
+      searchBar: 'rgba(255,255,255,0.4)'
+    },
+    content: {
+      ...sameColor.content,
+    },
+    footer: {
+      ...sameColor.footer,
+    }
+  },
+  red: {
+    public: {
+      ...sameColor.public,
+      btn: 'rgba(255,255,255,0.4)',
+      messageColor: '#ec4141'
+    },
+    header: {
+      split: '#e0e0e0',
+      background: '#ec4141',
+      card: '#ffffff',
+      cardTitle: '#000000',
+      searchBar: 'rgba(255,255,255,0.4)'
+    },
+    content: {
+      ...sameColor.content,
+    },
+    footer: {
+      ...sameColor.footer,
+    }
+  }
 }
 
 export const MioContentCss = {

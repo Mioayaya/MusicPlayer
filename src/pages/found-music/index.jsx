@@ -14,7 +14,7 @@ const MioFoundMusic = memo((props) => {
 
   const dispatch = useDispatch();
   const activeKey = useSelector(state => state.foundMusicSlice.activeKey);
-
+  const theme = useSelector(state => state.themeSlice.theme);
 
   useEffect(() => {
     let key = 10;
@@ -45,7 +45,7 @@ const MioFoundMusic = memo((props) => {
   }
 
   return (
-    <MioFoundMusicDiv>
+    <MioFoundMusicDiv theme={theme}>
       {/* top 导航部分 */}
       <div className="found-music-nav">
         {

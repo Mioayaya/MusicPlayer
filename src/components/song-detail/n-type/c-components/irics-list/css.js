@@ -13,13 +13,13 @@ export const MioSongDetailIricsDiv = styled.div`
     position: absolute;    
     top: 0;
     z-index: 1;
-    background: linear-gradient(to top,rgba(0,0,0,0),#2b2b2b);
+    background: ${props => ThemeColor[props.theme].content.iricsLinerTop};
   }
   .shadow-bottom {
     position: absolute;
     bottom: 0; 
     z-index: 1;   
-    background: linear-gradient(to bottom,rgba(0,0,0,0),#2b2b2b);
+    background: ${props => ThemeColor[props.theme].content.iricsLinerBottom};
   }
 
   .btn {
@@ -31,17 +31,17 @@ export const MioSongDetailIricsDiv = styled.div`
     &>* {
       padding: 0 2px;
       text-align: center;
-      background-color: #474747;
-      color: #cececf;
+      background-color: ${props => ThemeColor[props.theme].public.btn};
+      color: ${props => ThemeColor[props.theme].public.btnColor};
       cursor: pointer;
       :hover {
-        color: #878787;
+        color: ${props => ThemeColor[props.theme].public.iconColor};
       }
     }    
     .active {
-      color: #ffffff;
+      color: ${props => ThemeColor[props.theme].public.titleColor};
       :hover {
-        color: #ffffff;
+        color: ${props => ThemeColor[props.theme].public.titleColor};
       }
     }
   }
@@ -52,7 +52,7 @@ export const MioSongDetailIricsDiv = styled.div`
     display: flex;
     flex-direction: row;
     font-size: 16px;
-    color: #ffffff;
+    color: ${props => ThemeColor[props.theme].public.titleColor};
     visibility: hidden;
     z-index: 1;
     top: ${props => (props.isTly+props.isRom) == 0? 'calc(46px * 3 + 12px)': `calc(${20+26*(1+props.isTly+props.isRom)}px * 1.5 + 12px)`};
@@ -93,7 +93,8 @@ export const MioSongDetailIricsDiv = styled.div`
       position: relative;
       align-items: center;
       padding: 10px 0;
-      color: #737373; 
+      color: #737373;
+      color: ${props => ThemeColor[props.theme].public.txtColor};
       // 每句歌词的高度
       .item-height {
         height: 16px;
@@ -111,7 +112,7 @@ export const MioSongDetailIricsDiv = styled.div`
     }
     .active {
       font-size: 16px;
-      color: #ffffff;
+      color: ${props => ThemeColor[props.theme].public.titleColor};
     }
   }
 
@@ -124,7 +125,7 @@ export const MioSongDetailIricsDiv = styled.div`
     }
     ::-webkit-scrollbar-thumb {
       border-radius: 0.625rem;
-      background-color: ${ props => ThemeColor[props.theme].scrollColor};
+      background-color: ${ props => ThemeColor[props.theme].public.scrollColor};
     }
   }
 

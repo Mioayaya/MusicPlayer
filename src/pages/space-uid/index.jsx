@@ -41,7 +41,7 @@ const MioSpaceUid = memo((props) => {
   },[active])
 
   return (
-    <MioSpaceUidDiv>
+    <MioSpaceUidDiv theme={theme}>
       {
         Object.keys(otherUserData).length
         ? <>

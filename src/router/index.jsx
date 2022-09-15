@@ -17,6 +17,7 @@ const MioDynamic = React.lazy(_=> import("../pages/dynamic"));
 const MioFm = React.lazy(_=> import("../pages/fm"));
 const MioSpaceUid = React.lazy(_=> import("../pages/space-uid"));
 const MioSearch = React.lazy(_=> import("../pages/serach"));
+const MioSettings = React.lazy(_=> import("../pages/settings"));
 
 const MioMyPlaylist = React.lazy(_=> import("../pages/my-playlist"));
 
@@ -107,6 +108,10 @@ const routes = [
   {
     path: '/search',
     component: MioSearch
+  },
+  {
+    path: '/settings',
+    component: MioSettings
   },
   {
     path: '/songlistInfomation',

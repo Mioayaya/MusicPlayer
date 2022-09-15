@@ -1,6 +1,7 @@
 import React, { memo } from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { getUserPlaylist } from '../../../../../../../../axios/server/usersInform';
 import MioNormalList from '../normal-list';
 
@@ -11,6 +12,7 @@ const MioSubPlaylist = memo((props) => {
   const [ offset,setOffset ] = useState(playlistCount-1);
   const [ playlistArr,setPlayliseArr ] = useState([]);
   const [ more,setMore ] = useState(false);
+  const theme = useSelector(state => state.themeSlice.theme);
   let Limit = 20;
 
   useEffect(() => {
@@ -35,23 +37,31 @@ const MioSubPlaylist = memo((props) => {
   }
 
   return (
-    <MioSubPlaylistDiv>
+    <MioSubPlaylistDiv theme={theme}>
       {
         playlistArr.length != 0
         ? <MioNormalList playlistArr={playlistArr} uid={uid}/>
-        : ''
+        : <div>loading</div>
       }
 
       {
-        (offset>=playlistCount-1+Limit)
-        ? <span className='click' onClick={e => preClick()}>{'<'}</span>
-        : <span className='forbid'>{'<'}</span>
+        playlistArr.length != 0
+        &&
+        (
+          (offset>=playlistCount-1+Limit)
+          ? <span className='click' onClick={e => preClick()}>{'<'}</span>
+          : <span className='forbid'>{'<'}</span>
+        )
       }
 
       {
-        (more)
-        ? <span className='click' onClick={e => nextClick()}>{'>'}</span>
-        : <span className='forbid'>{'>'}</span>
+        playlistArr.length != 0 
+        &&
+        (
+          (more)
+          ? <span className='click' onClick={e => nextClick()}>{'>'}</span>
+          : <span className='forbid'>{'>'}</span>
+        )
       }
     </MioSubPlaylistDiv>
   )

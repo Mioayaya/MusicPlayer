@@ -20,9 +20,9 @@ export const MioSubPlaylistDiv = styled.div`
   .forbid {
     cursor: not-allowed;
     color: #6a6a6a;
-    background-color: #393939;
+    background-color: ${props => ThemeColor[props.theme].public.btnForbid};
     :hover {
-      background-color: #393939;
+      background-color:${props => ThemeColor[props.theme].public.btnForbid};
     }
   }
 

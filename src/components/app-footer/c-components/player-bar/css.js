@@ -24,7 +24,7 @@ export const MioFooteerPlayerBarDiv = styled.div`
     .icon  {
       height: 20px;
       width: 20px;
-      color: white;
+      color: ${props => ThemeColor[props.theme].public.lightColor};
       vertical-align: -0.15em;
       fill: currentColor;
       overflow: hidden;
@@ -58,17 +58,17 @@ export const MioFooteerPlayerBarDiv = styled.div`
         }
         ::before {
           height: 3px;
-          background-color: #4c4c4e;
+          background-color: ${props => ThemeColor[props.theme].footer.barAfter};
         }
       }
       .arco-slider-bar {
         height: 3px;
-        background-color: #ec4141;
+        background-color: ${props => ThemeColor[props.theme].public.messageColor};
       }
       .arco-slider-button {
         visibility: hidden;
         ::after {
-          background-color: #ec4141;
+          background-color: ${props => ThemeColor[props.theme].public.messageColor};
           border: none;
         }
       }
@@ -92,23 +92,23 @@ export const MioFooteerPlayerBarDiv = styled.div`
         left: -5px;
         height: 100px;
         width: 30px;
-        background-color: #252525;
-        border: 1px solid #303030;
+        background-color: ${props => ThemeColor[props.theme].footer.background};
+        border: 1px solid ${props => ThemeColor[props.theme].footer.border};
         .arco-slider-road.arco-slider-road-vertical {
           margin: 10px 0;
           min-height: 80px;
         }
         .arco-slider-road::before {
           width: 3px;
-          background-color: #4c4c4e;
+          background-color: ${props => ThemeColor[props.theme].footer.barAfter};
         }
         .arco-slider-bar {
           width: 3px;
-          background-color: #ec4141;
+          background-color: ${props => ThemeColor[props.theme].public.messageColor};
         }
         .arco-slider-button::after {
           border: none;
-          background-color: #ec4141;
+          background-color: ${props => ThemeColor[props.theme].public.messageColor};
         }
       }
       :hover {
@@ -126,7 +126,7 @@ export const MioFooteerPlayerBarDiv = styled.div`
     .icon  {
       height: 20px;
       width: 20px;
-      color: white;
+      color: ${props => ThemeColor[props.theme].footer.txtColor};
       vertical-align: -0.15em;
       fill: currentColor;
       overflow: hidden;

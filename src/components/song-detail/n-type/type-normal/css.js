@@ -4,7 +4,7 @@ import { ThemeColor } from "../../../../common/css-var";
 export const MioSongDetailNormalDiv = styled.div`
   width: 100%;
   height: 100%;
-  background-color: #2b2b2b;
+  background-color: ${props => ThemeColor[props.theme].content.background};
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
@@ -24,7 +24,7 @@ export const MioSongDetailNormalDiv = styled.div`
   /*定义滑块 内阴影+圆角*/
   ::-webkit-scrollbar-thumb {
     border-radius: 0.625rem;
-    background-color: ${ props => ThemeColor[props.theme].scrollColor};
+    background-color: ${ props => ThemeColor[props.theme].public.scrollColor};
   }
 `
 
@@ -42,7 +42,7 @@ export const MioSongDetailNormalTopDiv = styled.div`
     right: 0;
     height: 50px;
     z-index: 1;
-    background-color: #2b2b2b;
+    background-color: ${props => ThemeColor[props.theme].content.background};
     .down {
       cursor: pointer;
       width: 20px;
@@ -58,10 +58,10 @@ export const MioSongDetailNormalTopDiv = styled.div`
     flex-direction: column;
     align-items: center;
     margin-right: 60px;
-    color: #636363;
+    color: ${props => ThemeColor[props.theme].public.txtColor};
     .song-name {
       font-size: 1.5rem;
-      color: #d0d0d0;
+      color: ${props => ThemeColor[props.theme].public.titleColor};
       padding: 5px 0;
     }
     .song-name-desu {
@@ -71,7 +71,7 @@ export const MioSongDetailNormalTopDiv = styled.div`
     .al,.ar {
       :hover {
         cursor: pointer;
-        color: #244e7b;
+        color: ${props => ThemeColor[props.theme].public.linkHover};
       }
     }
   }
@@ -117,7 +117,7 @@ export const MioSongDetailNormalTopDiv = styled.div`
   .content-others {
     margin-left: 50px;
     .simi-desc {
-      color: #636363;
+      color: ${props => ThemeColor[props.theme].public.darkColor};
     }
     .item-simi {
       width: 75%;
@@ -141,6 +141,7 @@ export const MioSongDetailNormalTopDiv = styled.div`
       }
       .name {
         flex: 1;
+        color: ${props => ThemeColor[props.theme].public.titleColor};
         overflow: hidden;
         text-overflow: ellipsis;      /* 超出部分省略号 */
         word-break: break-all;        /* break-all(允许在单词内换行。) */  
@@ -149,7 +150,7 @@ export const MioSongDetailNormalTopDiv = styled.div`
         -webkit-line-clamp: 1;        /* 显示的行数 */
       }
       :hover {
-        background-color: #474747;
+        background-color: ${props => ThemeColor[props.theme].public.emtHover};
       }
     }
   }

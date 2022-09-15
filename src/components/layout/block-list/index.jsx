@@ -1,5 +1,6 @@
 import ItemRef from '@arco-design/web-react/es/Collapse/item'
 import React, { memo } from 'react'
+import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 
 import calculatePlayNumber from '../../../utils/calculatePlayNumber'
@@ -9,6 +10,7 @@ import { MioLayoutBlockListDiv } from './css'
 const MioLayoutBlockList = memo((props) => {
   const { resArr, type } = props;
   const histoy = useHistory();
+  const theme = useSelector(state => state.themeSlice.theme);
 
   const typeImg = (item) => {
     if(type=='歌手') {
@@ -46,7 +48,7 @@ const MioLayoutBlockList = memo((props) => {
   }
 
   return (
-    <MioLayoutBlockListDiv> 
+    <MioLayoutBlockListDiv theme={theme}>
       {
         resArr.map((item,index) => {
           return(
@@ -65,14 +67,17 @@ const MioLayoutBlockList = memo((props) => {
                     </div>
                   }
                 </div>
-                <span className="item-name">{item.name}</span>
+                
                 {
                   type=='用户'
-                  && 
+                  ?
                   <>
-                    <span className="item-name">{item.nickname}</span>
+                    <span className="item-name">{item.nickname}
                     <span className="user-gender" style={getUserGenderStyle(item.gender)}>{getUserGender(item.gender)}</span>
+                    </span>
+                    
                   </>
+                  : <span className="item-name">{item.name}</span>
                 }
                 <div className="alias">
                   {

@@ -29,12 +29,12 @@ export const MioMyPlaylistTopDiv = styled.div`
       align-items: center;
       .icon {
         font-size: small;
-        color: ${props => ThemeColor[props.theme].songlistPageIconColor};
+        color: ${props => ThemeColor[props.theme].public.messageColor};
         padding: 0 3px;
-        border: 1px solid ${props => ThemeColor[props.theme].songlistPageIconColor};
+        border: 1px solid ${props => ThemeColor[props.theme].public.messageColor};
       }
       .title {
-        color: ${props => ThemeColor[props.theme].songlistPageFontColorTitle};
+        color: ${props => ThemeColor[props.theme].public.titleColor};
         font-size: 1.5rem;
         font-weight: 600;
         margin-left: 10px;
@@ -56,17 +56,17 @@ export const MioMyPlaylistTopDiv = styled.div`
         cursor: pointer;
       }
       .author-name {
-        color: ${props => ThemeColor[props.theme].songlistPageLinkColor};
+        color: ${props => ThemeColor[props.theme].public.linkColor};
         padding: 0 10px;
         user-select: none;
         :hover {
-          color: ${props => ThemeColor[props.theme].songlistPageLinkHoverColor};
+          color: ${props => ThemeColor[props.theme].public.linkHover};
           cursor: pointer;
         }
       }
       .create-time {
         font-size: small;
-        color: ${props => ThemeColor[props.theme].songlistPageFontColor2};
+        color: ${props => ThemeColor[props.theme].public.txtColor};
       }
     }
 
@@ -76,15 +76,15 @@ export const MioMyPlaylistTopDiv = styled.div`
       align-items: center;
       margin-top: 10px;
       &>* {
-        color:${props => ThemeColor[props.theme].songlistPageFontColorTitle};
+        color: ${props => ThemeColor[props.theme].public.iconColor};
         padding: 0 10px;
         height: 30px;
         line-height: 30px;
-        border: 2px solid ${props => ThemeColor[props.theme].songlistPageBorder};
+        border: 2px solid ${props => ThemeColor[props.theme].public.border};
         border-radius: 20px;
         user-select: none;
         :hover {
-          background-color: ${props => ThemeColor[props.theme].songlistPageButtonHover};
+          background-color: ${props => ThemeColor[props.theme].public.btnHover};
           cursor: pointer;
         }
       }
@@ -93,9 +93,9 @@ export const MioMyPlaylistTopDiv = styled.div`
       }
       
       .collet {
-        cursor: auto;
-        color: ${props => ThemeColor[props.theme].contentRightForbidFont};
-        background-color: ${props => ThemeColor[props.theme].contentRightForbid};
+        cursor: not-allowed;
+        color: ${props => ThemeColor[props.theme].public.iconColor};
+        background-color: ${props => ThemeColor[props.theme].public.btnForbid};
       }
     }
 
@@ -106,10 +106,10 @@ export const MioMyPlaylistTopDiv = styled.div`
       justify-content: center;
       .tags {
         .tags-item {
-          color: ${props => ThemeColor[props.theme].songlistPageLinkColor};
+          color: ${props => ThemeColor[props.theme].public.linkColor};
           user-select: none;
           :hover {
-            color: ${props => ThemeColor[props.theme].songlistPageLinkHoverColor};
+            color: ${props => ThemeColor[props.theme].public.linkHover};
             cursor: pointer;
           }
           
@@ -158,17 +158,17 @@ export const MioMyPlaylistTopDiv = styled.div`
         }
       }
       span {
-        color: ${props => ThemeColor[props.theme].songlistPageFontColorTitle};
+        color: ${props => ThemeColor[props.theme].public.titleColor};
       }
       .dark {
-        color: ${props => ThemeColor[props.theme].songlistPageFontColor2};
+        color: ${props => ThemeColor[props.theme].public.txtColor};
       }
       .link {
         cursor: pointer;
         user-select: none;
-        color: ${props => ThemeColor[props.theme].songlistPageLinkColor};
+        color: ${props => ThemeColor[props.theme].public.linkColor};
         :hover {
-          color: ${props => ThemeColor[props.theme].songlistPageLinkHoverColor};
+          color: ${props => ThemeColor[props.theme].public.linkHover};
         }
       }
     }

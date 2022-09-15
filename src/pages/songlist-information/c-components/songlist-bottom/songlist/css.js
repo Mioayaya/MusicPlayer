@@ -47,7 +47,7 @@ export const MioSonglistBottomSonglistDiv = styled.div`
   .song-list-item-top {
     &>*:not(:first-of-type) {
       :hover {
-        background-color: ${props => ThemeColor[props.theme].contentRightListHover};
+        background-color: ${props => ThemeColor[props.theme].public.emtHover};
       }      
     }
     &>*:first-of-type {
@@ -64,30 +64,30 @@ export const MioSonglistBottomSonglistDiv = styled.div`
       color: #ec4141;
     }
     :hover {
-      background-color: ${props => ThemeColor[props.theme].contentRightListHover};
+      background-color: ${props => ThemeColor[props.theme].public.emtHover};
     }
   }
   .emt {
-    background-color: ${props => ThemeColor[props.theme].contentRightListEmt};
+    background-color: ${props => ThemeColor[props.theme].public.emt};
     :hover {
-      background-color: ${props => ThemeColor[props.theme].contentRightListHover};
+      background-color: ${props => ThemeColor[props.theme].public.emtHover};
     }
   }
   .stay {
-    background-color: ${props => ThemeColor[props.theme].contentRightListActive};
+    background-color: ${props => ThemeColor[props.theme].public.active};
     :hover {
-      background-color: ${props => ThemeColor[props.theme].contentRightListActiveHover};
+      background-color: ${props => ThemeColor[props.theme].public.activeHover};
     }
   }
   .active {
     .title {
-      color: #ec4141;
+      color: ${props => ThemeColor[props.theme].public.messageColor};
     }
     .svg-icon {
       height: 15px;
       width: 15px;    
       margin-right: 10px;
-      color: #ec4141;
+      color: ${props => ThemeColor[props.theme].public.messageColor};
       vertical-align: -0.15em;
       fill: currentColor;
       overflow: hidden;

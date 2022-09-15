@@ -1,12 +1,13 @@
 import React, { memo,useState } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setSongInformShow } from '../../../../store/slices/play-list';
 
 import { MioFooterCardNativeDiv } from './css'
 
 const MioFooterCardNative = memo((props) => {
-  const {theme,playlist,cardShow,setCardShow} = props;
+  const {playlist,cardShow,setCardShow} = props;
   const [notclick,setNotClick] = useState(false);
+  const theme = useSelector(state => state.themeSlice.theme);
   const dispatch = useDispatch();
 
   // methods

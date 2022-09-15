@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setFirstPlay } from '../../../store/slices/play-list';
 import calculateTimeLength from '../../../utils/calculateTimeLength';
 
@@ -9,6 +9,7 @@ import { MioLayoutSongListDiv } from './css'
 const MioLayoutSongList = memo((props) => {
   const {songList,offset} = props;
   const dispatch = useDispatch();
+  const theme = useSelector(state => state.themeSlice.theme);
   const [active,setActive] = useState(-1);
 
   const itemDoubleClick = (item) => {
@@ -16,7 +17,7 @@ const MioLayoutSongList = memo((props) => {
   }
 
   return (
-    <MioLayoutSongListDiv>
+    <MioLayoutSongListDiv theme={theme}>
       <div className="song-list-item-top">
         <span className="act top">操作</span>
         <span className="song-title top">歌曲</span>

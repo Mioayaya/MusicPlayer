@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { ThemeColor } from "../../common/css-var";
 
 export const MioMyPlaylistDiv = styled.div`
-  color: ${props => ThemeColor[props.theme].songlistPageFontColor};
+  color: ${props => ThemeColor[props.theme].public.titleColor};
   height: 0;
 
   .songlist-middle {
@@ -11,20 +11,18 @@ export const MioMyPlaylistDiv = styled.div`
     
     .active {
       position: relative;
-      color: ${props => ThemeColor[props.theme].songlistPageFontColorTitle};
       font-size: larger;
       font-weight: 600;
-      border-bottom: 3px solid ${props => ThemeColor[props.theme].messageColor};
+      border-bottom: 3px solid ${props => ThemeColor[props.theme].public.messageColor};
       :hover {
-        color: ${props => ThemeColor[props.theme].songlistPageFontColorTitle};
+        color: ${props => ThemeColor[props.theme].public.titleColor};
       }
     }
 
     span {
-      color: ${props => ThemeColor[props.theme].songlistPageFontColorTitle};
       user-select: none;
       :hover {
-        color: ${props => ThemeColor[props.theme].songlistPageFontColor};
+        color: ${props => ThemeColor[props.theme].public.lightColor};
       }
     }
     

@@ -11,8 +11,10 @@ import { useSelector } from 'react-redux';
 
 function App() {
   const songInform = useSelector(state => state.playlistSlice.songInform);
+  const bgUrl = useSelector(state => state.showSlice.backgroundUrl);
+  const opacityValue = useSelector(state => state.showSlice.opacity);
   const [showStyle,setShowStyle] = useState(true);
-
+  
   useEffect(() => {
     if(!songInform.show) {
       setTimeout(() => {
@@ -25,8 +27,8 @@ function App() {
   
   return (
     <HashRouter>
-      <div className="App">
-        <div className="warrap">
+      <div className="App" style={{backgroundImage:`url(${bgUrl})`}}>
+        <div className="warrap" style={{opacity: `${opacityValue}`}}>
           <MioAppHeader /> 
           <MioContent />
           <MioAppFooter />

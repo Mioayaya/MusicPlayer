@@ -4,7 +4,7 @@ import { ThemeColor } from '../../common/css-var/index'
 export const MioSearchDiv = styled.div`
   height: 0;
   margin-top: 20px;
-  color: #d0d0d0;  
+  color: ${props => ThemeColor[props.theme].public.titleColor};  
 
   .title,.nav-bar {
     margin-left: 20px;
@@ -28,7 +28,7 @@ export const MioSearchDiv = styled.div`
     }
     .active {
       font-weight: 600;
-      border-bottom: 1px solid #ec4141;
+      border-bottom: 2px solid ${props => ThemeColor[props.theme].public.messageColor};
     }
   }
 `

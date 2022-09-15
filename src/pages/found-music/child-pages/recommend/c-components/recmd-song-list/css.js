@@ -12,7 +12,7 @@ export const MioRecmdSongListDiv = styled.div`
     margin-bottom: 10px;
     a{
       text-decoration: none;
-      color: white;
+      color: ${props => ThemeColor[props.theme].public.titleColor};
     }
   }
 
@@ -22,7 +22,7 @@ export const MioRecmdSongListDiv = styled.div`
     display: block;
     aspect-ratio: 1 / 1;
     margin-bottom: 20px;
-    color: white; 
+    color: ${props => ThemeColor[props.theme].public.lightColor};
 
     .number {
       position: absolute;
@@ -74,7 +74,7 @@ export const MioRecmdSongListDiv = styled.div`
       .song-list-name {
         font-size: large;
         font-weight: 600;
-        color: #d0d0d0;
+        color: ${props => ThemeColor[props.theme].public.titleColor};
         margin-bottom: 20px;
         display: block;
       }
@@ -87,19 +87,22 @@ export const MioRecmdSongListDiv = styled.div`
           flex: 1;
           display: flex;
           flex-direction: row;
-          background-color: #2f2f2f;
+          background-color: ${props => ThemeColor[props.theme].public.emt};
           border-radius: 10px;
           padding: 5px;
           margin-bottom: 10px;
           :hover {
-            background-color: #373737;
+            background-color: ${props => ThemeColor[props.theme].public.emtHover};
           }
         }
         .item-left {
           margin-right: 20px;
         }
         .item-active {
-          background-color: #414141;
+          background-color: ${props => ThemeColor[props.theme].public.active};
+          :hover {
+            background-color: ${props => ThemeColor[props.theme].public.activeHover};
+          }
         }
         .item-desc {
           flex: 2;
@@ -123,10 +126,10 @@ export const MioRecmdSongListDiv = styled.div`
           height: 50px;
           object-fit: cover;
           border-radius: 20px;
-          background-color: #7c7c7c;
+          background-color: ${props => ThemeColor[props.theme].public.darkColor};
         }
         .name {
-          color: #fff;
+          color: ${props => ThemeColor[props.theme].public.titleColor};
           overflow: hidden;
           text-overflow: ellipsis;      /* 超出部分省略号 */
           word-break: break-all;        /* break-all(允许在单词内换行。) */  
@@ -139,9 +142,9 @@ export const MioRecmdSongListDiv = styled.div`
           user-select: none;
         }
         .author {
-          color: #7c7c7c;
+          color: ${props => ThemeColor[props.theme].public.darkColor};
         }
-        .like {
+        .like {          
           transition: 1s;
           transform: color;  
           :hover{
@@ -149,12 +152,13 @@ export const MioRecmdSongListDiv = styled.div`
           }
         }
         .play {
-          
+          color: ${props => ThemeColor[props.theme].public.titleColor};
         }
         .comment {
-          
+          color: ${props => ThemeColor[props.theme].public.titleColor};
         }
         .time-length {
+          color: ${props => ThemeColor[props.theme].public.titleColor};
           white-space:nowrap;     // 强制文本不换行
         }
       }

@@ -21,6 +21,7 @@ import MiosonglistDetail from './songlistDetail';
 const MioRecmdSongList = memo(() => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const theme = useSelector(state => state.themeSlice.theme);
 
   // 获取推荐歌单信息
   const recmdSongList = useSelector(state => state.foundMusicSlice.recmdSongList);
@@ -72,7 +73,7 @@ const MioRecmdSongList = memo(() => {
 
 
   return (
-    <MioRecmdSongListDiv>
+    <MioRecmdSongListDiv theme={theme}>
       <div className="recmd-song-list-top">
         <NavLink to='/foundmusic/songlist'
                  onClick={ e => {dispatch(clickNav(12))}}

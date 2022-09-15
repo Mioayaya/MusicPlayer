@@ -1,11 +1,12 @@
 import styled from "@emotion/styled";
+import { ThemeColor } from "../../common/css-var";
 
 export const MioLoginDiv = styled.div`
   height: 0;
-  color: white;
+  color: ${props => ThemeColor[props.theme].public.lightColor};
   margin: 20px 20px 0 20px;
   .login {
-    color: black;
+    color: ${props => ThemeColor[props.theme].public.darkColor};
     width: 200px;
     margin: auto;
     display: flex;

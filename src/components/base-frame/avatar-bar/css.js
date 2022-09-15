@@ -5,7 +5,7 @@ export const MioAvatarBarDiv = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  color: ${ props => ThemeColor[props.theme].fontHeadColor2 };
+  color: ${ props => ThemeColor[props.theme].public.iconColor };  
 
   &>*:not(last-child) {
     margin-right: 20px;
@@ -23,7 +23,7 @@ export const MioAvatarBarDiv = styled.div`
       margin-left: 5px;
       
       &:hover{
-        color: ${ props => ThemeColor[props.theme].fontHeadColor1 };
+        color: ${props => ThemeColor[props.theme].public.titleColor};
         cursor: pointer;
       }
     }
@@ -42,11 +42,10 @@ export const MioAvatarBarDiv = styled.div`
         cursor: pointer;      
       }
       .mini-inform {
-        position: absolute;
-        background-color: red;
-        background-color: #363636;
+        position: absolute;        
+        background-color: ${ props => ThemeColor[props.theme].header.card };
         border-radius: 5px;
-        box-shadow: 0px 0px 5px #121212;
+        box-shadow: 0px 0px 5px ${ props => ThemeColor[props.theme].public.shadow };
         top: 25px;
         left: -50px;
         width: 130px;
@@ -58,7 +57,7 @@ export const MioAvatarBarDiv = styled.div`
         .top {
           margin-top: 20px;
           text-align: center;
-          color: #ff758f;
+          color: ${ props => ThemeColor[props.theme].header.cardTitle };
         }
         .middle {
           margin-top: 2.5px;
@@ -82,7 +81,7 @@ export const MioAvatarBarDiv = styled.div`
               scale: 0.75;
             }
             :hover {
-              background-color: #414141;
+              background-color: ${ props => ThemeColor[props.theme].public.emtHover };
             }
           }
         }
@@ -105,11 +104,23 @@ export const MioAvatarBarDiv = styled.div`
     vertical-align: -0.15em;
     fill: currentColor;
     overflow: hidden;
-    color: ${ props => ThemeColor[props.theme].fontHeadColor2 };
+    color: ${ props => ThemeColor[props.theme].public.iconColor };
     &:hover {
-      color: ${ props => ThemeColor[props.theme].fontHeadColor1 };
+      color: ${props => ThemeColor[props.theme].public.titleColor};
       cursor: pointer;
     }
   }
   
+  .cloths-card {
+    position: absolute;
+    width: 350px;
+    height: 200px;
+    background-color: ${ props => ThemeColor[props.theme].header.card };
+    top: 80px;
+    right: 0px;
+    z-index: -1;
+    box-shadow: 0 0 5px ${ props => ThemeColor[props.theme].public.shadow };
+    border-radius: 10px;
+    visibility: ${props => props.cloths?'visible':'hidden'};
+  }
 `

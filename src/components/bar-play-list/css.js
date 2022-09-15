@@ -8,7 +8,7 @@ export const MioBarPlayListDiv = styled.div`
   padding: 20px 0;
   .title {
     font-size: 1.5rem;
-    color: #d3d3d3;
+    color: ${props => ThemeColor[props.theme].public.titleColor};
     padding-bottom: 10px;
     padding-left: 20px;
   }
@@ -18,15 +18,15 @@ export const MioBarPlayListDiv = styled.div`
     padding-bottom: 10px;
     padding-left: 20px;
     .num {
-      color: #5b5b5b;
+      color: ${props => ThemeColor[props.theme].public.darkColor};
       padding-right: 20px;
     }
     .clear {
       cursor: pointer;
-      color: #85b9e6;
+      color: ${props => ThemeColor[props.theme].public.linkColor};
       margin-right: 20px;
       :hover {
-        color: #b3cee5;
+        color: ${props => ThemeColor[props.theme].public.linkHover};
       }
     }
   }
@@ -34,7 +34,7 @@ export const MioBarPlayListDiv = styled.div`
   .menu-item-list {
     display: flex;
     flex-direction: column;
-    color: #d3d3d3;
+    color: ${props => ThemeColor[props.theme].public.titleColor};
     .item-list {
       display: flex;
       flex-direction: row;
@@ -44,8 +44,7 @@ export const MioBarPlayListDiv = styled.div`
       line-height: 30px;
       cursor: default;
       :hover {
-        color: #ffffff;
-        background-color: ${props => ThemeColor[props.theme].contentRightListHover};
+        background-color: ${props => ThemeColor[props.theme].public.emtHover};
       }
       .playing {
         flex: 1;
@@ -78,23 +77,23 @@ export const MioBarPlayListDiv = styled.div`
       }
     }
 
-    .emt {
-      background-color: ${props => ThemeColor[props.theme].contentRightListEmt};
+    .emt {      
+      background-color: ${props => ThemeColor[props.theme].public.emt};
       :hover {
-        background-color: ${props => ThemeColor[props.theme].contentRightListHover};
+        background-color: ${props => ThemeColor[props.theme].public.emtHover};
       }
     }
 
     .active {
-      background-color: ${props => ThemeColor[props.theme].contentRightListActive};
+      background-color: ${props => ThemeColor[props.theme].public.active};
       :hover {
-        background-color: ${props => ThemeColor[props.theme].contentRightListActiveHover};
+        background-color: ${props => ThemeColor[props.theme].public.activeHover};
       }
     }
 
     .playing {
       .playing,.item-name,.item-author {
-        color: #ec4141;
+        color: ${props => ThemeColor[props.theme].public.messageColor};
       }      
     }
   }

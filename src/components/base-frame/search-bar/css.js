@@ -4,15 +4,15 @@ import { MioSearchBarCss,ThemeColor } from '../../../common/css-var'
 export const MioSearchBarDiv = styled.div`
   width: 100%;
   height: 100%;
-  border-radius: ${MioSearchBarCss.radus};
+  border-radius: ${MioSearchBarCss.radus};  
   position: relative;
   .search-bar-icon {
     position: absolute;
-    color: ${ props => ThemeColor[props.theme].searchIcon };
+    color: ${ props => ThemeColor[props.theme].public.iconColor };    
     left: calc((35px - 24px) / 2);
     top: calc((35px - 24px) / 2);
     &:hover {
-      color: ${ props => ThemeColor[props.theme].searchIconHover };
+      color: ${ props => ThemeColor[props.theme].public.lightColor };
     }
   }
 
@@ -28,7 +28,7 @@ export const MioSearchBarDiv = styled.div`
     position: absolute;
     width: 400px;
     height: 35vh;
-    background-color: #363636;
+    background-color: ${props => ThemeColor[props.theme].header.card};
     top: 70px;
     left: -80px;
     border-radius: 5px;
@@ -36,19 +36,19 @@ export const MioSearchBarDiv = styled.div`
   }
 
   .search-bar-input {
-    background-color: ${ props => ThemeColor[props.theme].searchBar };
+    background-color: ${ props => ThemeColor[props.theme].header.searchBar };
     height: ${MioSearchBarCss.height};
     width: ${MioSearchBarCss.width};
     line-height: ${MioSearchBarCss.height};
     font-size: ${MioSearchBarCss.fontsize};
-    color: ${ props => ThemeColor[props.theme].fontHeadColor1 };
+    color: ${props => ThemeColor[props.theme].public.titleColor};
     border-radius: ${MioSearchBarCss.radus};
     border: none;
     outline: none;
     padding-inline-start: 35px;
     padding-inline-end: 20px;
     &::-webkit-input-placeholder {
-      color: ${ props => ThemeColor[props.theme].fontHeadColor3 };
+      color: ${ props => ThemeColor[props.theme].public.txtColor };
     }
   }
 `

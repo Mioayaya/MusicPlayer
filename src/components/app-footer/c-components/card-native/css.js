@@ -7,6 +7,7 @@ export const MioFooterCardNativeDiv = styled.div`
   /* position: ${props => props.cardShow ? 'absolute':'relative'}; */
   transform: ${props => props.cardShow ? 'translateY(30px)':'translateY(-25px)'};
   transition: transform 0.5s;
+  color: ${props => ThemeColor[props.theme].footer.txtColor};
   cursor: default;
   .avatar {
       width: 50px;

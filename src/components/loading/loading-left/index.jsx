@@ -1,5 +1,7 @@
 import React, { memo } from 'react'
 import styled from '@emotion/styled'
+import { useSelector } from 'react-redux'
+import { ThemeColor } from '../../../common/css-var'
 
 const MioLoadingLeftDiv = styled.div`
   @keyframes boxShadowOffset3 {
@@ -27,7 +29,7 @@ const MioLoadingLeftDiv = styled.div`
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    color: #ec4141;
+    color: ${props => ThemeColor[props.theme].public.messageColor};
     -webkit-animation: boxShadowOffset3 2s linear infinite;
     animation: boxShadowOffset3 2s linear infinite;
   }
@@ -37,8 +39,10 @@ const MioLoadingLeftDiv = styled.div`
 
 const MioLoadingLeft = memo((props) => {
   const {height} = props
+  const theme = useSelector(state => state.themeSlice.theme);
+
   return (
-    <MioLoadingLeftDiv height={height}>
+    <MioLoadingLeftDiv height={height} theme={theme}>
       <div className="loading"></div>
     </MioLoadingLeftDiv>
   )

@@ -6,12 +6,12 @@ flex: 1;
 display: flex;
 flex-direction: row;
 position: relative;
-background-color: ${ props => ThemeColor[props.theme].content};
+background-color: ${props => ThemeColor[props.theme].content.background};
 .content-left {
   width: ${MioContentCss.left};
   height: 100%;
   overflow-y: hidden;
-  border-right: 2px solid ${ props => ThemeColor[props.theme].contentDividing };
+  border-right: 2px solid ${props => ThemeColor[props.theme].content.split};
   box-sizing: border-box;
   &:hover {
     overflow-y: scroll;
@@ -29,7 +29,7 @@ background-color: ${ props => ThemeColor[props.theme].content};
   bottom: 0;
   width: 350px;
   height: 100%;
-  background-color: #363636;
+  background-color: ${props => ThemeColor[props.theme].content.card};
   z-index: 11;
   display: ${props => props.showPlayList ? 'block': 'none'};
 }
@@ -50,7 +50,7 @@ background-color: ${ props => ThemeColor[props.theme].content};
   /*定义滑块 内阴影+圆角*/
   ::-webkit-scrollbar-thumb {
     border-radius: 0.625rem;
-    background-color: ${ props => ThemeColor[props.theme].scrollColor};
+    background-color: ${ props => ThemeColor[props.theme].public.scrollColor};
   }
 }
 `

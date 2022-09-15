@@ -9,6 +9,7 @@ export const MioFooterCardSongDiv = styled.div`
   transform: ${props => props.cardShow ? 'translateY(18px)':'translateY(-33px)'};
   visibility: visible;
   transition: transform 0.5s;
+  color: ${props => ThemeColor[props.theme].footer.txtColor};
   .down {
     flex: 1;
   }

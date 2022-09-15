@@ -2,11 +2,12 @@ import React, { useState, useMemo, memo } from 'react'
 import {ReactVirtualListDiv} from './css.js'
 import { useCallback } from 'react';
 import { useRef } from 'react';
+import { useSelector } from 'react-redux';
 
 const ReactVirtualList = memo((props) => {
   let { list,totalLength, item: Item, contentWidth, contentHeight, itemheight,stayStyle,playId } = props
     const [start, setStart] = useState(0)
-
+    const theme = useSelector(state => state.themeSlice.theme);
     const listDom = useRef()
 
     const limit = useMemo(() => {
@@ -43,7 +44,7 @@ const ReactVirtualList = memo((props) => {
       <ReactVirtualListDiv 
 				ref={listDom}
 				style={{ width: contentWidth + 'px', height: contentHeight + 'px' }}
-				theme = 'dark'
+				theme = {theme}
 				onScroll={e => {scrollHandler(e)}}
 			>
         <div className="listWrapper" 

@@ -19,6 +19,7 @@ import { MioFoundMusicBannarDiv } from './css'
 const MioFoundMusicBannar = memo(() => {
   const dispatch = useDispatch();
   const foundMusicSlice = useSelector(state => state.foundMusicSlice.topBanners);
+  const theme = useSelector(state => state.themeSlice.theme);
 
   // 按钮是否显示
   const [ buttonFlag,setButtonFlag ] = useState(false);
@@ -34,7 +35,7 @@ const MioFoundMusicBannar = memo(() => {
   }, [])
 
   return (
-    <MioFoundMusicBannarDiv swiperFlag={buttonFlag}>
+    <MioFoundMusicBannarDiv swiperFlag={buttonFlag} theme={theme}>
       <div className="bannar" 
            onMouseEnter={e => setButtonFlag(true)} 
            onMouseLeave={e => setButtonFlag(false)} 

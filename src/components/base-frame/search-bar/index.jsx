@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { memo } from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { getSearchSuggest } from '../../../axios/server/search';
 import { setUserCounter } from '../../../store/slices/user-inform';
@@ -11,12 +11,10 @@ import MioSearchSuggest from './c-components/suggest-search';
 
 import { MioSearchBarDiv } from './css';
 
-// 接受一个全局的 redux
-const theme = 'dark';
-
 const MioSearchBar = memo(() => {
   const histort = useHistory();
   const dispatch = useDispatch();
+  const theme = useSelector(state => state.themeSlice.theme);
   const [searchValue,setSerachValue] = useState('');
   const [suggestObj,setSuggestObj] = useState({});
   const [showSuggest,setShowSuggest] = useState(false);

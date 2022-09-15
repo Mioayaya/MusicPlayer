@@ -9,9 +9,9 @@ export const MioAppHeaderDiv = styled.div`
   left: 0;
   right: 0;
   margin: ${MioHeadCss.AppmarginHeight} ${MioHeadCss.AppmarginWidth} 0  ${MioHeadCss.AppmarginWidth};
-  background-color: ${ props => ThemeColor[props.theme].head };
-  color: ${ props => ThemeColor[props.theme].fontHeadColor1 };
-  border-bottom: 3px solid ${ props => ThemeColor[props.theme].headShadow };
+  background-color: ${ props => ThemeColor[props.theme].header.background };
+  color: ${ props => ThemeColor[props.theme].public.lightColor };
+  border-bottom: 3px solid ${ props => ThemeColor[props.theme].header.split };
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   box-sizing: border-box;
@@ -51,7 +51,7 @@ export const MioAppHeaderDiv = styled.div`
       line-height: 20px;
       text-align: center;
       padding: 0;
-      background-color: ${MioHeadCss.headStep};  // 
+      background-color: ${ props => ThemeColor[props.theme].public.btn };
       border-radius: 30%;
       user-select: none;
       cursor:pointer;

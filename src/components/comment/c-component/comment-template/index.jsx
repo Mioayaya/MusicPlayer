@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { setSongInformShow } from '../../../../store/slices/play-list';
 import { setUserCounter } from '../../../../store/slices/user-inform';
@@ -11,6 +11,7 @@ const MioCommentTemplate = memo((props) => {
   const {comment,title,commentLength,commentWidth} = props;
   const history = useHistory();
   const dispatch = useDispatch();
+  const theme = useSelector(state => state.themeSlice.theme);
 
   const userClick = (uid) => {
     dispatch(setSongInformShow(false));
@@ -22,7 +23,7 @@ const MioCommentTemplate = memo((props) => {
   }
 
   return (
-    <MioCommentTemplateDiv commentWidth={commentWidth}>
+    <MioCommentTemplateDiv commentWidth={commentWidth} theme={theme}>
       {
         title 
         ? <span className="title">{`${title}(${commentLength})`}</span>

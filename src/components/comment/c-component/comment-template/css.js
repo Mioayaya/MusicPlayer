@@ -7,6 +7,7 @@ export const MioCommentTemplateDiv = styled.div`
   flex-direction: column;
   align-items: center;
   color: #d4d4d4;
+  color: ${props => ThemeColor[props.theme].public.titleColor};
   margin-top: 50px;
   .title {
     /* width: 50%; */
@@ -33,8 +34,8 @@ export const MioCommentTemplateDiv = styled.div`
     .item-replied {
       display: flex;
       flex-direction: row;
-      background-color: #333333;
-      color: #8e8e8e;
+      background-color: ${props => ThemeColor[props.theme].content.replied};            
+      color: ${props => ThemeColor[props.theme].public.txtColor};
       padding: 5px;
       border-radius: 10px;
       .item-replied-main {
@@ -57,22 +58,22 @@ export const MioCommentTemplateDiv = styled.div`
     }
 
     .item-main-name,.item-replied-main-name {
-      color: #85b9e6;
+      color: ${props => ThemeColor[props.theme].public.linkColor};
       margin-bottom: 5px;
       cursor: pointer;
       :hover {
-        color: #b3cee5;
+        color: ${props => ThemeColor[props.theme].public.linkHover};
       }
     }
 
     .item-main-time {
-      color: #636363;
+      color: ${props => ThemeColor[props.theme].content.commentTime};
     }
 
     .deline-bar {
       height: 1px;      
       margin-top: 20px;
-      background: linear-gradient(to left, #353535 0%,#555555 50%, #353535 100%);
+      background: ${props => ThemeColor[props.theme].content.commentLiner};
     }
     
   }

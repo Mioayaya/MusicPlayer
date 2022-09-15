@@ -8,9 +8,11 @@ import { getSearchRes } from '../../../../axios/server/search';
 import { MioSearchBaseDiv } from './css'
 
 import MioLayoutBlockList from '../../../../components/layout/block-list';
+import { useSelector } from 'react-redux';
 
 const MioSearchBase = memo((props) => {
   const {routerData,type,nameType} = props;
+  const theme = useSelector(state => state.themeSlice.theme);
   const [resArr,setResArr] = useState([]);
   const [offset,setOffset] = useState(0);
   const [total,setTotal] = useState(0);
@@ -47,7 +49,7 @@ const MioSearchBase = memo((props) => {
   
   
   return (
-    <MioSearchBaseDiv>
+    <MioSearchBaseDiv theme={theme}>
       {
         resArr.length!=0
         &&

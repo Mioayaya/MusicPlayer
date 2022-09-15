@@ -35,7 +35,7 @@ export const MioMineShowTopDiv = styled.div`
       .name {
         font-size: 2rem;
         font-weight: 600;
-        color: ${props => ThemeColor[props.theme].contentRightFontNormal};
+        color: ${props => ThemeColor[props.theme].public.titleColor};
       }
       .gender {
         color: #fff;
@@ -66,7 +66,7 @@ export const MioMineShowTopDiv = styled.div`
 
     .editor {
       position: relative;
-      border-bottom: 1px solid ${props => ThemeColor[props.theme].contentRightDivding};
+      border-bottom: 1px solid ${props => ThemeColor[props.theme].content.split};
       margin: 10px 0;
       .btns {
         position: absolute;
@@ -74,12 +74,12 @@ export const MioMineShowTopDiv = styled.div`
         top: -35px;
         span {
           padding: 5px;
-          border: 2px solid #4a4a4a;
+          border: 2px solid ${props => ThemeColor[props.theme].public.border};
           border-radius: 15px;
           cursor: pointer;
           user-select: none;
           :hover {
-            background-color: #353535;
+            background-color: ${props => ThemeColor[props.theme].public.btnHover};
           }
         }
       }
@@ -94,17 +94,17 @@ export const MioMineShowTopDiv = styled.div`
         align-items: center;
         user-select: none;
         cursor: pointer;
-        color: ${props => ThemeColor[props.theme].contentRightFontNormal};
+        color: ${props => ThemeColor[props.theme].public.titleColor};
         :not(:last-child) {
           padding-right: 40px;
         }
         :hover {
-          color: ${props => ThemeColor[props.theme].contentRightFontHover};
+          color: ${props => ThemeColor[props.theme].public.lightColor};
         }
         .text {
-          color: ${props => ThemeColor[props.theme].contentRightFontDark};
+          color: ${props => ThemeColor[props.theme].public.txtColor};
           :hover {
-            color: ${props => ThemeColor[props.theme].contentRightFontHover};
+            color: ${props => ThemeColor[props.theme].public.lightColor};
           }
         }
       }
@@ -113,11 +113,11 @@ export const MioMineShowTopDiv = styled.div`
     .area {
       margin-top: 20px;
       .text {
-        color: ${props => ThemeColor[props.theme].contentRightFontNormal};
+        color: ${props => ThemeColor[props.theme].public.titleColor};
       }
       .province,.city {
         margin-left: 5px;
-        color: ${props => ThemeColor[props.theme].contentRightFontDark};
+        color: ${props => ThemeColor[props.theme].public.titleColor};
       }
     }
 
@@ -129,7 +129,7 @@ export const MioMineShowTopDiv = styled.div`
       .text {
         white-space: nowrap;
         margin-right: 5px;
-        color: ${props => ThemeColor[props.theme].contentRightFontNormal};
+        color: ${props => ThemeColor[props.theme].public.titleColor};
       }
       .content {
         padding-right: 100px;
@@ -139,9 +139,10 @@ export const MioMineShowTopDiv = styled.div`
         display: -webkit-box;         /* 对象作为伸缩盒子模型显示 */
         -webkit-box-orient: vertical; /* 设置或检索伸缩盒对象的子元素的排列方式 */
         -webkit-line-clamp: ${props => props.show? 99: 1};;        /* 显示的行数 */
-        color: ${props => ThemeColor[props.theme].contentRightFontDark};
+        color: ${props => ThemeColor[props.theme].public.txtColor};
       }
       .button {
+        color: ${props => ThemeColor[props.theme].public.titleColor};
         position: absolute;
         right: 20px;
         cursor: pointer;

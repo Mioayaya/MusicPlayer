@@ -10,7 +10,7 @@ export const MioLayoutBlockListDiv = styled.div`
     align-items: center;
     padding: 10px 0;
     :hover {
-      background-color: #414141;
+      background-color: ${props => ThemeColor[props.theme].public.emtHover};
     }
 
     .left {
@@ -43,14 +43,15 @@ export const MioLayoutBlockListDiv = styled.div`
         }
       }
       .item-name {
-        margin-left: 10px;        
+        flex: 1;
+        margin-left: 10px;
       }
       .user-gender {
         margin-left: 7px;
         color: #fff;
         user-select: none;
         height: 20px;
-        width: 20px;
+        padding: 0 5px;
         line-height: 20px;
         text-align: center;
         background-color: #ff0000;
@@ -58,7 +59,7 @@ export const MioLayoutBlockListDiv = styled.div`
       }
       .alias {
         margin-left: 10px;
-        color: #666666;
+        color: ${props => ThemeColor[props.theme].public.txtColor};
       }
     }
     .middle {
@@ -66,7 +67,7 @@ export const MioLayoutBlockListDiv = styled.div`
       .middle-author {
         user-select: none;
         :hover {
-          color: #ffffff;
+          color: ${props => ThemeColor[props.theme].public.txtColor};
         }
       }
     }
@@ -81,13 +82,13 @@ export const MioLayoutBlockListDiv = styled.div`
   }
 
   &>:nth-of-type(2n+1) {
-    background-color: #333333;
+    background-color: ${props => ThemeColor[props.theme].public.emt};
     :hover {
-      background-color: #474747;
+      background-color: ${props => ThemeColor[props.theme].public.emtHover};
     }
   }
 
-  .item-name,.middle-author,.user-sign {
+  .item-name,.middle-author,.user-sign,.alias {
     overflow: hidden;
     text-overflow: ellipsis;      /* 超出部分省略号 */
     word-break: break-all;        /* break-all(允许在单词内换行。) */  

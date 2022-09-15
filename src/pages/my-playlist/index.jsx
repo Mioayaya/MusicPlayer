@@ -37,7 +37,7 @@ const MioMyPlayList = memo(() => {
   useEffect(() => {
     if(playlist) {
       if(offset < playlist.trackIds.length && offset!=0) {      
-        getTotalSonglist(songlistInformation.id,offset,Limit).then(res => {
+        getTotalSonglist(playlist.id,offset,Limit).then(res => {
           dispatch(setUserOtherInformSonglist(res.songs));
           setOffset(offset+Limit);
         })

@@ -39,8 +39,8 @@ export const MioLayoutSongListDiv = styled.div`
   }
 
   .song-list-item {
-    :hover {
-      background-color: #474747;
+    :hover {      
+      background-color: ${props => ThemeColor[props.theme].public.emtHover};
     }
     .act {
       .number {        
@@ -50,16 +50,16 @@ export const MioLayoutSongListDiv = styled.div`
   }
 
   .song-list-item.active {
-    background-color: #474747;
+    background-color: ${props => ThemeColor[props.theme].public.active};
     :hover {
-      background-color: #414141;
+      background-color: ${props => ThemeColor[props.theme].public.activeHover};
     }
   }
 
   &>:nth-of-type(2n) {
-    background-color: #333333;      
+    background-color: ${props => ThemeColor[props.theme].content.listHover};      
     :hover {
-      background-color: #474747;
+      background-color: ${props => ThemeColor[props.theme].public.emtHover};
     }
   }
 

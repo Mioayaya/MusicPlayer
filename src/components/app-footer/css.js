@@ -10,9 +10,9 @@ export const MioFooterDiv = styled.div`
   right: 0;
   margin: 0 ${MioFooterCss.marginWidth} ${MioFooterCss.marginHeight} ${MioFooterCss.marginWidth};
   margin-bottom: ${MioFooterCss.marginHeight};
-  background-color: ${ props => ThemeColor[props.theme].head };
-  color: ${props => ThemeColor[props.theme].fontFooterColor2};
-  border-top: 2px solid ${props => ThemeColor[props.theme].footerTop};
+  background-color: ${ props => ThemeColor[props.theme].footer.background };
+  color: ${props => ThemeColor[props.theme].footer.txtColor};
+  border-top: 2px solid ${props => ThemeColor[props.theme].footer.split};
   border-end-end-radius: 10px;
   border-end-start-radius: 10px;
   box-sizing: border-box;
