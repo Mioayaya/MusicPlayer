@@ -35,15 +35,13 @@ const MioMyPlayList = memo(() => {
   },[Number(location.hash.split('?id=')[1]),routerData])
 
   useEffect(() => {
-    if(playlist) {
-      if(offset < playlist.trackIds.length && offset!=0) {      
-        getTotalSonglist(playlist.id,offset,Limit).then(res => {
-          dispatch(setUserOtherInformSonglist(res.songs));
-          setOffset(offset+Limit);
-        })
-      }
+    if(offset < playlist.trackIds.length && offset!=0) {      
+      getTotalSonglist(playlist.id,offset,Limit).then(res => {
+        dispatch(setUserOtherInformSonglist(res.songs));
+        setOffset(offset+Limit);
+      })
     }
-  },[playlist,offset])
+  },[offset])
 
   return (
     <MioMyPlaylistDiv theme={theme}>
@@ -54,8 +52,8 @@ const MioMyPlayList = memo(() => {
                               playlist={playlist}
                               userInform={userInform}
             />
-          : <div className="loading">加载中</div>
-        : <div className="loading">加载中</div>
+          : <div className="loading">······拼命加载中······</div>
+        : <div className="loading">······拼命加载中······</div>
       }
 
       {

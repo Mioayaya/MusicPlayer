@@ -12,9 +12,10 @@ const MioNormalList = memo((props) => {
   const dispatch = useDispatch();
   const userId = useSelector(state => state.userInformSlice.userInform.id);
 
-  const itemClick = (id) => {
-    // 登录用户
-    if(uid==userId) {      
+  const itemClick = (itemUserid,id) => {
+    // 登录用户    
+    
+    if(itemUserid==userId) {
       dispatch(setNavKey(id));
       history.push({
         pathname: '/myplaylist',
@@ -26,6 +27,7 @@ const MioNormalList = memo((props) => {
         search: `?id=${id}`
       })
     }
+    
   }
 
   return (
@@ -35,7 +37,7 @@ const MioNormalList = memo((props) => {
           return (
             <div key={index} 
                  className={(index+1)%5==0?'item':'item nlast'}
-                 onClick={e => itemClick(item.id)}
+                 onClick={e => itemClick(item.creator.userId,item.id)}
             >
               <div className="img">
                 <img src={item.coverImgUrl} alt="" />
