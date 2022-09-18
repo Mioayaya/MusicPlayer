@@ -24,7 +24,7 @@ export const MioFooteerPlayerBarDiv = styled.div`
     .icon  {
       height: 20px;
       width: 20px;
-      color: ${props => ThemeColor[props.theme].public.lightColor};
+      color: ${props => ThemeColor[props.theme].footer.txtColor}; 
       vertical-align: -0.15em;
       fill: currentColor;
       overflow: hidden;

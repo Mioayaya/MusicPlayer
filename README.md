@@ -1,13 +1,13 @@
 # MusicPlayer
 -- React + js + vite web端音乐播放器 --
 
--- 在线预览 <a href="http://ayaya.org.cn/" target="_block">ayaya.org.cn</a>
+-- 在线预览 <a href="http://ayaya.org.cn/" target="_blank">ayaya.org.cn</a>
 
 -- 基于网易云音乐api--
 
 # 运行本项目
  ## 后端  
- - 详细见 <a href="https://github.com/Binaryify/NeteaseCloudMusicApi" target="_block">网易云音乐 Node.js API service</a>
+ - 详细见 <a href="https://github.com/Binaryify/NeteaseCloudMusicApi" target="_blank">网易云音乐 Node.js API service</a>
   
  安装
  ```
@@ -39,12 +39,12 @@
 - 3.使用Hooks、并且使用 memo 包裹
 - 4.组件内部状态使用 useState 业务数据放在 redux 中
 - 5.网络请求使用 axios
-- 6.ui库使用Design
+- 6.ui库使用 arco Design
 
 # 关于技术
 ## 技术栈
 - React(hooks函数式组件写法)
-- vite 
+- vite 打包工具
 - Redux Toolkit
 - ui库 -- arco Design
 - axios封装

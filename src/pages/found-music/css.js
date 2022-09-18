@@ -18,7 +18,7 @@ export const MioFoundMusicDiv = styled.div`
     .found-music-nav-item-active {
       font-size: larger;
       font-weight: 600;
-      border-bottom: 3px solid red;
+      border-bottom: 3px solid ${props => ThemeColor[props.theme].public.messageColor};
     }
     
     &>*:not(last-child) {

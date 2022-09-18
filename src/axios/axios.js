@@ -3,7 +3,7 @@ export default function request(option) {
 	return new Promise((resolve, reject) => {
 		// 1.创建axios的实例
 		const instance = originAxios.create({
-			baseURL: 'http://127.0.0.1:3000/',
+			baseURL: 'http://127.0.0.1:3000/',			
 			timeout: 10000,
 			// 设置axios跨域
 			withCredentials: true,
