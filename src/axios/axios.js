@@ -2,10 +2,8 @@ import originAxios from 'axios';
 export default function request(option) {
 	return new Promise((resolve, reject) => {
 		// 1.创建axios的实例
-		// baseURL: 'http://127.0.0.1:3000/',
-		// baseURL: 'https://cloud-music-ten-iota.vercel.app/',
 		const instance = originAxios.create({
-			baseURL: 'http://182.92.7.115:3000/',		
+			baseURL: 'http://127.0.0.1:3000/',
 			timeout: 10000,
 			// 设置axios跨域
 			withCredentials: true,

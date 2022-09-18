@@ -1,6 +1,38 @@
 # MusicPlayer
+-- React + js + vite web端音乐播放器 --
+
+-- 在线预览 <a href="http://ayaya.org.cn/" target="_block">ayaya.org.cn</a>
+
 -- 基于网易云音乐api--
 
+# 运行本项目
+ ## 后端  
+ - 详细见 <a href="https://github.com/Binaryify/NeteaseCloudMusicApi" target="_block">网易云音乐 Node.js API service</a>
+  
+ 安装
+ ```
+  git clone git@github.com:Binaryify/NeteaseCloudMusicApi.git
+  cd NeteaseCloudMusicApi
+  npm install
+ ```
+ 运行
+ ```
+  node app.js
+ ```
+ ## 前端
+ 安装
+ ```
+  git clone git@github.com:Raftern/MusicPlayer.git
+  cd MusicPlayer
+  yarn install 
+  或者 npm install
+ ```
+ 运行
+ ```
+ yarn dev
+ 或者
+ npm run dev
+ ```
 # 项目规范
 - 1.文件夹、文件名统一小写，js变量使用小驼峰标识，常量使用大写字母，组件采用大驼峰
 - 2.css 采用css+emotionCss
@@ -20,12 +52,13 @@
 ## 项目技术
 - 歌单中的歌曲列表 采用 虚拟列表
 - 评论展示 采用 无限滚动+滚动请求+虚拟列表
-- 部分点击事件 增加防抖效果
+- 部分点击事件 增加节流效果
 - 歌词时间轴的同步
 - 歌曲时间调节
 - 一键换肤功能
 - 歌曲播放列表采用 链表存储
-- 歌曲播放顺序 歌曲切换 
+- 歌曲播放顺序 歌曲切换
+- 搜索提示
 
 # 问题
 - Q1: 使用 react-router-config 配置路由报错 `You should not use <Switch> outside a <Router>`  
@@ -35,7 +68,7 @@
 - Q3: 如何设置 滚动条 以及调节样式, 移入出现 滚动条等  
   A: 设置 overflow-y: scroll 样式 详见 Content组件
 - Q3: 使用 React.lazy 时报错  
-  A: 在路由外包裹 
+  A: 在路由外包裹  
   ```jsx
   <Suspense fallback={<div>loading</div>}>
     {renderRoutes(routes)}
@@ -43,40 +76,41 @@
   ```
 - Q4: 在页面点击路由跳转的时候，通过浏览器 网页回退，导航栏状态不会发生变化  
   A: 在每个页面加载的时候 dispatch() 派发自己的key即可  
-  - Q4.1： 左侧切换的时候 还是不能解决，因为该组件不会重新加载
+  - Q4.1： 左侧切换的时候 还是不能解决，因为该组件不会重新加载  
     A: 在进入游戏
 
 - Q5: 在别的页面刷新的时候，会导致 redux key刷新，导致 导航栏 active 不匹配  
   A: 在加载的时候，判断路由路径，dispatch() 设置key即可  使用正则匹配 子路由 会影响 xx
 
 - Q6: 如何保持登录状态
-  A: 本地存储cookie + 使用session会话 
+  A: 本地存储cookie
 
 - Q7： 长列表加载  
-  A：虚拟列表 
+  - A1：使用分段加载,使用offset记录当前加载起始值，一段加载完毕后再更新offset值
+  - A2: 使用滚动列表,监听滚动到最低端，然后再加载数据
 
-- Q8：导航栏由于不会重新加载，切换登录状态的时候如何判断?
-  A: 一开始载入的时候判断
+- Q8：导航栏由于不会重新加载，切换登录状态的时候如何判断?  
+  A: 设置了redux全局变量监听 登录是否
 
-- Q8: 导入第三方组件库 出现500报错
+- Q8: 导入第三方组件库 出现500报错  
   A: vite.config.js 里设置了 '@' 为 src 路径 与组件路径冲突
 
-- Q8: axios请求携带cookie
+- Q8: axios请求携带cookie  
   - withCredentials: true | 或者再url末尾 cookie=cookie
   - 如何携带两个cookie
   - document.cookie添加两个  使用split对原有的cookie切割
 
-- Q9: axios 设置跨域后 也携带不了跨域
+- Q9: axios 设置跨域后 也携带不了cookie   
   - 暂时未解决，使用参数的方式传递
 
-- Q10: 如何实现上划下划的动画
+- Q10: 如何实现上划下划的动画  
   - 父组件设置 overflow:hidden
   - 子组件设置滚动动画: 
     ```css
     transform: ${props => props.show?'translateY(0px)':'translateY(100vh)'};
     transition: 0.5s;
     ``` 
-  - 但是只是这样设置，划出去后，点击不了页面，在划出去之后设置 visibility，使用setTimeout。设置 display:none 有同样的效果,但是动画效果只有一半生效
+  - 但是只是这样设置，划出去后，点击不了页面，在划出去之后设置 visibility，使用setTimeout。设置 display:none 有同样的效果,但是动画效果只有一半生效,因为display none 没有动画效果
     ```js
     function App() {
       const songInform = useSelector(state => state.playlistSlice.songInform);
@@ -100,51 +134,35 @@
         </div>
       )
     }
-    ``` 
-
-## CSS 相关
-- 图片的覆盖
-- 强制显示一行文本
-- 文本超出 显示省略号
-- flex左右对齐 
-- 宽度、高度继承问题
-
-# 关于接口数据
-## 获取用户详情 (/user/detail)
-res
-
-|属性|值|
-|-----|-----|
-|level|等级|
-|createTime|创建时间|
-|createDays|创建天数|
-|listenSongs|听歌数量|
-|peopleCanSeeMyPlayRecord|播放记录是否可见|
-
-.profile
-
-|属性|值|
-|-----|-----|
-|userId|id|
-|nickname|昵称|
-|avatarUrl|头像|
-|gender|性别(0,1,2)|
-|vipType|vip|
-|eventCount|动态数量|
-|follows|关注数|
-|followeds|粉丝数|
-|city|所在地区(城市码)|
-|province|省|
-|signature|签名|
-|playlistCount|创建的歌单|
-|privacyItemUnlimit|隐私权限|
+    ```
+- Q11: 如何区分显示加载中，还是没有加载结果？  
+  A11: 一开始我是设置数据初始值为0, length===0 的时候 显示加载中，有数据的时候就会替换了
+  但是,如果没有搜索结果的话也会一直显示 加载中，这对用户交互非常不友好，不知道到底是加载中
+  还是没有加载结果。 首先我考虑在加一个变量来控制加载的数据是否是0，转念一想只要设置length的初始
+  值为 -1 就行了, length == 0 或者是 undefined(没有返回字段) 则是没有搜索结果，length == -1 则是加载中
+- Q12: 如何实现换肤?  
+  A: 使用emotio Css ,将color变量放在一个js文件中,比如下面代码,
+  再根据props选择即可,如 `color: {props => themeColor[props.theme].(具体色值))}`
+  ```js
+  export themeColor = {
+    dark: {
+      ···
+    },
+    white: {
+      ···
+    },
+    pink: {
+      ···
+    }
+  }
+  ``` 
 
 # todo
 -- --
 search 页面✅
-换肤 ⬜
-设置页面 ⬜ (换背景)
-歌单列表分段加载 ⬜
+换肤 ✅
+设置页面 ✅ (换背景)
+歌单列表分段加载 ✅
 avatar hover ✅
 -- --
 ## components 
@@ -152,37 +170,12 @@ avatar hover ✅
 - content-left ✅
 - player ✅
 
-## pages
-### 发现音乐
-- 个性推荐
-  - views ✅
-  - 点击事件 ✅
-- 专属定制 ⬜
-- 歌单   ⬜
-- 排行榜  ⬜
-- 歌手 ⬜
-- 最新音乐 ⬜
-### 电台 ⬜
-### 视频 ⬜
-### 动态 ⬜
-### FM    ⬜
-### 最近播放 ⬜
-### 我的电台 ⬜
-### 我的收藏 ⬜
-### 我的消息 ⬜
-### 创建歌单 ✅
-### 收藏歌单 ✅
-### mine 
-- 上半部分 ✅
-- 下班部分 ✅
-### 其它用户界面 ✅
-
 ## header
 ### 搜索 ✅
 ### 点击头像展示 ✅
-### 换肤 ⬜
-### 设置 ⬜
-### 关闭 ⬜
+### 换肤 ✅
+### 设置 ✅
+### 收缩 ⬜
 
 ## footer 
 - views ✅
@@ -209,3 +202,29 @@ avatar hover ✅
 - 点击事件 ✅(点击用户ok 标签暂未实现)
 - 评论页面 ✅
 - 收藏者 ⬜
+
+## pages
+### 发现音乐
+- 个性推荐
+  - views ✅
+  - 点击事件 ✅
+- 专属定制 ⬜
+- 歌单   ⬜
+- 排行榜  ⬜
+- 歌手 ⬜
+- 最新音乐 ⬜
+### 电台 ⬜
+### 视频 ⬜
+### 动态 ⬜
+### FM    ⬜
+### 最近播放 ⬜
+### 我的电台 ⬜
+### 我的收藏 ⬜
+### 我的消息 ⬜
+### 创建歌单 ✅
+### 收藏歌单 ✅
+### mine 
+- 上半部分 ✅
+- 下班部分 ✅
+### 其它用户界面 ✅
+

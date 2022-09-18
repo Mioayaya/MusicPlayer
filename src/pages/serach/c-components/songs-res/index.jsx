@@ -15,15 +15,15 @@ const MioSearchSong = memo((props) => {
   const theme = useSelector(state => state.themeSlice.theme);
   const [resArr,setResArr] = useState([]);
   const [offset,setOffset] = useState(0);
-  const [total,setTotal] = useState(0);
-  const [page,setPage] = useState(1);
+  const [total,setTotal] = useState(-1);
+  const [page,setPage] = useState(1);  
   const Limit = 50;
 
   useEffect(() => {
     if(routerData) {
       axios.get(getSearchRes(routerData,Limit,offset,type)).then(res => {
         setTotal(res.data.result.songCount);
-        setResArr(res.data.result.songs)
+        setResArr(res.data.result.songs);        
       })
     }
     return () => {
@@ -39,19 +39,28 @@ const MioSearchSong = memo((props) => {
   return (
     <MioSearchSongDiv theme={theme}>
       {
-        resArr.length!=0
+        total == -1 
+        &&
+        <div className="loading">···加载中···</div>
+      }
+      {
+        total == 0
+        &&
+        <div className="loading">肥肠抱歉TT暂未找到 "<strong>{routerData}</strong>" 相关的歌曲</div>
+      }
+      {
+        total>0
         &&
         <div className="number-title">{'共: '+total+' 首'}</div>
       }
       {
-        resArr.length!=0
-        ? <MioLayoutSongList songList={resArr} offset={offset}/>
-        : <div className="loading">加载中</div>
+        total>0
+        && 
+        <MioLayoutSongList songList={resArr} offset={offset}/>        
       }
-
       {/* 分页 */}
       {
-        resArr.length!=0
+        total>0
         &&
         <Pagination total={total}                   
                     bufferSize={1}

@@ -57,3 +57,33 @@
 - 点击事件 ⬜
 - 评论页面 ⬜
 - 收藏者 ⬜
+
+# 关于接口数据
+## 获取用户详情 (/user/detail)
+res
+
+|属性|值|
+|-----|-----|
+|level|等级|
+|createTime|创建时间|
+|createDays|创建天数|
+|listenSongs|听歌数量|
+|peopleCanSeeMyPlayRecord|播放记录是否可见|
+
+.profile
+
+|属性|值|
+|-----|-----|
+|userId|id|
+|nickname|昵称|
+|avatarUrl|头像|
+|gender|性别(0,1,2)|
+|vipType|vip|
+|eventCount|动态数量|
+|follows|关注数|
+|followeds|粉丝数|
+|city|所在地区(城市码)|
+|province|省|
+|signature|签名|
+|playlistCount|创建的歌单|
+|privacyItemUnlimit|隐私权限|

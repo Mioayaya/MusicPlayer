@@ -14,10 +14,11 @@ const MioSearch = memo((props) => {
   const userCounter = useSelector(state => state.userInformSlice.userCounter);
   const theme = useSelector(state => state.themeSlice.theme);
   const [routerData,setRouterData] = useState((location.hash.split('?keywords=')[1]));
-  const [active,setActive] = useState(0);  
+  const [active,setActive] = useState(0);
 
   useEffect(() => {
-    setRouterData(decodeURI(location.hash.split('?keywords=')[1]));    
+    let key = decodeURI(location.hash.split('?keywords=')[1]);
+    setRouterData(key);
   },[userCounter,routerData])
   return (
     <MioSearchDiv theme={theme}>

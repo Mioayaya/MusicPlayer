@@ -15,7 +15,7 @@ const MioSearchBase = memo((props) => {
   const theme = useSelector(state => state.themeSlice.theme);
   const [resArr,setResArr] = useState([]);
   const [offset,setOffset] = useState(0);
-  const [total,setTotal] = useState(0);
+  const [total,setTotal] = useState(-1);
   const [page,setPage] = useState(1);
   const Limit = 20;
 
@@ -51,27 +51,37 @@ const MioSearchBase = memo((props) => {
   return (
     <MioSearchBaseDiv theme={theme}>
       {
-        resArr.length!=0
+        total == -1 
+        &&
+        <div className="loading">···加载中···</div>
+      }
+      {
+        (total == 0 || !total)
+        &&
+        <div className="loading">肥肠抱歉TT暂未找到 "<strong>{routerData}</strong>" 相关的{nameType}</div>
+      }
+      {
+        total>0
         &&
         <div className="number-title">{'共: '+total+' 条搜索结果'}</div>
       }
 
-    {
-      resArr.length!=0
-      ? <MioLayoutBlockList resArr={resArr} type={nameType}/>
-      : <div className="loading">加载中</div>
-    }
+      {
+        total>0
+        && 
+        <MioLayoutBlockList resArr={resArr} type={nameType}/>
+      }
 
-    {
-      resArr.length!=0
-      && 
-      <Pagination total={total}
-                  bufferSize={1}
-                  pageSize={Limit}
-                  onChange={(pageNumber,pageSize) => pageOnChange(pageNumber)}
-                  defaultCurrent={page}
-      />
-    } 
+      {
+        total>0
+        && 
+        <Pagination total={total}
+                    bufferSize={1}
+                    pageSize={Limit}
+                    onChange={(pageNumber,pageSize) => pageOnChange(pageNumber)}
+                    defaultCurrent={page}
+        />
+      } 
     </MioSearchBaseDiv>
   )
 })

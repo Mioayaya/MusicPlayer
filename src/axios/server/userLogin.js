@@ -1,8 +1,6 @@
 import request from "../axios";
 
-// export const baseUrl = 'https://cloud-music-ten-iota.vercel.app';
-// export const baseUrl = 'http://127.0.0.1:3000';
-export const baseUrl = 'http://182.92.7.115:3000';
+export const baseUrl = 'http://127.0.0.1:3000';
 
 // 获取用户基本信息 uid 头像 昵称
 export function getUserStatus(cookie) {
